@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/sibellyvih/Museu_Virtual_de_Sertanopolis#readme",
   "dependencies": {
+    "astro": "^7.3.3",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "mongodb": "^7.2.0",

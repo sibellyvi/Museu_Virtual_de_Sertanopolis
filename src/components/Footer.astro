@@ -1,0 +1,118 @@
+<footer>
+    <div class="container">
+      <div class="footer-content">
+        <h1>Museu Virtual de Sertanópolis</h1>
+        <p>Preservando a memória, conectando pessoas e tecnologia.</p>
+      </div>
+      <div class="footer-content">
+        <nav class="navegacao">
+          <h3>Navegação</h3>
+          <ul>
+            <li><a href="/">Início</a></li>
+            <li><a href="/acervo3d">Acervo 3D</a></li>
+            <li><a href="museuHistorico.html">Museu histórico</a></li>
+            <li><a href="curiosidades.html">Curiosidades</a></li>
+            <li><a href="">Sobre o projeto</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer-content">
+        <h3>Realizações e apoio</h3>
+        <ul class="apoio">
+          <li class="apoio-item">Grupo de Realidade Aumentada</li>
+          <li class="apoio-item">UniFil</li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <p>© 2026 Museu Virtual de Sertanópolis. Todos os direitos reservados.</p>
+  </footer>
+
+  <style>
+  :root {
+    --cor-vermelha-principal: rgb(151, 44, 44);
+    --cor-de-fundo-footer: whitesmoke;
+    --cor-azul-principal: rgb(8, 8, 106);
+}
+p {
+    padding: 10px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--cor-vermelha-principal);
+    text-decoration: underline;
+}
+  li {
+    list-style-type: none;
+}
+
+footer {
+    background-color: var(--cor-de-fundo-footer);
+    color: black;
+    padding: 30px;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    padding: 90px;
+}
+
+footer h1 {
+    padding: 5px;
+    text-align: start;
+    font-size: 25px;
+    color: var(--cor-vermelha-principal);
+    font-weight: bold;
+}
+
+footer h3 {
+    text-transform: uppercase;
+    color: var(--cor-azul-principal);
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+footer p{
+    padding: 10px;
+}
+
+footer .footer-content p {
+    text-align: start;
+    font-size: 20px;
+}
+
+footer li {
+    text-align: start;
+    font-size: 20px;
+
+}
+
+footer .apoio{
+    display: flex;
+    gap: 15px;
+}
+
+.apoio-item {
+    border: #a3a3a3 solid 1px;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgb(255, 255, 255);
+}
+</style>

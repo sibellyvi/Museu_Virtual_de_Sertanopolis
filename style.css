@@ -3,7 +3,13 @@
     src: url("fonts/LOT.otf") format("truetype");
 }
 
-h1{
+:root {
+    --cor-vermelha-principal: rgb(151, 44, 44);
+    --cor-de-fundo-footer: whitesmoke;
+    --cor-azul-principal: rgb(8, 8, 106);
+}
+
+h1 {
     /* font-family: 'LOT', sans-serif;
     font-weight: lighter;
     font-style: normal; */
@@ -38,7 +44,7 @@ a {
 }
 
 a:hover {
-    color: red;
+    color: var(--cor-vermelha-principal);
     text-decoration: underline;
 }
 
@@ -76,45 +82,65 @@ p {
 
 hr {
     height: 1px;
-    /* Define a espessura */
     background-color: #000000;
-    /* Cor da linha */
 }
 
 
 footer {
-    background-color: #9a0000;
-    color: white
+    background-color: var(--cor-de-fundo-footer);
+    color: black;
+    padding: 30px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    padding: 90px;
 }
 
 footer h1 {
-    padding: 30px;
-    text-align: center;
+    padding: 5px;
+    text-align: start;
     font-size: 25px;
+    color: var(--cor-vermelha-principal);
+    font-weight: bold;
 }
 
-footer p {
-    padding: 60px;
-    text-align: justify;
-    text-indent: 20px;
+footer h3 {
+    text-transform: uppercase;
+    color: var(--cor-azul-principal);
+    font-weight: bold;
+    padding-bottom: 20px;
 }
 
-footer .aluna {
-    padding: 50px;
+footer .footer-content p {
+    text-align: start;
+    font-size: 20px;
+}
+
+footer li {
+    text-align: start;
+    font-size: 20px;
+
+}
+
+footer .apoio{
     display: flex;
-    justify-content: center;
-    background-color: rgb(89, 88, 88);
-    color: white;
+    gap: 15px;
 }
 
-footer .aluna img {
-    width: 30%;
-}
-
-footer .redes {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    padding: 50px;
-    background-color: rgb(89, 88, 88);
+.apoio-item {
+    border: #a3a3a3 solid 1px;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgb(255, 255, 255);
 }
