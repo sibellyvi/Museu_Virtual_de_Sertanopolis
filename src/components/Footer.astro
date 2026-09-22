@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>footer</title>
+</head>
+
+<body>
+
 <footer>
     <div class="container">
       <div class="footer-content">
@@ -10,8 +20,8 @@
           <ul>
             <li><a href="/">Início</a></li>
             <li><a href="/acervo3d">Acervo 3D</a></li>
-            <li><a href="museuHistorico.html">Museu histórico</a></li>
-            <li><a href="curiosidades.html">Curiosidades</a></li>
+            <li><a href="/museuHistorico">Museu histórico</a></li>
+            <li><a href="/curiosidades">Curiosidades</a></li>
             <li><a href="">Sobre o projeto</a></li>
           </ul>
         </nav>
@@ -27,12 +37,12 @@
     </div>
     <hr>
     <p>© 2026 Museu Virtual de Sertanópolis. Todos os direitos reservados.</p>
-  </footer>
+</footer>
 
   <style>
   :root {
     --cor-vermelha-principal: rgb(151, 44, 44);
-    --cor-de-fundo-footer: whitesmoke;
+    --cor-de-fundo-footer: #faf8f2;;
     --cor-azul-principal: rgb(8, 8, 106);
 }
 p {
@@ -52,10 +62,15 @@ a:hover {
     list-style-type: none;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
 footer {
     background-color: var(--cor-de-fundo-footer);
     color: black;
-    padding: 30px;
+    padding: 20px;
     text-align: center;
     font-family: 'Cinzel', serif;
 }
@@ -71,7 +86,7 @@ footer {
 .footer-content {
     display: flex;
     flex-direction: column;
-    padding: 90px;
+    padding: 60px;
 }
 
 footer h1 {
@@ -98,21 +113,61 @@ footer .footer-content p {
     font-size: 20px;
 }
 
+footer ul {
+    padding: 0;
+    margin: 0;
+}
+
 footer li {
     text-align: start;
     font-size: 20px;
-
+    padding: 4px;
 }
 
 footer .apoio{
     display: flex;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .apoio-item {
     border: #a3a3a3 solid 1px;
     border-radius: 5px;
-    padding: 5px;
+    padding: 7px;
     background-color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+@media (max-width: 768px){
+    .container{
+        flex-direction: column;
+        align-item: stretch;
+        gap: 20px;
+    }
+
+    .footer-content {
+        padding: 20px 10px;
+    }
+
+    footer h1 {
+        font-size: 22px;
+    }
+
+    footer h3 {
+        font-size: 18px;
+        padding-bottom: 10px;
+    }
+
+    footer .footer-content p,
+    footer li {
+        font-size: 17px;
+    }
+
+    footer .apoio {
+        justify-content: flex-start;
+    }
 }
 </style>
+</body>
+</html>
+
