@@ -16,7 +16,7 @@
     </div>
 
     <nav class="menu">
-      <a class="ativo" href="/">Início</a>
+      <a href="/">Início</a>
       <a href="/acervo3d">Acervo 3D</a>
       <a href="/museuHistorico">Museu Histórico</a>
       <a href="/curiosidades">Curiosidades</a>
@@ -37,7 +37,7 @@
             --cor-azul-principal: rgb(8, 8, 106);
             --cor-azul-secundaria: #14678c;
             --cor-dourada: #d8a85f;
-            --cor-fundo: #faf8f2;
+            --cor-fundo: whitesmoke;
             --cor-fundo-footer: whitesmoke;
             --cor-branca: #ffffff;
             --cor-texto: #444444;
@@ -47,8 +47,15 @@
             
 
             header {
-            background-color: var(--cor-fundo);
-            border-bottom: 1px solid var(--cor-borda);
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+
+                background-color: var(--cor-fundo);
+                border-bottom: 1px solid var(--cor-borda);
+
+                z-index: 1000;
             }
 
             .header-container {
