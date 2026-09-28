@@ -25,10 +25,11 @@ const titulo = 'Museu Virtual de Sertanópolis'
 
 <section class="hero">
   <div class="hero-imagem">
-    <img
-      src="/imagens/ImagemMuseu.jpg"
-      alt="Imagem do Museu Histórico de Sertanópolis em 2006"
-    />
+  <img
+    src="/Banco de fotos de Sertanópolis/AR 401 A4.1-B PACO MUNICIPAL SANTO SORIANI 1970.jpg"
+    alt="Paço Municipal Santo Soriani em 1970"
+    class="imagem-museu"
+  />
   </div>
 
   <div class="hero-conteudo">
@@ -47,6 +48,41 @@ const titulo = 'Museu Virtual de Sertanópolis'
         Conheça o Museu
       </a>
     </div>
+  </div>
+</section>
+<section class="sobre-projeto" id="sobre-projeto">
+  <div class="sobre-container">
+
+    <div class="sobre-texto">
+      <h3>Conheça o projeto</h3>
+
+      <h2>Patrimônio que cabe em qualquer tela</h2>
+
+      <p>
+        O <strong>Museu Virtual de Sertanópolis</strong> é um projeto de
+        extensão universitário sem fins lucrativos, que visa preservar a
+        memória e a história do município através da tecnologia. Com o uso
+        de modelos 3D, realidade aumentada e recursos interativos, o projeto
+        proporciona uma experiência única para os visitantes, permitindo que
+        explorem o acervo do museu histórico de forma inovadora e acessível.
+      </p>
+
+      <a
+        href={`${import.meta.env.BASE_URL}/museuHistorico`}
+        class="link-historia"
+      >
+        A história do museu →
+      </a>
+    </div>
+
+    <div class="sobre-imagem">
+      <img
+        src="/imagens/ImagemMuseu.jpg"
+        alt="Imagem do Museu Histórico de Sertanópolis em 2006"
+        class="imagem-museu"
+      />
+    </div>
+
   </div>
 </section>
 
