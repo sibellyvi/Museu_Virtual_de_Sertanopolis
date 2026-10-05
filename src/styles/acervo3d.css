@@ -1,0 +1,153 @@
+  :root {
+    --cor-vermelha-principal: rgb(151, 44, 44);
+    --cor-azul-principal: rgb(8, 8, 106);
+    --cor-azul-secundaria: #14678c;
+    --cor-dourada: #d8a85f;
+    --cor-fundo: whitesmoke;
+    --cor-fundo-footer: whitesmoke;
+    --cor-branca: #ffffff;
+    --cor-texto: #444444;
+    --cor-borda: #e8e1d8;
+    --cor-borda-cinza: #d9d2c8;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    padding: 30px;
+    text-align: center;
+    color: var(--cor-azul-principal);
+}
+
+h3 {
+    padding: 30px;
+    text-align: center;
+    color: var(--cor-vermelha-principal);
+}
+
+p {
+    text-align: center;
+    color: var(--cor-texto);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.acervo-grid {
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.card-acervo {
+  background: #ffffff;
+  border: 1px solid #ddd8ce;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-acervo:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.card-imagem {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.card-imagem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-conteudo {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.categoria {
+  color: #14678c;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.card-conteudo h2 {
+  margin: 12px 0 12px;
+  font-family: Georgia, serif;
+  font-size: 1.45rem;
+  line-height: 1.2;
+}
+
+.card-conteudo p {
+  margin: 0;
+  color: #496070;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.botao-3d {
+  display: inline-block;
+  width: fit-content;
+
+  margin-top: auto;
+  padding-top: 24px;
+
+  color: #a51c1c;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+
+  border-bottom: 1px solid #d8a85f;
+  padding-bottom: 6px;
+}
+
+.botao-3d:hover {
+  color: #7d1111;
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+  .acervo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* Celular */
+@media (max-width: 650px) {
+  .acervo-grid {
+    grid-template-columns: 1fr;
+    padding: 0 16px;
+    gap: 20px;
+  }
+
+  .card-conteudo {
+    padding: 22px;
+  }
+
+  .card-conteudo h2 {
+    font-size: 1.3rem;
+  }
+}

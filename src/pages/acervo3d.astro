@@ -1,8 +1,35 @@
 ---
+import "../styles/acervo3d.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 const titulo = "Acervo 3D"
+
+const acervo = [
+  {
+    nome: "Aparelho de inalação",
+    categoria: "Saúde",
+    descricao: "Ano: 1950",
+    imagem: "modelos_gaussian/imagens/inalador.png",
+    pagina: "modelos_gaussian/inalador-isolado-centralizado.html"
+  },
+
+  {
+    nome: "Cofre com formato de sapato",
+    categoria: "Objetos do cotidiano",
+    descricao: "Ano: 1932",
+    imagem: "modelos_gaussian/imagens/cofre-sapato.png",
+    pagina: "modelos_gaussian/inalador-isolado-centralizado.html"
+  },
+
+  {
+    nome: "Machado (Lâmina)",
+    categoria: "Objeto indígena",
+    descricao: "Incorporado no ano: 2000",
+    imagem: "modelos_gaussian/imagens/machado.png",
+    pagina: "modelos_gaussian/inalador-isolado-centralizado.html"
+  }
+];
 
 ---
 
@@ -12,12 +39,62 @@ const titulo = "Acervo 3D"
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{titulo}</title>
+  <script
+  type="module"
+  src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 
 <body>
   <Header />
   <h1>{titulo}</h1>
-  <p>Minha primeira página em Astro.</p>
+  <h2>Boas vindas ao acervo 3D do MHC²IT</h2>
+  <h3>Aqui você pode conhecer o patrimônio histórico material do município de Sertanópolis em diferentes dimensões, além de poder fazer uma visita em realidade aumentada</h3>
+
+  <model-viewer
+    src="/modelos3d/lustre.glb"
+    alt="Modelo 3D de um lustre"
+    ar
+    ar-modes="webxr scene-viewer quick-look"
+    camera-controls
+    style="width: 100%; height: 500px;"
+  >
+  </model-viewer>
+  <p>Modelo 3D de um lustre do Clube Recreativo Operário</p>
+
+  <hr>
+
+<div class="acervo-grid">
+
+  {
+  acervo.map((item) => (
+    <article class="card-acervo">
+
+      <div class="card-imagem">
+        <img
+          src={item.imagem}
+          alt={item.nome}
+        />
+      </div>
+
+      <div class="card-conteudo">
+
+        <span class="categoria">{item.categoria}</span>
+
+        <h2>{item.nome}</h2>
+
+        <p>{item.descricao}</p>
+
+        <a href={item.pagina} class="botao-3d">
+          Explorar em 3D →
+        </a>
+
+      </div>
+
+    </article>
+  ))
+}
+
+</div>
 
     <Footer />
 </body>
