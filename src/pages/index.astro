@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 const titulo = 'Museu Virtual de Sertanópolis'
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <!DOCTYPE html>
@@ -26,7 +27,7 @@ const titulo = 'Museu Virtual de Sertanópolis'
 <section class="hero">
   <div class="hero-imagem">
   <img
-    src="/Banco de fotos de Sertanópolis/AR 401 A4.1-B PACO MUNICIPAL SANTO SORIANI 1970.jpg"
+    src= `${base}/Banco de fotos de Sertanópolis/AR 401 A4.1-B PACO MUNICIPAL SANTO SORIANI 1970.jpg`
     alt="Paço Municipal Santo Soriani em 1970"
     class="imagem-museu"
   />
@@ -77,7 +78,7 @@ const titulo = 'Museu Virtual de Sertanópolis'
 
     <div class="sobre-imagem">
       <img
-        src="/imagens/ImagemMuseu.jpg"
+        src=`${base}/imagens/ImagemMuseu.jpg`
         alt="Imagem do Museu Histórico de Sertanópolis em 2006"
         class="imagem-museu"
       />

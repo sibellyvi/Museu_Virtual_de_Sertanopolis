@@ -1,22 +1,28 @@
-  :root {
-    --cor-vermelha-principal: rgb(151, 44, 44);
-    --cor-azul-principal: rgb(8, 8, 106);
-    --cor-azul-secundaria: #14678c;
-    --cor-dourada: #d8a85f;
-    --cor-fundo: whitesmoke;
-    --cor-fundo-footer: whitesmoke;
-    --cor-branca: #ffffff;
-    --cor-texto: #444444;
-    --cor-borda: #e8e1d8;
-    --cor-borda-cinza: #d9d2c8;
+/* ==========================================================
+   Variáveis e reset
+   ========================================================== */
+:root {
+  --cor-vermelha-principal: rgb(151, 44, 44);
+  --cor-azul-principal: rgb(8, 8, 106);
+  --cor-azul-secundaria: #14678c;
+  --cor-dourada: #d8a85f;
+  --cor-fundo: whitesmoke;
+  --cor-fundo-footer: whitesmoke;
+  --cor-branca: #ffffff;
+  --cor-texto: #444444;
+  --cor-borda: #e8e1d8;
+  --cor-borda-cinza: #d9d2c8;
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+/* ==========================================================
+   Títulos e textos
+   ========================================================== */
 .eyebrow {
   display: block;
   text-align: center;
@@ -33,7 +39,7 @@ h1 {
   text-align: center;
   color: var(--cor-azul-secundaria);
   margin: 12px 0 16px;
-  padding-top: 100px;
+  padding-top: 100px; /* espaço para o header fixo; apague se usar position: sticky */
 }
 
 h2 {
@@ -42,12 +48,6 @@ h2 {
   text-align: center;
   color: var(--cor-azul-principal);
   margin: 48px 0 24px;
-}
-
-h3 {
-    padding: 30px;
-    text-align: center;
-    color: var(--cor-vermelha-principal);
 }
 
 .titulo-secao::after {
@@ -59,50 +59,120 @@ h3 {
   margin: 14px auto 0;
 }
 
-.card-conteudo h3 {
-  padding: 0;
-  text-align: left;
-  font-family: Georgia, serif;
-  font-size: 1.45rem;
-  margin: 12px 0;
-}
-
-.card-conteudo p {
-  text-align: left;
-}
-
 p {
-    text-align: center;
-    color: var(--cor-texto);
-    font-size: 1.1rem;
-    line-height: 1.5;
-    max-width: 800px;
-    margin: 0 auto 40px;
+  text-align: center;
+  color: var(--cor-texto);
+  font-size: 1.1rem;
+  line-height: 1.5;
+  max-width: 800px;
+  margin: 0 auto 40px;
 }
 
+/* ==========================================================
+   Botão de realidade aumentada (lustre)
+   ========================================================== */
 .botao-ar {
-    display: block;
-    margin: 16px auto;
-    padding: 12px 24px;
-    border: 1px solid var(--cor-dourada);
-    border-radius: 30px;
-    background: transparent;
-    color: var(--cor-azul-principal);
-    font-size: 15px;
-    cursor: pointer;
-  }
+  display: block;
+  margin: 16px auto;
+  padding: 12px 24px;
+  border: 1px solid var(--cor-dourada);
+  border-radius: 30px;
+  background: transparent;
+  color: var(--cor-azul-principal);
+  font-size: 15px;
+  cursor: pointer;
+}
 
-  .botao-ar:hover {
-    background: var(--cor-dourada);
-    color: var(--cor-branca);
-  }
+.botao-ar:hover {
+  background: var(--cor-dourada);
+  color: var(--cor-branca);
+}
 
-  .aviso-ar {
-    text-align: center;
-    color: var(--cor-texto);
-    font-size: 14px;
-  }
+.aviso-ar {
+  text-align: center;
+  color: var(--cor-texto);
+  font-size: 14px;
+}
 
+/* ==========================================================
+   Busca, categorias e contador
+   ========================================================== */
+.filtros {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.busca-acervo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--cor-borda-cinza);
+  color: var(--cor-texto);
+}
+
+.busca-acervo:focus-within {
+  border-bottom-color: var(--cor-dourada);
+}
+
+.busca-acervo input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1.1rem;
+  color: var(--cor-texto);
+}
+
+.busca-acervo input::placeholder {
+  color: #6b6b6b;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.chip {
+  padding: 9px 18px;
+  border: 1px solid var(--cor-borda-cinza);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--cor-texto);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.chip:hover {
+  border-color: var(--cor-vermelha-principal);
+  color: var(--cor-vermelha-principal);
+}
+
+.chip.ativo {
+  background: var(--cor-vermelha-principal);
+  border-color: var(--cor-vermelha-principal);
+  color: var(--cor-branca);
+  font-weight: 600;
+}
+
+.contador {
+  text-align: left;
+  max-width: none;
+  margin: 24px 0 0;
+  font-size: 1rem;
+}
+
+.sem-resultados {
+  margin: 20px auto 60px;
+}
+
+/* ==========================================================
+   Grade e cards do acervo
+   ========================================================== */
 .acervo-grid {
   width: 100%;
   max-width: 1200px;
@@ -115,7 +185,7 @@ p {
 }
 
 .card-acervo {
-  background: #ffffff;
+  background: var(--cor-branca);
   border: 1px solid #ddd8ce;
   overflow: hidden;
 
@@ -130,7 +200,13 @@ p {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
+/* Necessário para o filtro: sem isso o display:flex vence o atributo hidden */
+.card-acervo[hidden] {
+  display: none;
+}
+
 .card-imagem {
+  position: relative;
   width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
@@ -143,6 +219,21 @@ p {
   display: block;
 }
 
+.selo-ar {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--cor-azul-secundaria);
+  font-size: 0.78rem;
+}
+
 .card-conteudo {
   padding: 28px;
   display: flex;
@@ -151,22 +242,26 @@ p {
 }
 
 .categoria {
-  color: #14678c;
+  color: var(--cor-azul-secundaria);
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
 }
 
-.card-conteudo h2 {
-  margin: 12px 0 12px;
+.card-conteudo h3 {
+  padding: 0;
+  margin: 12px 0;
+  text-align: left;
   font-family: Georgia, serif;
   font-size: 1.45rem;
   line-height: 1.2;
+  color: var(--cor-azul-principal);
 }
 
 .card-conteudo p {
   margin: 0;
+  text-align: left;
   color: #496070;
   line-height: 1.5;
   font-size: 1rem;
@@ -178,19 +273,23 @@ p {
 
   margin-top: auto;
   padding-top: 24px;
+  padding-bottom: 6px;
 
   color: #a51c1c;
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
 
-  border-bottom: 1px solid #d8a85f;
-  padding-bottom: 6px;
+  border-bottom: 1px solid var(--cor-dourada);
 }
 
 .botao-3d:hover {
   color: #7d1111;
 }
+
+/* ==========================================================
+   Responsivo
+   ========================================================== */
 
 /* Tablet */
 @media (max-width: 1000px) {
@@ -199,9 +298,16 @@ p {
   }
 }
 
-
 /* Celular */
 @media (max-width: 650px) {
+  .filtros {
+    padding: 0 16px;
+  }
+
+  .chips {
+    gap: 8px;
+  }
+
   .acervo-grid {
     grid-template-columns: 1fr;
     padding: 0 16px;
@@ -212,7 +318,7 @@ p {
     padding: 22px;
   }
 
-  .card-conteudo h2 {
+  .card-conteudo h3 {
     font-size: 1.3rem;
   }
 }

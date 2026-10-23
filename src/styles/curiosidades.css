@@ -1,0 +1,128 @@
+:root {
+  --cor-vermelha-principal: rgb(151, 44, 44);
+  --cor-azul-principal: rgb(8, 8, 106);
+  --cor-azul-secundaria: #14678c;
+  --cor-dourada: #d8a85f;
+  --cor-fundo: whitesmoke;
+  --cor-fundo-pagina: #ffffff;
+  --cor-fundo-card: whitesmoke;
+  --cor-branca: #ffffff;
+  --cor-texto: #000000;
+  --cor-borda: #e8e1d8;
+  --cor-borda-cinza: #d9d2c8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--cor-fundo-pagina);
+}
+
+.pagina-curiosidades {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 110px 24px 80px; /* espaço para o header fixo; reduza se usar position: sticky */
+}
+
+/* Topo da página */
+.topo-curiosidades {
+  margin-bottom: 56px;
+}
+
+.eyebrow {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--cor-azul-secundaria);
+}
+
+.topo-curiosidades h1 {
+  margin: 16px 0 18px;
+  font-family: Georgia, serif;
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  color: #1c2630;
+}
+
+.intro {
+  max-width: 560px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #496070;
+}
+
+/* Grade de cards */
+.grade-curiosidades {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+  align-items: stretch;
+}
+
+.card-curiosidade {
+  padding: 28px 26px 32px;
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda-cinza);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-curiosidade:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+}
+
+.rotulo {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cor-azul-secundaria);
+}
+
+.card-curiosidade h2 {
+  margin: 14px 0 22px;
+  font-family: Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #1c2630;
+}
+
+.card-curiosidade p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #496070;
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+  .grade-curiosidades {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Celular */
+@media (max-width: 650px) {
+  .pagina-curiosidades {
+    padding: 100px 16px 60px;
+  }
+
+  .topo-curiosidades {
+    margin-bottom: 36px;
+  }
+
+  .grade-curiosidades {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .card-curiosidade {
+    padding: 24px 22px 28px;
+  }
+}

@@ -1,0 +1,104 @@
+Claude
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Galeria · ASTRO
+---
+import "../styles/galeria.css";
+import { fotos, pastaFotos } from "../data/fotos";
+ 
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+ 
+// encodeURIComponent cuida de espaços e acentos no nome dos arquivos
+const urlFoto = (arquivo: string) =>
+  `${base}/${pastaFotos}/${encodeURIComponent(arquivo)}`;
+---
+ 
+<section class="galeria" id="galeria">
+  <header class="galeria-topo">
+    <span class="galeria-rotulo">Memória visual</span>
+    <h2>Sertanópolis no tempo</h2>
+    <p class="galeria-intro">
+      Fotografias do banco de fotos da cidade que registram ruas, comércio,
+      escolas, igrejas e o trabalho no campo. Toque em uma imagem para ampliar.
+    </p>
+  </header>
+ 
+  <div class="galeria-grade">
+    {
+      fotos.map((foto) => (
+        <figure class="card-foto">
+          <button
+            type="button"
+            class="foto-botao"
+            data-src={urlFoto(foto.arquivo)}
+            data-legenda={foto.legenda}
+            aria-label={`Ampliar foto: ${foto.legenda}`}
+          >
+            <img
+              src={urlFoto(foto.arquivo)}
+              alt={foto.legenda}
+              loading="lazy"
+              decoding="async"
+            />
+          </button>
+          <figcaption class="foto-info">
+            <h3>{foto.legenda}</h3>
+            <span class="foto-codigo">{foto.codigo}</span>
+          </figcaption>
+        </figure>
+      ))
+    }
+  </div>
+ 
+  <dialog id="lightbox" class="lightbox" aria-label="Foto ampliada">
+    <div class="lightbox-conteudo">
+      <button type="button" class="lightbox-fechar" aria-label="Fechar">×</button>
+      <img id="lightbox-img" src="" alt="" />
+      <p id="lightbox-legenda"></p>
+    </div>
+  </dialog>
+</section>
+ 
+<script>
+  const dialog = document.getElementById("lightbox") as HTMLDialogElement | null;
+  const imagem = document.getElementById("lightbox-img") as HTMLImageElement | null;
+  const legenda = document.getElementById("lightbox-legenda");
+ 
+  document.querySelectorAll<HTMLButtonElement>(".foto-botao").forEach((botao) => {
+    botao.addEventListener("click", () => {
+      if (!dialog || !imagem || !legenda) return;
+      imagem.src = botao.dataset.src ?? "";
+      imagem.alt = botao.dataset.legenda ?? "";
+      legenda.textContent = botao.dataset.legenda ?? "";
+      dialog.showModal();
+    });
+  });
+ 
+  // Fecha ao clicar fora da imagem ou no X (Esc já fecha sozinho)
+  dialog?.addEventListener("click", (e) => {
+    const alvo = e.target as HTMLElement;
+    if (alvo === dialog || alvo.classList.contains("lightbox-fechar")) {
+      dialog.close();
+    }
+  });
+</script>
+ 
+Claude terminou a resposta
