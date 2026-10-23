@@ -91,21 +91,60 @@ const curiosidades = [
       </p>
     </section>
 
-    <section class="grade-curiosidades">
-      {
-        curiosidades.map((item) => (
-          <article class="card-curiosidade">
-            <span class="rotulo">{item.rotulo}</span>
-            <h2>{item.titulo}</h2>
-            <p>{item.texto}</p>
-          </article>
-        ))
-      }
+    <section
+      class="carrossel"
+      data-carrossel
+      aria-label="Curiosidades de Sertanópolis"
+    >
+      <div class="carrossel-controles">
+        <button
+          type="button"
+          class="carrossel-seta"
+          data-carrossel-anterior
+          aria-label="Curiosidade anterior"
+        >
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="15 5 8 12 15 19"></polyline>
+          </svg>
+        </button>
+        <button
+          type="button"
+          class="carrossel-seta"
+          data-carrossel-proximo
+          aria-label="Próxima curiosidade"
+        >
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="9 5 16 12 9 19"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <div
+        class="carrossel-trilho"
+        data-carrossel-trilho
+        role="region"
+        aria-label="Lista de curiosidades"
+        tabindex="0"
+      >
+        {
+          curiosidades.map((item) => (
+            <article class="card-curiosidade">
+              <span class="rotulo">{item.rotulo}</span>
+              <h2>{item.titulo}</h2>
+              <p>{item.texto}</p>
+            </article>
+          ))
+        }
+      </div>
     </section>
 
     <Galeria />
   </main>
 
   <Footer />
+
+  <script>
+    import "../scripts/carrossel.js";
+  </script>
 </body>
 </html>

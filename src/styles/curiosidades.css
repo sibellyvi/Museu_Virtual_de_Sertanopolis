@@ -4,10 +4,10 @@
   --cor-azul-secundaria: #14678c;
   --cor-dourada: #d8a85f;
   --cor-fundo: whitesmoke;
-  --cor-fundo-pagina: #ffffff;
-  --cor-fundo-card: whitesmoke;
+  --cor-fundo-pagina: #f9f6ef;
+  --cor-fundo-card: #fdfcf7;
   --cor-branca: #ffffff;
-  --cor-texto: #000000;
+  --cor-texto: #444444;
   --cor-borda: #e8e1d8;
   --cor-borda-cinza: #d9d2c8;
 }
@@ -57,15 +57,67 @@ body {
   color: #496070;
 }
 
-/* Grade de cards */
-.grade-curiosidades {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 26px;
-  align-items: stretch;
+/* Carrossel de cards */
+.carrossel {
+  --por-tela: 3; /* quantos cards aparecem ao mesmo tempo */
+  --espaco: 26px;
+}
+
+.carrossel-controles {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.carrossel-seta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--cor-borda-cinza);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--cor-texto);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.carrossel-seta:hover:not(:disabled) {
+  background: var(--cor-vermelha-principal);
+  border-color: var(--cor-vermelha-principal);
+  color: var(--cor-branca);
+}
+
+.carrossel-seta:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.carrossel-seta:focus-visible,
+.carrossel-trilho:focus-visible {
+  outline: 3px solid var(--cor-dourada);
+  outline-offset: 2px;
+}
+
+.carrossel-trilho {
+  display: flex;
+  gap: var(--espaco);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Firefox */
+  /* folga em cima e embaixo para a sombra do hover não ser cortada */
+  padding: 12px 0 32px;
+}
+
+.carrossel-trilho::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
 }
 
 .card-curiosidade {
+  flex: 0 0 calc((100% - (var(--por-tela) - 1) * var(--espaco)) / var(--por-tela));
+  scroll-snap-align: start;
   padding: 28px 26px 32px;
   background: var(--cor-fundo-card);
   border: 1px solid var(--cor-borda-cinza);
@@ -102,8 +154,8 @@ body {
 
 /* Tablet */
 @media (max-width: 1000px) {
-  .grade-curiosidades {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .carrossel {
+    --por-tela: 2;
   }
 }
 
@@ -117,9 +169,9 @@ body {
     margin-bottom: 36px;
   }
 
-  .grade-curiosidades {
-    grid-template-columns: 1fr;
-    gap: 18px;
+  .carrossel {
+    --por-tela: 1;
+    --espaco: 16px;
   }
 
   .card-curiosidade {

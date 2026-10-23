@@ -10,83 +10,83 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{titulo}</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{titulo}</title>
 </head>
 
 <body>
 
-  <Header />
+<Header />
 
-  <section class ="inicio">
-    <h2>Projeto de Extensão Universitária</h2>
-    <h1>Museu Virtual de <span id="red">Sertanópolis</span></h1>
-  </section>
+<section class ="inicio">
+<h2>Projeto de Extensão Universitária</h2>
+<h1>Museu Virtual de <span id="red">Sertanópolis</span></h1>
+</section>
 
 <section class="hero">
-  <div class="hero-imagem">
-  <img
-    src= `${base}/Banco de fotos de Sertanópolis/AR 401 A4.1-B PACO MUNICIPAL SANTO SORIANI 1970.jpg`
-    alt="Paço Municipal Santo Soriani em 1970"
-    class="imagem-museu"
-  />
-  </div>
+<div class="hero-imagem">
+<img
+src= `${base}/banco-de-fotos/AR 401 A4.1-B PACO MUNICIPAL SANTO SORIANI 1970.jpg`
+alt="Paço Municipal Santo Soriani em 1970"
+class="imagem-museu"
+/>
+</div>
 
-  <div class="hero-conteudo">
-    <div class="linha-decorativa"></div>
+<div class="hero-conteudo">
+<div class="linha-decorativa"></div>
 
-    <p>
-      História, memória e tecnologia em uma nova forma de preservar o patrimônio.
-    </p>
+<p>
+História, memória e tecnologia em uma nova forma de preservar o patrimônio.
+</p>
 
-    <div class="hero-botoes">
-      <a class="botao botao-principal" href="/acervo3d">
-        Explorar o Acervo 3D
-      </a>
+<div class="hero-botoes">
+<a class="botao botao-principal" href={`${base}/acervo3d`}>
+Explorar o Acervo 3D
+</a>
 
-      <a class="botao botao-secundario" href="/museuHistorico">
-        Conheça o Museu
-      </a>
-    </div>
-  </div>
+<a class="botao botao-secundario" href={`${base}/museuHistorico`}>
+Conheça o Museu
+</a>|
+</div>
+</div>
 </section>
 <section class="sobre-projeto" id="sobre-projeto">
-  <div class="sobre-container">
+<div class="sobre-container">
 
-    <div class="sobre-texto">
-      <h3>Conheça o projeto</h3>
+<div class="sobre-texto">
+<h3>Conheça o projeto</h3>
 
-      <h2>Patrimônio que cabe em qualquer tela</h2>
+<h2>Patrimônio que cabe em qualquer tela</h2>
 
-      <p>
-        O <strong>Museu Virtual de Sertanópolis</strong> é um projeto de
-        extensão universitário sem fins lucrativos, que visa preservar a
-        memória e a história do município através da tecnologia. Com o uso
-        de modelos 3D, realidade aumentada e recursos interativos, o projeto
-        proporciona uma experiência única para os visitantes, permitindo que
-        explorem o acervo do museu histórico de forma inovadora e acessível.
-      </p>
+<p>
+O <strong>Museu Virtual de Sertanópolis</strong> é um projeto de
+extensão universitário sem fins lucrativos, que visa preservar a
+memória e a história do município através da tecnologia. Com o uso
+de modelos 3D, realidade aumentada e recursos interativos, o projeto
+proporciona uma experiência única para os visitantes, permitindo que
+explorem o acervo do museu histórico de forma inovadora e acessível.
+</p>
 
-      <a
-        href={`${import.meta.env.BASE_URL}/museuHistorico`}
-        class="link-historia"
-      >
-        A história do museu →
-      </a>
-    </div>
+<a
+href={`${import.meta.env.BASE_URL}/museuHistorico`}
+class="link-historia"
+>
+A história do museu →
+</a>
+</div>
 
-    <div class="sobre-imagem">
-      <img
-        src=`${base}/imagens/ImagemMuseu.jpg`
-        alt="Imagem do Museu Histórico de Sertanópolis em 2006"
-        class="imagem-museu"
-      />
-    </div>
+<div class="sobre-imagem">
+<img
+src=`${base}/imagens/ImagemMuseu.jpg`
+alt="Imagem do Museu Histórico de Sertanópolis em 2006"
+class="imagem-museu"
+/>
+</div>
 
-  </div>
+</div>
 </section>
 
-  <Footer />
+<Footer />
 </body>
 </html>
