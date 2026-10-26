@@ -1,0 +1,22 @@
+# Resultado do build
+dist/
+
+# Arquivos gerados pelo Astro
+.astro/
+
+# Dependências
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Variáveis de ambiente
+.env
+.env.production
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
