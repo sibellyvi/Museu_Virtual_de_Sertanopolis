@@ -1,9 +1,116 @@
-body {
-    background-color: #9a0000;
-    color: white;
+:root {
+  --cor-vermelha-principal: rgb(151, 44, 44);
+  --cor-azul-principal: rgb(8, 8, 106);
+  --cor-azul-secundaria: #14678c;
+  --cor-dourada: #d8a85f;
+  --cor-fundo: whitesmoke;
+  --cor-fundo-pagina: #f9f6ef;
+  --cor-branca: #ffffff;
+  --cor-texto: #444444;
+  --cor-borda: #e8e1d8;
+  --cor-borda-cinza: #d9d2c8;
 }
 
-img {
-    width: 40%;
-    padding: 20px 300px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #9a0000;
+}
+
+.pagina-museu {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 120px 24px 90px; /* espaço para o header fixo; reduza se usar position: sticky */
+}
+
+/* Apresentação */
+.apresentacao {
+  text-align: center;
+}
+
+.eyebrow {
+  display: block;
+  font-size: 0.95rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #f0d6a0;
+}
+
+.apresentacao h1 {
+  margin: 22px 0 0;
+  font-family: Georgia, serif;
+  font-size: clamp(2.4rem, 7vw, 4.2rem);
+  font-weight: 500;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+/* Linha curta embaixo do título */
+.apresentacao h1::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 2px;
+  margin: 24px auto 0;
+  background: var(--cor-dourada);
+}
+
+.intro {
+  max-width: 760px;
+  margin: 32px auto 0;
+  font-size: 1.3rem;
+  line-height: 1.75;
+  color: #f7efe3;
+}
+
+/* Imagem */
+.figura-museu {
+  margin: 56px auto 0;
+  max-width: 550px;
+}
+
+.imagem-museu {
+  display: block;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.figura-museu figcaption {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #f3e6cf;
+}
+
+/* Segunda imagem (recorte de jornal), um pouco menor e centralizada */
+.figura-revista {
+  max-width: 500px;
+}
+
+/* Celular */
+@media (max-width: 650px) {
+  .pagina-museu {
+    padding: 100px 18px 60px;
+  }
+
+  .eyebrow {
+    font-size: 0.82rem;
+    letter-spacing: 3px;
+  }
+
+  .intro {
+    margin-top: 24px;
+    font-size: 1.12rem;
+    line-height: 1.7;
+  }
+
+  .figura-museu {
+    margin-top: 40px;
+  }
 }
