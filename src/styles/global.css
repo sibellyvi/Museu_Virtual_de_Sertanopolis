@@ -1,3 +1,9 @@
+/* ==========================================================
+   Cores e tamanhos
+   Os tamanhos ficam todos aqui, em variáveis. Para a tela do
+   notebook, do tablet ou do celular, só os valores mudam (veja
+   os blocos @media no final do arquivo).
+   ========================================================== */
 :root {
     --cor-vermelha-principal: rgb(151, 44, 44);
     --cor-azul-principal: rgb(8, 8, 106);
@@ -9,6 +15,41 @@
     --cor-texto: #444444;
     --cor-borda: #e8e1d8;
     --cor-borda-cinza: #d9d2c8;
+
+    /* ---- Tela de PC (padrão) ---- */
+
+    /* Letras: início */
+    --fs-eyebrow-inicio: 0.8rem;
+    --fs-h1-inicio: clamp(4rem, 8vw, 7rem);
+
+    /* Letras: bloco com imagem e botões */
+    --fs-hero-texto: 1.15rem;
+    --fs-botao: 1rem;
+
+    /* Letras: "Conheça o projeto" */
+    --fs-sobre-eyebrow: 0.75rem;
+    --fs-sobre-h2: 2.4rem;
+    --fs-sobre-texto: 1.06rem;
+    --fs-link-historia: 1.19rem;
+
+    /* Larguras e alturas */
+    --largura-pagina: 1100px;
+    --largura-sobre: 1200px;
+    --largura-sobre-texto: 560px;
+    --altura-inicio: 450px;
+    --altura-hero-img: 415px;
+    --altura-botao: 50px;
+    --altura-sobre-img: 350px;
+
+    /* Espaçamentos */
+    --espaco-topo: 80px; /* espaço para o header fixo */
+    --pad-lateral: 24px;
+    --pad-h2-inicio: 70px; /* vem da regra global "h2 { padding }" */
+    --pad-h2-sobre: 70px; /* idem, no título "Patrimônio que cabe..." */
+    --espaco-hero: 50px;
+    --gap-hero: 28px;
+    --pad-sobre: 120px 40px;
+    --gap-sobre: 80px;
 }
 
 h1,
@@ -41,23 +82,27 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Início */
+/* ==========================================================
+   Início
+   ========================================================== */
 #red {
     color: var(--cor-vermelha-principal);
 }
 
 .inicio {
-  max-width: 1100px;
+  max-width: var(--largura-pagina);
   margin: 0 auto;
-  padding-top: 80px;
-  height: 450px;
+  padding: var(--espaco-topo) var(--pad-lateral) 0;
+  /* min-height (e não height) para o título nunca ser cortado */
+  min-height: var(--altura-inicio);
 }
 
 .inicio h2 {
   margin: 0 0 20px 0;
+  padding: var(--pad-h2-inicio);
 
   font-family: Arial, sans-serif;
-  font-size: 0.8rem;
+  font-size: var(--fs-eyebrow-inicio);
   font-weight: 500;
   letter-spacing: 0.25rem;
   text-transform: uppercase;
@@ -71,27 +116,28 @@ a:hover {
   font-family: Georgia, serif;
   font-weight: 400;
   line-height: 0.9;
-  font-size: clamp(4rem, 8vw, 7rem);
+  font-size: var(--fs-h1-inicio);
   color: var(--cor-azul-principal);
   transition: font-size 0.1s linear;
 }
 
-/* Parte 2 */
-
+/* ==========================================================
+   Imagem e botões
+   ========================================================== */
 .hero {
-  max-width: 1100px;
-  margin: 50px auto;
-  padding: 0 24px;
+  max-width: var(--largura-pagina);
+  margin: var(--espaco-hero) auto;
+  padding: 0 var(--pad-lateral);
 
   display: grid;
   grid-template-columns: 2fr 1fr;
   align-items: center;
-  gap: 28px;
+  gap: var(--gap-hero);
 }
 
 .hero-imagem img {
   width: 100%;
-  height: 415px;
+  height: var(--altura-hero-img);
   object-fit: cover;
   display: block;
 
@@ -112,7 +158,7 @@ a:hover {
 }
 
 .hero-conteudo p {
-  font-size: 1.15rem;
+  font-size: var(--fs-hero-texto);
   line-height: 1.55;
   color: #586775;
   margin: 0 0 28px 0;
@@ -126,13 +172,14 @@ a:hover {
 
 .botao {
   width: 100%;
-  min-height: 50px;
+  min-height: var(--altura-botao);
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   text-decoration: none;
+  font-size: var(--fs-botao);
   font-weight: 600;
   border-radius: 30px;
 
@@ -165,43 +212,27 @@ a:hover {
   transform: translateY(-2px);
 }
 
-@media (max-width: 800px) {
-  .hero {
-    grid-template-columns: 1fr;
-    margin: 30px auto;
-  }
-
-  .hero-imagem img {
-    height: 300px;
-  }
-
-  .hero-conteudo {
-    padding-top: 10px;
-  }
-
-  .hero-conteudo p {
-    font-size: 1rem;
-  }
-}
-
+/* ==========================================================
+   Conheça o projeto
+   ========================================================== */
 .sobre-projeto {
   background-color: white;
-  padding: 120px 40px;
+  padding: var(--pad-sobre);
 }
 
 .sobre-container {
-  max-width: 1200px;
+  max-width: var(--largura-sobre);
   margin: 0 auto;
 
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
 
-  gap: 80px;
+  gap: var(--gap-sobre);
 }
 
 .sobre-texto {
-  max-width: 560px;
+  max-width: var(--largura-sobre-texto);
 }
 
 .sobre-texto h3 {
@@ -209,7 +240,7 @@ a:hover {
 
   color: var(--cor-azul-secundaria);
 
-  font-size: 12px;
+  font-size: var(--fs-sobre-eyebrow);
   font-weight: 500;
 
   letter-spacing: 4px;
@@ -218,11 +249,12 @@ a:hover {
 
 .sobre-texto h2 {
   margin-bottom: 25px;
+  padding: var(--pad-h2-sobre);
 
   color: var(--cor-azul-principal);
 
   font-family: Georgia, serif;
-  font-size: 38px;
+  font-size: var(--fs-sobre-h2);
   line-height: 1.05;
   font-weight: 500;
   text-align: start;
@@ -233,7 +265,7 @@ a:hover {
 
   color: var(--cor-texto);
 
-  font-size: 17px;
+  font-size: var(--fs-sobre-texto);
   line-height: 1.65;
 }
 
@@ -244,7 +276,7 @@ a:hover {
 .link-historia {
   color: var(--cor-vermelha-principal);
 
-  font-size: 19px;
+  font-size: var(--fs-link-historia);
 
   text-decoration: none;
 
@@ -267,37 +299,144 @@ a:hover {
   display: block;
 
   width: 100%;
-  height: 350px;
+  height: var(--altura-sobre-img);
 
   object-fit: cover;
 
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
 }
 
-@media (max-width: 768px) {
+/* ==========================================================
+   Notebook (telas até 1600px de largura)
+   Cobre a maioria dos notebooks, como 1536, 1440 e 1366 px.
+   ========================================================== */
+@media (max-width: 1600px) {
+  :root {
+    --fs-eyebrow-inicio: 0.75rem;
+    --fs-h1-inicio: clamp(3rem, 6.2vw, 5.2rem);
+    --fs-hero-texto: 1.05rem;
+    --fs-botao: 0.95rem;
+    --fs-sobre-eyebrow: 0.7rem;
+    --fs-sobre-h2: 2.1rem;
+    --fs-sobre-texto: 0.98rem;
+    --fs-link-historia: 1.05rem;
 
-  .sobre-projeto {
-    padding: 80px 24px;
+    --largura-pagina: 1000px;
+    --largura-sobre: 1080px;
+    --largura-sobre-texto: 500px;
+    --altura-inicio: 360px;
+    --altura-hero-img: 360px;
+    --altura-botao: 46px;
+    --altura-sobre-img: 310px;
+
+    --espaco-topo: 72px;
+    --pad-h2-inicio: 52px;
+    --pad-h2-sobre: 52px;
+    --espaco-hero: 40px;
+    --gap-hero: 24px;
+    --pad-sobre: 96px 32px;
+    --gap-sobre: 64px;
+  }
+}
+
+/* ==========================================================
+   Notebook menor (telas até 1366px de largura)
+   ========================================================== */
+@media (max-width: 1366px) {
+  :root {
+    --fs-eyebrow-inicio: 0.72rem;
+    --fs-h1-inicio: clamp(2.8rem, 5.5vw, 4.4rem);
+    --fs-hero-texto: 1rem;
+    --fs-botao: 0.92rem;
+    --fs-sobre-eyebrow: 0.68rem;
+    --fs-sobre-h2: 1.9rem;
+    --fs-sobre-texto: 0.94rem;
+    --fs-link-historia: 1rem;
+
+    --largura-pagina: 920px;
+    --largura-sobre: 980px;
+    --largura-sobre-texto: 460px;
+    --altura-inicio: 320px;
+    --altura-hero-img: 330px;
+    --altura-botao: 44px;
+    --altura-sobre-img: 280px;
+
+    --espaco-topo: 66px;
+    --pad-h2-inicio: 40px;
+    --pad-h2-sobre: 40px;
+    --espaco-hero: 36px;
+    --pad-sobre: 80px 28px;
+    --gap-sobre: 52px;
+  }
+}
+
+/* ==========================================================
+   Tablet (telas até 900px de largura)
+   Hero e "Conheça o projeto" passam para uma coluna só.
+   ========================================================== */
+@media (max-width: 900px) {
+  :root {
+    --fs-h1-inicio: clamp(2.6rem, 8vw, 3.6rem);
+    --fs-sobre-h2: 2.1rem;
+    --altura-inicio: 0px;
+    --altura-hero-img: 320px;
+    --altura-sobre-img: 300px;
+
+    --pad-h2-inicio: 28px;
+    --pad-h2-sobre: 0px;
+    --pad-sobre: 72px 24px;
+    --gap-sobre: 40px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-conteudo {
+    padding-top: 10px;
   }
 
   .sobre-container {
     grid-template-columns: 1fr;
-    gap: 40px;
   }
 
   .sobre-texto {
     max-width: none;
   }
+}
 
-  .sobre-texto h2 {
-    font-size: 34px;
+/* ==========================================================
+   Celular (telas até 650px de largura)
+   Vem por último para valer sobre os blocos acima.
+   ========================================================== */
+@media (max-width: 650px) {
+  :root {
+    --fs-eyebrow-inicio: 0.75rem;
+    --fs-h1-inicio: clamp(2.5rem, 11vw, 3.6rem);
+    --fs-hero-texto: 1.05rem;
+    --fs-botao: 1rem;
+    --fs-sobre-eyebrow: 0.72rem;
+    --fs-sobre-h2: 2rem;
+    --fs-sobre-texto: 1rem;
+    --fs-link-historia: 1.05rem;
+
+    --altura-hero-img: 260px;
+    --altura-botao: 48px;
+    --altura-sobre-img: 240px;
+
+    --espaco-topo: 92px;
+    --pad-lateral: 18px;
+    --pad-h2-inicio: 0px;
+    --espaco-hero: 24px;
+    --pad-sobre: 56px 20px;
+    --gap-sobre: 32px;
   }
 
-  .sobre-texto p {
-    font-size: 16px;
+  .inicio h2 {
+    margin-bottom: 16px;
   }
 
-  .imagem-museu {
-    height: 280px;
+  .inicio {
+    padding-bottom: 8px;
   }
 }

@@ -1,3 +1,9 @@
+/* ==========================================================
+   Cores e tamanhos
+   Os tamanhos ficam todos aqui, em variáveis. Para a tela do
+   notebook ou do celular, só os valores mudam (veja os blocos
+   @media no final do arquivo).
+   ========================================================== */
 :root {
   --cor-vermelha-principal: rgb(151, 44, 44);
   --cor-azul-principal: rgb(8, 8, 106);
@@ -9,6 +15,31 @@
   --cor-texto: #444444;
   --cor-borda: #e8e1d8;
   --cor-borda-cinza: #d9d2c8;
+
+  /* ---- Tela de PC (padrão) ---- */
+
+  /* Letras */
+  --fs-eyebrow: 0.95rem;
+  --fs-h1: clamp(2.4rem, 7vw, 4.2rem);
+  --fs-intro: 1.3rem;
+  --fs-legenda: 1rem;
+  --fs-h2: clamp(2rem, 5vw, 2.8rem);
+  --fs-evento-data: 0.95rem;
+  --fs-evento-titulo: clamp(1.5rem, 4vw, 1.9rem);
+  --fs-evento-texto: 1.15rem;
+
+  /* Larguras */
+  --largura-pagina: 1000px;
+  --largura-intro: 760px;
+  --largura-museu: 600px;
+  --largura-revista: 420px;
+  --largura-linha-tempo: 820px;
+
+  /* Espaçamentos */
+  --espaco-topo: 120px; /* espaço para o header fixo; reduza se usar position: sticky */
+  --espaco-figura: 56px;
+  --espaco-secao: 96px;
+  --espaco-evento: 52px;
 }
 
 * {
@@ -22,19 +53,21 @@ body {
 }
 
 .pagina-museu {
-  max-width: 1000px;
+  max-width: var(--largura-pagina);
   margin: 0 auto;
-  padding: 120px 24px 90px; /* espaço para o header fixo; reduza se usar position: sticky */
+  padding: var(--espaco-topo) 24px 90px;
 }
 
-/* Apresentação */
+/* ==========================================================
+   Apresentação
+   ========================================================== */
 .apresentacao {
   text-align: center;
 }
 
 .eyebrow {
   display: block;
-  font-size: 0.95rem;
+  font-size: var(--fs-eyebrow);
   letter-spacing: 4px;
   text-transform: uppercase;
   color: #f0d6a0;
@@ -43,7 +76,7 @@ body {
 .apresentacao h1 {
   margin: 22px 0 0;
   font-family: Georgia, serif;
-  font-size: clamp(2.4rem, 7vw, 4.2rem);
+  font-size: var(--fs-h1);
   font-weight: 500;
   line-height: 1.1;
   color: #ffffff;
@@ -60,17 +93,19 @@ body {
 }
 
 .intro {
-  max-width: 760px;
+  max-width: var(--largura-intro);
   margin: 32px auto 0;
-  font-size: 1.3rem;
+  font-size: var(--fs-intro);
   line-height: 1.75;
   color: #f7efe3;
 }
 
-/* Imagem */
+/* ==========================================================
+   Imagens
+   ========================================================== */
 .figura-museu {
-  margin: 56px auto 0;
-  max-width: 550px;
+  margin: var(--espaco-figura) auto 0;
+  max-width: var(--largura-museu);
 }
 
 .imagem-museu {
@@ -83,34 +118,191 @@ body {
 .figura-museu figcaption {
   margin-top: 18px;
   text-align: center;
-  font-size: 1rem;
+  font-size: var(--fs-legenda);
   line-height: 1.5;
   color: #f3e6cf;
 }
 
 /* Segunda imagem (recorte de jornal), um pouco menor e centralizada */
 .figura-revista {
-  max-width: 500px;
+  max-width: var(--largura-revista);
 }
 
-/* Celular */
-@media (max-width: 650px) {
-  .pagina-museu {
-    padding: 100px 18px 60px;
+/* ==========================================================
+   Linha do tempo
+   ========================================================== */
+.linha-do-tempo {
+  max-width: var(--largura-linha-tempo);
+  margin: var(--espaco-secao) auto 0;
+}
+
+.linha-do-tempo h2 {
+  margin-bottom: 40px;
+  font-family: Georgia, serif;
+  font-size: var(--fs-h2);
+  font-weight: 500;
+  line-height: 1.15;
+  color: #ffffff;
+}
+
+.eventos {
+  --recuo: 36px; /* distância entre a linha vertical e o texto */
+  list-style: none;
+  padding-left: var(--recuo);
+  border-left: 2px solid rgba(255, 255, 255, 0.35);
+}
+
+.evento {
+  position: relative;
+  padding-bottom: var(--espaco-evento);
+}
+
+.evento:last-child {
+  padding-bottom: 0;
+}
+
+/* Bolinha dourada sobre a linha */
+.evento::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: calc(-1 * var(--recuo) - 8px);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--cor-dourada);
+}
+
+.evento-data {
+  display: block;
+  font-size: var(--fs-evento-data);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #f0d6a0;
+}
+
+.evento h3 {
+  margin: 10px 0 12px;
+  font-family: Georgia, serif;
+  font-size: var(--fs-evento-titulo);
+  font-weight: 500;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.evento p {
+  max-width: 680px;
+  font-size: var(--fs-evento-texto);
+  line-height: 1.75;
+  color: #f7efe3;
+}
+
+/* ==========================================================
+   Notebook (telas até 1600px de largura)
+   Cobre a maioria dos notebooks, como 1536, 1440 e 1366 px.
+   ========================================================== */
+@media (max-width: 1600px) {
+  :root {
+    --fs-eyebrow: 0.85rem;
+    --fs-h1: clamp(2.2rem, 6vw, 3.4rem);
+    --fs-intro: 1.15rem;
+    --fs-legenda: 0.92rem;
+    --fs-h2: clamp(1.8rem, 4.5vw, 2.35rem);
+    --fs-evento-data: 0.85rem;
+    --fs-evento-titulo: clamp(1.35rem, 3.5vw, 1.6rem);
+    --fs-evento-texto: 1.02rem;
+
+    --largura-pagina: 920px;
+    --largura-intro: 700px;
+    --largura-museu: 540px;
+    --largura-revista: 360px;
+    --largura-linha-tempo: 740px;
+
+    --espaco-topo: 104px;
+    --espaco-figura: 44px;
+    --espaco-secao: 80px;
+    --espaco-evento: 42px;
   }
 
   .eyebrow {
-    font-size: 0.82rem;
     letter-spacing: 3px;
+  }
+
+  .apresentacao h1::after {
+    width: 60px;
+    margin-top: 20px;
+  }
+
+  .intro {
+    margin-top: 26px;
+    line-height: 1.7;
+  }
+
+  .evento p {
+    line-height: 1.7;
+  }
+}
+
+/* ==========================================================
+   Notebook menor (telas até 1366px de largura)
+   ========================================================== */
+@media (max-width: 1366px) {
+  :root {
+    --fs-eyebrow: 0.8rem;
+    --fs-h1: clamp(2.2rem, 5vw, 3rem);
+    --fs-intro: 1.05rem;
+    --fs-legenda: 0.88rem;
+    --fs-h2: clamp(1.7rem, 4vw, 2.1rem);
+    --fs-evento-data: 0.8rem;
+    --fs-evento-titulo: clamp(1.3rem, 3vw, 1.45rem);
+    --fs-evento-texto: 0.97rem;
+
+    --largura-pagina: 860px;
+    --largura-intro: 660px;
+    --largura-museu: 480px;
+    --largura-revista: 320px;
+    --largura-linha-tempo: 700px;
+
+    --espaco-topo: 96px;
+    --espaco-figura: 38px;
+    --espaco-secao: 68px;
+    --espaco-evento: 36px;
+  }
+}
+
+/* ==========================================================
+   Celular (telas até 650px de largura)
+   Vem por último para valer sobre os blocos acima.
+   ========================================================== */
+@media (max-width: 650px) {
+  :root {
+    --fs-eyebrow: 0.82rem;
+    --fs-h1: clamp(2.2rem, 9vw, 2.8rem);
+    --fs-intro: 1.12rem;
+    --fs-legenda: 0.95rem;
+    --fs-h2: 1.9rem;
+    --fs-evento-data: 0.85rem;
+    --fs-evento-titulo: 1.4rem;
+    --fs-evento-texto: 1.08rem;
+
+    --largura-museu: 100%;
+    --largura-revista: 100%;
+
+    --espaco-topo: 100px;
+    --espaco-figura: 40px;
+    --espaco-secao: 72px;
+    --espaco-evento: 40px;
+  }
+
+  .pagina-museu {
+    padding: var(--espaco-topo) 18px 60px;
+  }
+
+  .eventos {
+    --recuo: 24px;
   }
 
   .intro {
     margin-top: 24px;
-    font-size: 1.12rem;
-    line-height: 1.7;
-  }
-
-  .figura-museu {
-    margin-top: 40px;
   }
 }

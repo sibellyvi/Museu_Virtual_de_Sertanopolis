@@ -6,6 +6,34 @@ import Footer from "../components/Footer.astro";
 const titulo = "Museu Histórico";
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+// Para adicionar um marco novo, inclua mais um item aqui (na ordem em que deve aparecer)
+const linhaDoTempo = [
+  {
+    data: "1992",
+    titulo: "Inauguração",
+    texto:
+      "Criação do Museu Histórico de Sertanópolis, dedicado a reunir e preservar objetos e registros ligados à história do município e de sua comunidade.",
+  },
+  {
+    data: "2009",
+    titulo: "Período de fechamento e declínio",
+    texto:
+      "O museu deixa de funcionar regularmente. O acervo permanece, mas o acesso do público ao espaço torna-se limitado.",
+  },
+  {
+    data: "2021",
+    titulo: "Processo de regularização",
+    texto:
+      "Tem início o processo de regularização do museu, com a retomada dos cuidados com o acervo e com a documentação institucional.",
+  },
+  {
+    data: "2026",
+    titulo: "Museu Virtual de Sertanópolis",
+    texto:
+      "O projeto de extensão universitária do Museu Virtual de Sertanópolis nasce como iniciativa de preservação e de acesso digital ao patrimônio do atual museu renomeado para Museu Histórico, Cultural e Científico Ivaldo Totti — MC²IT, permitindo que as peças sejam conhecidas de qualquer lugar.",
+  },
+];
 ---
 
 <!DOCTYPE html>
@@ -22,7 +50,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
   <main class="pagina-museu">
     <section class="apresentacao">
       <span class="eyebrow">Museu Histórico, Cultural e Científico</span>
-      <h1>“Ivaldo Totti” — MHC²IT</h1>
+      <h1>“Ivaldo Totti” — MC²IT</h1>
       <p class="intro">
         O museu reúne peças históricas, culturais e científicas relacionadas à
         trajetória de Sertanópolis e de sua comunidade. Esta página apresenta a
@@ -51,6 +79,22 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
         Sertanópolis
       </figcaption>
     </figure>
+
+    <section class="linha-do-tempo" aria-labelledby="titulo-linha-do-tempo">
+      <h2 id="titulo-linha-do-tempo">Linha do tempo</h2>
+
+      <ol class="eventos">
+        {
+          linhaDoTempo.map((evento) => (
+            <li class="evento">
+              <span class="evento-data">{evento.data}</span>
+              <h3>{evento.titulo}</h3>
+              <p>{evento.texto}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
   </main>
 
   <Footer />

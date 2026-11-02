@@ -81,64 +81,70 @@ const curiosidades = [
 <body>
   <Header />
 
-  <main class="pagina-curiosidades">
-    <section class="topo-curiosidades">
-      <span class="eyebrow">{titulo}</span>
-      <h1>Os primeiros passos de Sertanópolis</h1>
-      <p class="intro">
-        Fatos curtos sobre os primeiros registros, serviços e pioneiros do
-        município.
-      </p>
+  <main>
+    <!-- Seção 1: curiosidades (fundo vermelho) -->
+    <section class="secao-curiosidades">
+      <div class="conteudo">
+        <div class="topo-curiosidades">
+          <span class="eyebrow">{titulo}</span>
+          <h1>Os primeiros passos de Sertanópolis</h1>
+          <p class="intro">
+            Fatos curtos sobre os primeiros registros, serviços e pioneiros do
+            município.
+          </p>
+        </div>
+
+        <div class="carrossel" data-carrossel>
+          <div class="carrossel-controles">
+            <button
+              type="button"
+              class="carrossel-seta"
+              data-carrossel-anterior
+              aria-label="Curiosidade anterior"
+            >
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="15 5 8 12 15 19"></polyline>
+              </svg>
+            </button>
+            <button
+              type="button"
+              class="carrossel-seta"
+              data-carrossel-proximo
+              aria-label="Próxima curiosidade"
+            >
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="9 5 16 12 9 19"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <div
+            class="carrossel-trilho"
+            data-carrossel-trilho
+            role="region"
+            aria-label="Lista de curiosidades de Sertanópolis"
+            tabindex="0"
+          >
+            {
+              curiosidades.map((item) => (
+                <article class="card-curiosidade">
+                  <span class="rotulo">{item.rotulo}</span>
+                  <h2>{item.titulo}</h2>
+                  <p>{item.texto}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section
-      class="carrossel"
-      data-carrossel
-      aria-label="Curiosidades de Sertanópolis"
-    >
-      <div class="carrossel-controles">
-        <button
-          type="button"
-          class="carrossel-seta"
-          data-carrossel-anterior
-          aria-label="Curiosidade anterior"
-        >
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="15 5 8 12 15 19"></polyline>
-          </svg>
-        </button>
-        <button
-          type="button"
-          class="carrossel-seta"
-          data-carrossel-proximo
-          aria-label="Próxima curiosidade"
-        >
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="9 5 16 12 9 19"></polyline>
-          </svg>
-        </button>
+    <!-- Seção 2: galeria de fotos (fundo claro) -->
+    <div class="secao-galeria">
+      <div class="conteudo">
+        <Galeria />
       </div>
-
-      <div
-        class="carrossel-trilho"
-        data-carrossel-trilho
-        role="region"
-        aria-label="Lista de curiosidades"
-        tabindex="0"
-      >
-        {
-          curiosidades.map((item) => (
-            <article class="card-curiosidade">
-              <span class="rotulo">{item.rotulo}</span>
-              <h2>{item.titulo}</h2>
-              <p>{item.texto}</p>
-            </article>
-          ))
-        }
-      </div>
-    </section>
-
-    <Galeria />
+    </div>
   </main>
 
   <Footer />

@@ -1,15 +1,49 @@
+/* ==========================================================
+   Cores e tamanhos
+   Os tamanhos ficam todos aqui, em variáveis. Para a tela do
+   notebook, do tablet ou do celular, só os valores mudam (veja
+   os blocos @media no final do arquivo).
+   ========================================================== */
 :root {
   --cor-vermelha-principal: rgb(151, 44, 44);
   --cor-azul-principal: rgb(8, 8, 106);
   --cor-azul-secundaria: #14678c;
   --cor-dourada: #d8a85f;
   --cor-fundo: whitesmoke;
-  --cor-fundo-pagina: #f9f6ef;
+  --cor-fundo-pagina: white;
   --cor-fundo-card: #fdfcf7;
   --cor-branca: #ffffff;
   --cor-texto: #444444;
   --cor-borda: #e8e1d8;
   --cor-borda-cinza: #d9d2c8;
+
+  /* Seção 1 (fundo vermelho, o mesmo da página do Museu Histórico) */
+  --cor-fundo-vermelho: #9a0000;
+  --cor-dourada-clara: #f0d6a0; /* rótulo pequeno sobre o vermelho */
+  --cor-texto-claro: #f7efe3; /* parágrafos sobre o vermelho */
+  --cor-vermelho-escuro: #5a0000; /* texto sobre o dourado (hover das setas) */
+
+  /* ---- Tela de PC (padrão) ---- */
+
+  /* Letras */
+  --fs-eyebrow: 0.75rem;
+  --fs-h1: clamp(2.2rem, 6vw, 3.5rem);
+  --fs-intro: 1.05rem;
+  --fs-rotulo: 0.7rem;
+  --fs-card-titulo: 1.4rem;
+  --fs-card-texto: 0.95rem;
+
+  /* Larguras e tamanhos */
+  --largura-pagina: 1200px;
+  --largura-intro: 560px;
+  --tam-seta: 44px;
+
+  /* Espaçamentos */
+  --espaco-topo: 110px; /* espaço para o header fixo; reduza se usar position: sticky */
+  --espaco-secao: 80px; /* respiro no fim da seção vermelha e nas pontas da galeria */
+  --espaco-apos-topo: 56px;
+  --pad-card: 28px 26px 32px;
+  --espaco-cards: 26px;
 }
 
 * {
@@ -19,48 +53,58 @@
 }
 
 body {
-  background: var(--cor-fundo-pagina);
+  background: var(--cor-branca);
 }
 
-.pagina-curiosidades {
-  max-width: 1200px;
+/* Largura e margens laterais do conteúdo de cada seção */
+.conteudo {
+  max-width: var(--largura-pagina);
   margin: 0 auto;
-  padding: 110px 24px 80px; /* espaço para o header fixo; reduza se usar position: sticky */
+  padding: 0 24px;
 }
 
-/* Topo da página */
+/* ==========================================================
+   Seção 1: curiosidades (fundo vermelho)
+   ========================================================== */
+.secao-curiosidades {
+  background-color: var(--cor-fundo-vermelho);
+  padding: var(--espaco-topo) 0 var(--espaco-secao);
+}
+
 .topo-curiosidades {
-  margin-bottom: 56px;
+  margin-bottom: var(--espaco-apos-topo);
 }
 
 .eyebrow {
   display: block;
-  font-size: 0.75rem;
+  font-size: var(--fs-eyebrow);
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--cor-azul-secundaria);
+  color: var(--cor-dourada-clara);
 }
 
 .topo-curiosidades h1 {
   margin: 16px 0 18px;
   font-family: Georgia, serif;
-  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  font-size: var(--fs-h1);
   font-weight: 500;
   line-height: 1.1;
-  color: #1c2630;
+  color: var(--cor-branca);
 }
 
 .intro {
-  max-width: 560px;
-  font-size: 1.05rem;
+  max-width: var(--largura-intro);
+  font-size: var(--fs-intro);
   line-height: 1.6;
-  color: #496070;
+  color: var(--cor-texto-claro);
 }
 
-/* Carrossel de cards */
+/* ==========================================================
+   Carrossel de cards
+   ========================================================== */
 .carrossel {
   --por-tela: 3; /* quantos cards aparecem ao mesmo tempo */
-  --espaco: 26px;
+  --espaco: var(--espaco-cards);
 }
 
 .carrossel-controles {
@@ -74,20 +118,20 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--cor-borda-cinza);
+  width: var(--tam-seta);
+  height: var(--tam-seta);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: 50%;
   background: transparent;
-  color: var(--cor-texto);
+  color: var(--cor-branca);
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
 .carrossel-seta:hover:not(:disabled) {
-  background: var(--cor-vermelha-principal);
-  border-color: var(--cor-vermelha-principal);
-  color: var(--cor-branca);
+  background: var(--cor-dourada);
+  border-color: var(--cor-dourada);
+  color: var(--cor-vermelho-escuro);
 }
 
 .carrossel-seta:disabled {
@@ -118,63 +162,138 @@ body {
 .card-curiosidade {
   flex: 0 0 calc((100% - (var(--por-tela) - 1) * var(--espaco)) / var(--por-tela));
   scroll-snap-align: start;
-  padding: 28px 26px 32px;
+  padding: var(--pad-card);
   background: var(--cor-fundo-card);
-  border: 1px solid var(--cor-borda-cinza);
+  border: 1px solid var(--cor-borda);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card-curiosidade:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
 }
 
 .rotulo {
   display: block;
-  font-size: 0.7rem;
+  font-size: var(--fs-rotulo);
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--cor-azul-secundaria);
+  color: var(--cor-vermelha-principal);
 }
 
 .card-curiosidade h2 {
   margin: 14px 0 22px;
   font-family: Georgia, serif;
-  font-size: 1.4rem;
+  font-size: var(--fs-card-titulo);
   font-weight: 600;
   line-height: 1.25;
   color: #1c2630;
 }
 
 .card-curiosidade p {
-  font-size: 0.95rem;
+  font-size: var(--fs-card-texto);
   line-height: 1.65;
   color: #496070;
 }
 
-/* Tablet */
+/* ==========================================================
+   Seção 2: galeria de fotos (fundo claro, como era antes)
+   ========================================================== */
+.secao-galeria {
+  background-color: var(--cor-fundo-pagina);
+  padding: var(--espaco-secao) 0;
+}
+
+/* O espaço de cima agora vem da própria seção */
+.secao-galeria .galeria {
+  margin-top: 0;
+}
+
+/* ==========================================================
+   Notebook (telas até 1600px de largura)
+   Cobre a maioria dos notebooks, como 1536, 1440 e 1366 px.
+   ========================================================== */
+@media (max-width: 1600px) {
+  :root {
+    --fs-eyebrow: 0.7rem;
+    --fs-h1: clamp(2rem, 5vw, 3rem);
+    --fs-intro: 0.98rem;
+    --fs-rotulo: 0.66rem;
+    --fs-card-titulo: 1.25rem;
+    --fs-card-texto: 0.88rem;
+
+    --largura-pagina: 1080px;
+    --largura-intro: 520px;
+    --tam-seta: 40px;
+
+    --espaco-topo: 96px;
+    --espaco-secao: 64px;
+    --espaco-apos-topo: 46px;
+    --pad-card: 24px 22px 28px;
+    --espaco-cards: 22px;
+  }
+}
+
+/* ==========================================================
+   Notebook menor (telas até 1366px de largura)
+   ========================================================== */
+@media (max-width: 1366px) {
+  :root {
+    --fs-eyebrow: 0.68rem;
+    --fs-h1: clamp(2rem, 4.5vw, 2.7rem);
+    --fs-intro: 0.94rem;
+    --fs-rotulo: 0.64rem;
+    --fs-card-titulo: 1.15rem;
+    --fs-card-texto: 0.84rem;
+
+    --largura-pagina: 980px;
+    --largura-intro: 480px;
+    --tam-seta: 38px;
+
+    --espaco-topo: 88px;
+    --espaco-secao: 56px;
+    --espaco-apos-topo: 40px;
+    --pad-card: 20px 18px 24px;
+    --espaco-cards: 18px;
+  }
+}
+
+/* ==========================================================
+   Tablet (telas até 1000px de largura)
+   ========================================================== */
 @media (max-width: 1000px) {
   .carrossel {
     --por-tela: 2;
   }
 }
 
-/* Celular */
+/* ==========================================================
+   Celular (telas até 650px de largura)
+   Vem por último para valer sobre os blocos acima.
+   ========================================================== */
 @media (max-width: 650px) {
-  .pagina-curiosidades {
-    padding: 100px 16px 60px;
+  :root {
+    --fs-eyebrow: 0.72rem;
+    --fs-h1: clamp(2.1rem, 9vw, 2.6rem);
+    --fs-intro: 1rem;
+    --fs-rotulo: 0.7rem;
+    --fs-card-titulo: 1.3rem;
+    --fs-card-texto: 0.95rem;
+
+    --tam-seta: 42px;
+
+    --espaco-topo: 100px;
+    --espaco-secao: 56px;
+    --espaco-apos-topo: 36px;
+    --pad-card: 24px 22px 28px;
+    --espaco-cards: 16px;
   }
 
-  .topo-curiosidades {
-    margin-bottom: 36px;
+  .conteudo {
+    padding: 0 16px;
   }
 
   .carrossel {
     --por-tela: 1;
-    --espaco: 16px;
-  }
-
-  .card-curiosidade {
-    padding: 24px 22px 28px;
   }
 }

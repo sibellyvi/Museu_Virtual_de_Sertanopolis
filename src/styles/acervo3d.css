@@ -1,5 +1,8 @@
 /* ==========================================================
-   Variáveis e reset
+   Cores e tamanhos
+   Os tamanhos ficam todos aqui, em variáveis. Para a tela do
+   notebook, do tablet ou do celular, só os valores mudam (veja
+   os blocos @media no final do arquivo).
    ========================================================== */
 :root {
   --cor-vermelha-principal: rgb(151, 44, 44);
@@ -12,6 +15,43 @@
   --cor-texto: #444444;
   --cor-borda: #e8e1d8;
   --cor-borda-cinza: #d9d2c8;
+
+  /* Seção 1 (fundo azul) */
+  --cor-dourada-clara: #f6e3b8; /* rótulo pequeno sobre o azul */
+  --cor-texto-claro: #f2efe8; /* parágrafos sobre o azul */
+
+  /* Seção 2 (fundo claro, como era antes) */
+  --cor-fundo-secao-acervo: #ffffff;
+
+  /* ---- Tela de PC (padrão) ---- */
+
+  /* Letras */
+  --fs-eyebrow: 0.8rem;
+  --fs-h1: clamp(2.2rem, 6vw, 3.5rem);
+  --fs-h2: clamp(1.6rem, 4vw, 2.2rem);
+  --fs-texto: 1.1rem;
+  --fs-botao-ar: 0.95rem;
+  --fs-busca: 1.1rem;
+  --fs-chip: 0.9rem;
+  --fs-contador: 1rem;
+  --fs-categoria: 0.8rem;
+  --fs-card-titulo: 1.45rem;
+  --fs-card-texto: 1rem;
+  --fs-botao-3d: 1rem;
+  --fs-selo: 0.78rem;
+
+  /* Larguras e alturas */
+  --largura-grade: 1200px;
+  --largura-texto: 800px;
+  --altura-viewer: 500px;
+
+  /* Espaçamentos */
+  --espaco-topo: 100px; /* espaço para o header fixo; reduza se usar position: sticky */
+  --espaco-h2: 48px;
+  --espaco-paragrafo: 40px;
+  --pad-card: 28px;
+  --gap-grade: 24px;
+  --espaco-secao: 64px; /* espaço no fim da seção azul */
 }
 
 * {
@@ -26,7 +66,7 @@
 .eyebrow {
   display: block;
   text-align: center;
-  font-size: 0.8rem;
+  font-size: var(--fs-eyebrow);
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--cor-azul-secundaria);
@@ -34,20 +74,20 @@
 
 h1 {
   font-family: Georgia, serif;
-  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  font-size: var(--fs-h1);
   line-height: 1.1;
   text-align: center;
   color: var(--cor-azul-secundaria);
   margin: 12px 0 16px;
-  padding-top: 100px; /* espaço para o header fixo; apague se usar position: sticky */
+  padding-top: var(--espaco-topo);
 }
 
 h2 {
   font-family: Georgia, serif;
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-size: var(--fs-h2);
   text-align: center;
   color: var(--cor-azul-principal);
-  margin: 48px 0 24px;
+  margin: var(--espaco-h2) 0 24px;
 }
 
 .titulo-secao::after {
@@ -62,10 +102,45 @@ h2 {
 p {
   text-align: center;
   color: var(--cor-texto);
-  font-size: 1.1rem;
+  font-size: var(--fs-texto);
   line-height: 1.5;
-  max-width: 800px;
-  margin: 0 auto 40px;
+  max-width: var(--largura-texto);
+  margin: 0 auto var(--espaco-paragrafo);
+}
+
+/* ==========================================================
+   Seção 1 (destaque, fundo azul) e Seção 2 (acervo, fundo claro)
+   ========================================================== */
+.secao-destaque {
+  background-color: var(--cor-azul-secundaria);
+  padding-bottom: var(--espaco-secao);
+}
+
+.secao-destaque .eyebrow {
+  color: var(--cor-dourada-clara);
+}
+
+.secao-destaque h1 {
+  color: var(--cor-branca);
+}
+
+.secao-destaque p {
+  color: var(--cor-texto-claro);
+}
+
+.secao-acervo {
+  background-color: var(--cor-fundo-secao-acervo);
+  padding-bottom: 24px;
+}
+
+/* Altura do modelo 3D do lustre.
+   O !important é necessário porque a tag <model-viewer> ainda tem
+   style="height: 500px" escrito direto no .astro; se você apagar
+   esse style de lá, pode apagar o !important daqui. */
+#viewer-lustre {
+  height: var(--altura-viewer) !important;
+  --poster-color: transparent;
+  --progress-bar-color: var(--cor-dourada);
 }
 
 /* ==========================================================
@@ -78,27 +153,28 @@ p {
   border: 1px solid var(--cor-dourada);
   border-radius: 30px;
   background: transparent;
-  color: var(--cor-azul-principal);
-  font-size: 15px;
+  color: var(--cor-branca);
+  font-size: var(--fs-botao-ar);
   cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
 .botao-ar:hover {
   background: var(--cor-dourada);
-  color: var(--cor-branca);
+  color: var(--cor-azul-principal);
 }
 
 .aviso-ar {
   text-align: center;
-  color: var(--cor-texto);
-  font-size: 14px;
+  color: var(--cor-texto-claro);
+  font-size: 0.9rem;
 }
 
 /* ==========================================================
    Busca, categorias e contador
    ========================================================== */
 .filtros {
-  max-width: 1200px;
+  max-width: var(--largura-grade);
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -121,7 +197,7 @@ p {
   border: none;
   outline: none;
   background: transparent;
-  font-size: 1.1rem;
+  font-size: var(--fs-busca);
   color: var(--cor-texto);
 }
 
@@ -142,7 +218,7 @@ p {
   border-radius: 999px;
   background: transparent;
   color: var(--cor-texto);
-  font-size: 0.9rem;
+  font-size: var(--fs-chip);
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
@@ -163,7 +239,7 @@ p {
   text-align: left;
   max-width: none;
   margin: 24px 0 0;
-  font-size: 1rem;
+  font-size: var(--fs-contador);
 }
 
 .sem-resultados {
@@ -175,13 +251,13 @@ p {
    ========================================================== */
 .acervo-grid {
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--largura-grade);
   margin: 40px auto;
   padding: 0 20px;
 
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+  gap: var(--gap-grade);
 }
 
 .card-acervo {
@@ -231,11 +307,11 @@ p {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.9);
   color: var(--cor-azul-secundaria);
-  font-size: 0.78rem;
+  font-size: var(--fs-selo);
 }
 
 .card-conteudo {
-  padding: 28px;
+  padding: var(--pad-card);
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -243,7 +319,7 @@ p {
 
 .categoria {
   color: var(--cor-azul-secundaria);
-  font-size: 0.8rem;
+  font-size: var(--fs-categoria);
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -254,7 +330,7 @@ p {
   margin: 12px 0;
   text-align: left;
   font-family: Georgia, serif;
-  font-size: 1.45rem;
+  font-size: var(--fs-card-titulo);
   line-height: 1.2;
   color: var(--cor-azul-principal);
 }
@@ -264,7 +340,7 @@ p {
   text-align: left;
   color: #496070;
   line-height: 1.5;
-  font-size: 1rem;
+  font-size: var(--fs-card-texto);
 }
 
 .botao-3d {
@@ -277,7 +353,7 @@ p {
 
   color: #a51c1c;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: var(--fs-botao-3d);
   font-weight: 500;
 
   border-bottom: 1px solid var(--cor-dourada);
@@ -288,18 +364,116 @@ p {
 }
 
 /* ==========================================================
-   Responsivo
+   Notebook (telas até 1600px de largura)
+   Cobre a maioria dos notebooks, como 1536, 1440 e 1366 px.
    ========================================================== */
+@media (max-width: 1600px) {
+  :root {
+    --fs-eyebrow: 0.75rem;
+    --fs-h1: clamp(2.1rem, 5vw, 3rem);
+    --fs-h2: clamp(1.5rem, 3.5vw, 1.9rem);
+    --fs-texto: 1rem;
+    --fs-botao-ar: 0.9rem;
+    --fs-busca: 1rem;
+    --fs-chip: 0.85rem;
+    --fs-contador: 0.92rem;
+    --fs-categoria: 0.74rem;
+    --fs-card-titulo: 1.25rem;
+    --fs-card-texto: 0.92rem;
+    --fs-botao-3d: 0.92rem;
+    --fs-selo: 0.72rem;
 
-/* Tablet */
+    --largura-grade: 1080px;
+    --largura-texto: 740px;
+    --altura-viewer: 420px;
+
+    --espaco-topo: 88px;
+    --espaco-h2: 40px;
+    --espaco-paragrafo: 32px;
+    --pad-card: 22px;
+    --gap-grade: 20px;
+    --espaco-secao: 52px;
+  }
+
+  .chip {
+    padding: 8px 16px;
+  }
+
+  .botao-ar {
+    padding: 10px 22px;
+  }
+}
+
+/* ==========================================================
+   Notebook menor (telas até 1366px de largura)
+   ========================================================== */
+@media (max-width: 1366px) {
+  :root {
+    --fs-eyebrow: 0.72rem;
+    --fs-h1: clamp(2rem, 4.5vw, 2.7rem);
+    --fs-h2: clamp(1.45rem, 3vw, 1.75rem);
+    --fs-texto: 0.95rem;
+    --fs-botao-ar: 0.88rem;
+    --fs-busca: 0.95rem;
+    --fs-chip: 0.82rem;
+    --fs-contador: 0.88rem;
+    --fs-categoria: 0.7rem;
+    --fs-card-titulo: 1.15rem;
+    --fs-card-texto: 0.88rem;
+    --fs-botao-3d: 0.88rem;
+
+    --largura-grade: 980px;
+    --largura-texto: 700px;
+    --altura-viewer: 360px;
+
+    --espaco-topo: 80px;
+    --espaco-h2: 34px;
+    --espaco-paragrafo: 28px;
+    --pad-card: 18px;
+    --gap-grade: 18px;
+    --espaco-secao: 44px;
+  }
+}
+
+/* ==========================================================
+   Tablet (telas até 1000px de largura)
+   ========================================================== */
 @media (max-width: 1000px) {
   .acervo-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-/* Celular */
+/* ==========================================================
+   Celular (telas até 650px de largura)
+   Vem por último para valer sobre os blocos acima.
+   ========================================================== */
 @media (max-width: 650px) {
+  :root {
+    --fs-eyebrow: 0.75rem;
+    --fs-h1: clamp(2.1rem, 9vw, 2.6rem);
+    --fs-h2: 1.7rem;
+    --fs-texto: 1.05rem;
+    --fs-botao-ar: 0.95rem;
+    --fs-busca: 1rem;
+    --fs-chip: 0.88rem;
+    --fs-contador: 0.95rem;
+    --fs-categoria: 0.75rem;
+    --fs-card-titulo: 1.3rem;
+    --fs-card-texto: 1rem;
+    --fs-botao-3d: 1rem;
+    --fs-selo: 0.75rem;
+
+    --altura-viewer: 380px;
+
+    --espaco-topo: 100px;
+    --espaco-h2: 40px;
+    --espaco-paragrafo: 32px;
+    --pad-card: 22px;
+    --gap-grade: 20px;
+    --espaco-secao: 48px;
+  }
+
   .filtros {
     padding: 0 16px;
   }
@@ -311,14 +485,5 @@ p {
   .acervo-grid {
     grid-template-columns: 1fr;
     padding: 0 16px;
-    gap: 20px;
-  }
-
-  .card-conteudo {
-    padding: 22px;
-  }
-
-  .card-conteudo h3 {
-    font-size: 1.3rem;
   }
 }
