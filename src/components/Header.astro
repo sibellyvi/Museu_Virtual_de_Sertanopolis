@@ -11,8 +11,8 @@
     <div class="header-container">
 
     <div class="logo">
-      <span class="logo-menor">MUSEU VIRTUAL</span>
-      <span class="logo-maior">Sertanópolis</span>
+      <span class="logo-menor">MHC²IT</span>
+      <span class="logo-maior">VIRTUAL</span>
     </div>
 
     <nav class="menu">
@@ -20,6 +20,7 @@
       <a href={`${import.meta.env.BASE_URL}/acervo3d`}>Acervo 3D</a>
       <a href={`${import.meta.env.BASE_URL}/museuHistorico`}>Museu Histórico</a>
       <a href={`${import.meta.env.BASE_URL}/curiosidades`}>Curiosidades</a>
+      <a href={`${import.meta.env.BASE_URL}/cidade`}>Cidade de Sertanópolis</a>
     </nav>
 
 <div class="acoes">
@@ -78,18 +79,19 @@
             .logo {
             display: flex;
             flex-direction: column;
+            font-family: 'Bauhaus 93', sans-serif;
+            font-weight: normal;
             }
 
             .logo-menor {
-            font-size: 11px;
+            font-size: 20px;
             letter-spacing: 4px;
             color: var(--cor-azul-principal);
             }
 
             .logo-maior {
-            font-size: 23px;
+            font-size: 25px;
             color: var(--cor-vermelha-principal);
-            font-family: Georgia, serif;
             }
 
             .menu {
@@ -105,7 +107,9 @@
             .menu a {
             color: var(--cor-texto);
             text-decoration: none;
-            font-size: 15px;
+            font-size: 20px;
+            font-family: 'Abadi Extra Light', sans-serif;
+            font-weight: bold;
             }
 
             .menu a:hover,
@@ -137,15 +141,6 @@
             align-items: center;
             justify-content: center;
             font-size: 20px;
-            }
-
-            .botao-ra {
-            border: 1px solid var(--cor-dourada);
-            border-radius: 30px;
-            padding: 10px 18px;
-            color: var(--cor-azul-principal);
-            text-decoration: none;
-            font-size: 14px;
             }
 
         @media (max-width: 900px) {

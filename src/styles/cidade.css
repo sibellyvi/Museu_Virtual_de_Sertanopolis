@@ -1,0 +1,148 @@
+/* ==========================================================
+   Cores e tamanhos
+   Os tamanhos ficam todos aqui, em variáveis. Para a tela do
+   notebook, do tablet ou do celular, só os valores mudam (veja
+   os blocos @media no final do arquivo).
+   ========================================================== */
+:root {
+    --cor-vermelha-principal: rgb(151, 44, 44);
+    --cor-azul-principal: rgb(8, 8, 106);
+    --cor-azul-secundaria: #14678c;
+    --cor-dourada: #d8a85f;
+    --cor-fundo: whitesmoke;
+    --cor-fundo-pagina: white;
+    --cor-fundo-card: #fdfcf7;
+    --cor-branca: #ffffff;
+    --cor-texto: #444444;
+    --cor-borda: #e8e1d8;
+    --cor-borda-cinza: #d9d2c8;
+
+    /* Seção 1 (fundo vermelho, o mesmo da página do Museu Histórico) */
+    --cor-fundo-vermelho: #9a0000;
+    --cor-dourada-clara: #f0d6a0;
+    /* rótulo pequeno sobre o vermelho */
+    --cor-texto-claro: #f7efe3;
+    /* parágrafos sobre o vermelho */
+    --cor-vermelho-escuro: #5a0000;
+    /* texto sobre o dourado (hover das setas) */
+
+    /* ---- Tela de PC (padrão) ---- */
+
+    /* Letras */
+    --fs-eyebrow: 0.75rem;
+    --fs-h1: clamp(2.2rem, 6vw, 3.5rem);
+    --fs-intro: 1.05rem;
+    --fs-rotulo: 0.7rem;
+    --fs-card-titulo: 1.4rem;
+    --fs-card-texto: 0.95rem;
+
+    /* Larguras e tamanhos */
+    --largura-pagina: 1200px;
+    --largura-intro: 560px;
+    --tam-seta: 44px;
+
+    /* Espaçamentos */
+    --espaco-topo: 110px;
+    /* espaço para o header fixo; reduza se usar position: sticky */
+    --espaco-secao: 80px;
+    /* respiro no fim da seção vermelha e nas pontas da galeria */
+    --espaco-apos-topo: 56px;
+    --pad-card: 28px 26px 32px;
+    --espaco-cards: 26px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'Bauhaus 93';
+    src: url('/Museu_Virtual_de_Sertanopolis/fonts/bauhaus-93.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Abadi Extra Light';
+    src: url('/Museu_Virtual_de_Sertanopolis/fonts/abadi-extra-light.woff2') format('woff2');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+h1 {
+    font-family: 'Bauhaus 93', sans-serif;
+    font-weight: normal;
+    font-size: 50px;
+    padding-top: 100px;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Abadi Extra Light', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+}
+
+h3 {
+    text-align: center;
+}
+
+p {
+    padding: 30px;
+    text-align: justify;
+}
+
+h3,
+h4,
+a,
+p,
+figcaption,
+a {
+    font-family: 'Abadi Extra Light', sans-serif;
+    font-weight: 200;
+}
+
+body {
+    background: var(--cor-branca);
+}
+
+/* Largura e margens laterais do conteúdo de cada seção */
+.conteudo {
+    max-width: var(--largura-pagina);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ==========================================================
+   Seção 1: curiosidades (fundo vermelho)
+   ========================================================== */
+.secao-curiosidades {
+    background-color: var(--cor-fundo-vermelho);
+    padding: var(--espaco-topo) 0 var(--espaco-secao);
+}
+
+.topo-curiosidades {
+    margin-bottom: var(--espaco-apos-topo);
+}
+
+.eyebrow {
+    display: block;
+    font-size: var(--fs-eyebrow);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--cor-dourada-clara);
+}
+
+.topo-curiosidades h1 {
+    margin: 16px 0 18px;
+    font-family: Georgia, serif;
+    font-size: var(--fs-h1);
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--cor-branca);
+}

@@ -56,6 +56,41 @@ body {
   background: var(--cor-branca);
 }
 
+@font-face {
+    font-family: 'Bauhaus 93';
+    src: url('/Museu_Virtual_de_Sertanopolis/fonts/bauhaus-93.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Abadi Extra Light';
+    src: url('/Museu_Virtual_de_Sertanopolis/fonts/abadi-extra-light.woff2') format('woff2');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+h1 {
+    font-family: 'Bauhaus 93', sans-serif;
+    font-weight: normal;
+}
+
+h2{
+    font-family: 'Abadi Extra Light', sans-serif;
+    font-weight: bold;
+}
+
+h3,
+h4,
+a,
+p,
+figcaption, 
+a {
+    font-family: 'Abadi Extra Light', sans-serif;
+    font-weight: 200;
+}
+
 /* Largura e margens laterais do conteúdo de cada seção */
 .conteudo {
   max-width: var(--largura-pagina);
@@ -85,7 +120,6 @@ body {
 
 .topo-curiosidades h1 {
   margin: 16px 0 18px;
-  font-family: Georgia, serif;
   font-size: var(--fs-h1);
   font-weight: 500;
   line-height: 1.1;
@@ -183,7 +217,6 @@ body {
 
 .card-curiosidade h2 {
   margin: 14px 0 22px;
-  font-family: Georgia, serif;
   font-size: var(--fs-card-titulo);
   font-weight: 600;
   line-height: 1.25;

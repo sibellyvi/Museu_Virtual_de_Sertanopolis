@@ -17,8 +17,10 @@
   --cor-borda-cinza: #d9d2c8;
 
   /* Seção 1 (fundo azul) */
-  --cor-dourada-clara: #f6e3b8; /* rótulo pequeno sobre o azul */
-  --cor-texto-claro: #f2efe8; /* parágrafos sobre o azul */
+  --cor-dourada-clara: #f6e3b8;
+  /* rótulo pequeno sobre o azul */
+  --cor-texto-claro: #f2efe8;
+  /* parágrafos sobre o azul */
 
   /* Seção 2 (fundo claro, como era antes) */
   --cor-fundo-secao-acervo: #ffffff;
@@ -46,12 +48,30 @@
   --altura-viewer: 500px;
 
   /* Espaçamentos */
-  --espaco-topo: 100px; /* espaço para o header fixo; reduza se usar position: sticky */
+  --espaco-topo: 100px;
+  /* espaço para o header fixo; reduza se usar position: sticky */
   --espaco-h2: 48px;
   --espaco-paragrafo: 40px;
   --pad-card: 28px;
   --gap-grade: 24px;
-  --espaco-secao: 64px; /* espaço no fim da seção azul */
+  --espaco-secao: 64px;
+  /* espaço no fim da seção azul */
+}
+
+@font-face {
+  font-family: 'Bauhaus 93';
+  src: url('/Museu_Virtual_de_Sertanopolis/fonts/bauhaus-93.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Abadi Extra Light';
+  src: url('/Museu_Virtual_de_Sertanopolis/fonts/abadi-extra-light.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
 }
 
 * {
@@ -72,8 +92,19 @@
   color: var(--cor-azul-secundaria);
 }
 
+h3,
+h4,
+a,
+p,
+figcaption, 
+a {
+    font-family: 'Abadi Extra Light', sans-serif;
+    font-weight: 200;
+}
+
 h1 {
-  font-family: Georgia, serif;
+  font-family: 'Bauhaus 93', sans-serif;
+  font-weight: normal;
   font-size: var(--fs-h1);
   line-height: 1.1;
   text-align: center;
@@ -83,7 +114,8 @@ h1 {
 }
 
 h2 {
-  font-family: Georgia, serif;
+  font-family: 'Abadi Extra Light', sans-serif;
+  font-weight: bold;
   font-size: var(--fs-h2);
   text-align: center;
   color: var(--cor-azul-principal);
@@ -100,6 +132,8 @@ h2 {
 }
 
 p {
+  font-family: 'Abadi Extra Light', sans-serif;
+  font-weight: 200;
   text-align: center;
   color: var(--cor-texto);
   font-size: var(--fs-texto);
@@ -326,6 +360,8 @@ p {
 }
 
 .card-conteudo h3 {
+  font-family: 'Abadi Extra Light', sans-serif;
+  font-weight: 200;
   padding: 0;
   margin: 12px 0;
   text-align: left;
