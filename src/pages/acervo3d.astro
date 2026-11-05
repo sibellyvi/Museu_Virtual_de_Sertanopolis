@@ -2,8 +2,7 @@
 import "../styles/acervo3d.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import "../styles/chips-organicos.css";
-import FormaChip from "../components/FormaChip.astro";
+import Botao from "../components/Botao.astro";
 
 const titulo = "Acervo 3D";
 
@@ -16,7 +15,7 @@ const acervo = [
     categoria: "Saúde",
     descricao: "Ano: 1950",
     imagem: `${base}/modelos_gaussian/imagens/inalador.png`,
-    pagina: `${base}/modelos_gaussian/inalador-isolado-centralizado.html`,
+    pagina: `${base}/modelos_gaussian/html/inalador-isolado-centralizado.html`,
     ar: true,
   },
   {
@@ -24,7 +23,15 @@ const acervo = [
     categoria: "Objetos do cotidiano",
     descricao: "Cofre miniatura em formato de sapato na cor preto. Ano: 1932",
     imagem: `${base}/modelos_gaussian/imagens/cofre-sapato.png`,
-    pagina: `${base}/modelos_gaussian/inalador-isolado-centralizado.html`,
+    pagina: `${base}/modelos_gaussian/html/inalador-isolado-centralizado.html`,
+    ar: true,
+  },
+  {
+    nome: "Lâmina de Machado de Pedra",
+    categoria: "Objetos indígena",
+    descricao: "Encontrado no Sítio São Luiz na Água do Tigre. Incorporado no ano de 2000",
+    imagem: `${base}/modelos_gaussian/imagens/machado.png`,
+    pagina: `${base}/modelos_gaussian/html/machado-isolado.html`,
     ar: true,
   },
   {
@@ -32,15 +39,7 @@ const acervo = [
     categoria: "Objetos do cotidiano",
     descricao: "Utilizado pela família da Pioneira Euvira Maria Torezan Migliozzi nas décadas de 30 e 40",
     imagem: `${base}/modelos_gaussian/imagens/lampiao.png`,
-    pagina: `${base}/modelos_gaussian/inalador-isolado-centralizado.html`,
-    ar: true,
-  },
-  {
-    nome: "Lâmina de Machado de Pedra",
-    categoria: "Objeto indígena",
-    descricao: "Encontrado no Sítio São Luiz na Água do Tigre. Incorporado no ano de 2000",
-    imagem: `${base}/modelos_gaussian/imagens/machado.png`,
-    pagina: `${base}/modelos_gaussian/machado-isolado.html`,
+    pagina: `${base}/modelos_gaussian/html/inalador-isolado-centralizado.html`,
     ar: true,
   },
 ];
@@ -92,9 +91,15 @@ const normalizar = (texto: string) =>
     </model-viewer>
     <p>Modelo 3D de um lustre do Clube Recreativo Operário</p>
 
-    <button id="botao-ar" class="botao-ar" type="button">
-      Ver em realidade aumentada
-    </button>
+    <div class="area-ar">
+      <Botao id="botao-ar" variante="dourado">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path>
+          <path d="M12 8.2l3.2 1.8v3.6L12 15.4l-3.2-1.8V10zM12 12v3.4M8.8 10l3.2 2 3.2-2"></path>
+        </svg>
+        Ver em realidade aumentada
+      </Botao>
+    </div>
     <p id="aviso-ar" class="aviso-ar" hidden>
       Seu dispositivo não suporta realidade aumentada. Abra esta página em um
       celular compatível.
@@ -119,17 +124,15 @@ const normalizar = (texto: string) =>
       />
     </label>
 
-       <div class="chips" role="group" aria-label="Filtrar por categoria">
-      <button type="button" class="chip ativo" data-categoria="todos" aria-pressed="true">
-        <FormaChip />
+    <div class="chips" role="group" aria-label="Filtrar por categoria">
+      <Botao variante="filtro" class="ativo" data-categoria="todos" aria-pressed="true">
         Todos
-      </button>
+      </Botao>
       {
         categorias.map((cat) => (
-          <button type="button" class="chip" data-categoria={cat} aria-pressed="false">
-            <FormaChip />
+          <Botao variante="filtro" data-categoria={cat} aria-pressed="false">
             {cat}
-          </button>
+          </Botao>
         ))
       }
     </div>
@@ -161,7 +164,9 @@ const normalizar = (texto: string) =>
             <span class="categoria">{item.categoria}</span>
             <h3>{item.nome}</h3>
             <p>{item.descricao}</p>
-            <a href={item.pagina} class="botao-3d">Explorar em 3D →</a>
+            <div class="card-acao">
+              <Botao href={item.pagina} variante="azul" pequeno>Explorar em 3D →</Botao>
+            </div>
           </div>
         </article>
       ))
@@ -192,7 +197,7 @@ const normalizar = (texto: string) =>
 
     // Busca + filtro por categoria
     const campoBusca = document.getElementById("campo-busca") as HTMLInputElement;
-    const chips = document.querySelectorAll<HTMLButtonElement>(".chip");
+    const chips = document.querySelectorAll<HTMLElement>(".btn--filtro");
     const cards = document.querySelectorAll<HTMLElement>(".card-acervo");
     const contador = document.getElementById("contador");
     const semResultados = document.getElementById("sem-resultados");

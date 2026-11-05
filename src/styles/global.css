@@ -161,8 +161,6 @@ a:hover {
   height: var(--altura-hero-img);
   object-fit: cover;
   display: block;
-
-  border-top: 4px solid #00658a;
 }
 
 .hero-conteudo {
@@ -316,13 +314,9 @@ a:hover {
 
 .imagem-museu {
   display: block;
-
   width: 100%;
   height: var(--altura-sobre-img);
-
   object-fit: cover;
-
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
 }
 
 /* ==========================================================

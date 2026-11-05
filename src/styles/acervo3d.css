@@ -32,14 +32,12 @@
   --fs-h1: clamp(2.2rem, 6vw, 3.5rem);
   --fs-h2: clamp(1.6rem, 4vw, 2.2rem);
   --fs-texto: 1.1rem;
-  --fs-botao-ar: 0.95rem;
   --fs-busca: 1.1rem;
   --fs-chip: 0.9rem;
   --fs-contador: 1rem;
   --fs-categoria: 0.8rem;
   --fs-card-titulo: 1.45rem;
   --fs-card-texto: 1rem;
-  --fs-botao-3d: 1rem;
   --fs-selo: 0.78rem;
 
   /* Larguras e alturas */
@@ -177,25 +175,11 @@ p {
   --progress-bar-color: var(--cor-dourada);
 }
 
-/* ==========================================================
-   Botão de realidade aumentada (lustre)
-   ========================================================== */
-.botao-ar {
-  display: block;
-  margin: 16px auto;
-  padding: 12px 24px;
-  border: 1px solid var(--cor-dourada);
-  border-radius: 30px;
-  background: transparent;
-  color: var(--cor-branca);
-  font-size: var(--fs-botao-ar);
-  cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
-}
-
-.botao-ar:hover {
-  background: var(--cor-dourada);
-  color: var(--cor-azul-principal);
+/* Área que centraliza o botão de realidade aumentada */
+.area-ar {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
 }
 
 .aviso-ar {
@@ -244,29 +228,6 @@ p {
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 20px;
-}
-
-.chip {
-  padding: 9px 18px;
-  border: 1px solid var(--cor-borda-cinza);
-  border-radius: 999px;
-  background: transparent;
-  color: var(--cor-texto);
-  font-size: var(--fs-chip);
-  cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-}
-
-.chip:hover {
-  border-color: var(--cor-vermelha-principal);
-  color: var(--cor-vermelha-principal);
-}
-
-.chip.ativo {
-  background: var(--cor-vermelha-principal);
-  border-color: var(--cor-vermelha-principal);
-  color: var(--cor-branca);
-  font-weight: 600;
 }
 
 .contador {
@@ -379,24 +340,10 @@ p {
   font-size: var(--fs-card-texto);
 }
 
-.botao-3d {
-  display: inline-block;
-  width: fit-content;
-
+/* Espaço acima do botão de cada card (empurra para o fim do card) */
+.card-acao {
   margin-top: auto;
   padding-top: 24px;
-  padding-bottom: 6px;
-
-  color: #a51c1c;
-  text-decoration: none;
-  font-size: var(--fs-botao-3d);
-  font-weight: 500;
-
-  border-bottom: 1px solid var(--cor-dourada);
-}
-
-.botao-3d:hover {
-  color: #7d1111;
 }
 
 /* ==========================================================
@@ -409,14 +356,12 @@ p {
     --fs-h1: clamp(2.1rem, 5vw, 3rem);
     --fs-h2: clamp(1.5rem, 3.5vw, 1.9rem);
     --fs-texto: 1rem;
-    --fs-botao-ar: 0.9rem;
     --fs-busca: 1rem;
     --fs-chip: 0.85rem;
     --fs-contador: 0.92rem;
     --fs-categoria: 0.74rem;
     --fs-card-titulo: 1.25rem;
     --fs-card-texto: 0.92rem;
-    --fs-botao-3d: 0.92rem;
     --fs-selo: 0.72rem;
 
     --largura-grade: 1080px;
@@ -430,14 +375,6 @@ p {
     --gap-grade: 20px;
     --espaco-secao: 52px;
   }
-
-  .chip {
-    padding: 8px 16px;
-  }
-
-  .botao-ar {
-    padding: 10px 22px;
-  }
 }
 
 /* ==========================================================
@@ -449,14 +386,12 @@ p {
     --fs-h1: clamp(2rem, 4.5vw, 2.7rem);
     --fs-h2: clamp(1.45rem, 3vw, 1.75rem);
     --fs-texto: 0.95rem;
-    --fs-botao-ar: 0.88rem;
     --fs-busca: 0.95rem;
     --fs-chip: 0.82rem;
     --fs-contador: 0.88rem;
     --fs-categoria: 0.7rem;
     --fs-card-titulo: 1.15rem;
     --fs-card-texto: 0.88rem;
-    --fs-botao-3d: 0.88rem;
 
     --largura-grade: 980px;
     --largura-texto: 700px;
@@ -490,14 +425,12 @@ p {
     --fs-h1: clamp(2.1rem, 9vw, 2.6rem);
     --fs-h2: 1.7rem;
     --fs-texto: 1.05rem;
-    --fs-botao-ar: 0.95rem;
     --fs-busca: 1rem;
     --fs-chip: 0.88rem;
     --fs-contador: 0.95rem;
     --fs-categoria: 0.75rem;
     --fs-card-titulo: 1.3rem;
     --fs-card-texto: 1rem;
-    --fs-botao-3d: 1rem;
     --fs-selo: 0.75rem;
 
     --altura-viewer: 380px;

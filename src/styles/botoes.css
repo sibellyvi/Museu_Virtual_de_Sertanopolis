@@ -1,0 +1,121 @@
+/* ==========================================================
+   Botões do museu (um só estilo para o site inteiro)
+   Para mudar uma cor, mexa só nas variáveis de cada variante.
+   ========================================================== */
+.btn {
+  --btn-fill: transparent;
+  --btn-borda: var(--cor-azul-secundaria);
+  --btn-texto: var(--cor-azul-secundaria);
+  --btn-fill-hover: transparent;
+  --btn-borda-hover: var(--cor-vermelha-principal);
+  --btn-texto-hover: var(--cor-vermelha-principal);
+
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  padding: 0.8em 1.9em 0.8em 1.6em;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--btn-texto);
+  font: inherit;
+  font-size: var(--btn-fs, 1rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.btn-forma {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.btn-forma path {
+  fill: var(--btn-fill);
+  stroke: var(--btn-borda);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  transition: fill 0.2s ease, stroke 0.2s ease;
+}
+
+.btn > svg:not(.btn-forma) {
+  flex: none;
+  width: 1.35em;
+  height: 1.35em;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  transform: translateY(-2px);
+  color: var(--btn-texto-hover);
+  text-decoration: none;
+}
+.btn:hover .btn-forma path,
+.btn:focus-visible .btn-forma path {
+  fill: var(--btn-fill-hover);
+  stroke: var(--btn-borda-hover);
+}
+.btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 6px;
+}
+
+/* ---- Variantes ---- */
+.btn--vermelho {
+  --btn-fill: var(--cor-vermelha-principal);
+  --btn-borda: var(--cor-vermelha-principal);
+  --btn-texto: var(--cor-branca);
+  --btn-fill-hover: color-mix(in srgb, var(--cor-vermelha-principal) 75%, black);
+  --btn-borda-hover: color-mix(in srgb, var(--cor-vermelha-principal) 75%, black);
+  --btn-texto-hover: var(--cor-branca);
+}
+.btn--azul {
+  --btn-borda: var(--cor-azul-secundaria);
+  --btn-texto: var(--cor-azul-secundaria);
+  --btn-fill-hover: var(--cor-azul-secundaria);
+  --btn-borda-hover: var(--cor-azul-secundaria);
+  --btn-texto-hover: var(--cor-branca);
+}
+.btn--dourado {
+  --btn-fill: var(--cor-dourada);
+  --btn-borda: var(--cor-dourada);
+  --btn-texto: var(--cor-azul-principal);
+  --btn-fill-hover: var(--cor-branca);
+  --btn-borda-hover: var(--cor-branca);
+  --btn-texto-hover: var(--cor-azul-principal);
+}
+/* chips de filtro do acervo */
+.btn--filtro {
+  --btn-fs: var(--fs-chip, 0.9rem);
+  --btn-texto: var(--cor-texto);
+  font-weight: 500;
+  padding: 0.75em 1.75em 0.75em 1.5em;
+}
+.btn--filtro.ativo {
+  --btn-fill: var(--cor-vermelha-principal);
+  --btn-borda: var(--cor-vermelha-principal);
+  --btn-texto: var(--cor-branca);
+  --btn-fill-hover: var(--cor-vermelha-principal);
+  --btn-borda-hover: var(--cor-vermelha-principal);
+  --btn-texto-hover: var(--cor-branca);
+  font-weight: 600;
+}
+
+.btn--pequeno { --btn-fs: 0.875rem; }
+
+.btn:disabled { opacity: 0.5; cursor: default; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .btn-forma path { transition: none; }
+  .btn:hover { transform: none; }
+}

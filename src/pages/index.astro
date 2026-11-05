@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Botao from "../components/Botao.astro";
 
 const titulo = "Museu Virtual de Sertanópolis";
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -19,7 +20,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
   <Header />
 
   <section class="inicio">
-    <h1>Museu Histórico, Cultural e Científico “Ivaldo Totti” <span id="red"> MHC²IT Virtual</span></h1>
+    <h1>Museu Histórico, Cultural e Científico “Ivaldo Totti” <span id="red"> <br>MHC²IT Virtual</span></h1>
     <h2>Projeto de Extensão Universitária desenvolvido com o apoio do Projeto Lumen e com a parceria do departamento de cultura e turismo de Sertanópolis</h2>
   </section>
 
@@ -41,13 +42,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
       </p>
 
       <div class="hero-botoes">
-        <a class="botao botao-principal" href={`${base}/acervo3d`}>
-          Explorar o Acervo 3D
-        </a>
-
-        <a class="botao botao-secundario" href={`${base}/museuHistorico`}>
-          Conheça o Museu
-        </a>
+        <Botao href={`${base}/acervo3d`}>Explorar o Acervo 3D</Botao>
+        <Botao href={`${base}/museuHistorico`} variante="azul">Conheça o Museu</Botao>
       </div>
     </div>
   </section>
@@ -68,9 +64,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
           explorem o acervo do museu histórico de forma inovadora e acessível.
         </p>
 
-        <a href={`${base}/museuHistorico`} class="link-historia">
+        <Botao href={`${base}/museuHistorico`} variante="azul">
           A história do museu →
-        </a>
+        </Botao>
       </div>
 
       <div class="sobre-imagem">
