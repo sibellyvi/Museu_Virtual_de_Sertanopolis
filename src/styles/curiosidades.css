@@ -104,6 +104,7 @@ a {
 .secao-curiosidades {
   background-color: var(--cor-fundo-vermelho);
   padding: var(--espaco-topo) 0 var(--espaco-secao);
+  padding-top: 180px;
 }
 
 .topo-curiosidades {

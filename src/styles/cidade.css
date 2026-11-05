@@ -111,38 +111,23 @@ body {
     background: var(--cor-branca);
 }
 
-/* Largura e margens laterais do conteúdo de cada seção */
-.conteudo {
-    max-width: var(--largura-pagina);
-    margin: 0 auto;
-    padding: 0 24px;
+#nav-cidade {
+    text-align: center;
+    padding: 40px;
 }
 
-/* ==========================================================
-   Seção 1: curiosidades (fundo vermelho)
-   ========================================================== */
-.secao-curiosidades {
-    background-color: var(--cor-fundo-vermelho);
-    padding: var(--espaco-topo) 0 var(--espaco-secao);
+#nav-cidade a:hover {
+        color: var(--cor-vermelha-principal);
 }
 
-.topo-curiosidades {
-    margin-bottom: var(--espaco-apos-topo);
+a {
+    color: var(--cor-texto);
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
 }
 
-.eyebrow {
-    display: block;
-    font-size: var(--fs-eyebrow);
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--cor-dourada-clara);
-}
-
-.topo-curiosidades h1 {
-    margin: 16px 0 18px;
-    font-family: Georgia, serif;
-    font-size: var(--fs-h1);
-    font-weight: 500;
-    line-height: 1.1;
-    color: var(--cor-branca);
+#hino p {
+    text-align: center;
 }

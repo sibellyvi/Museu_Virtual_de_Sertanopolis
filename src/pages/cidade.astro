@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 const titulo = "Cidade de Sertanópolis";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <!DOCTYPE html>
@@ -17,11 +18,98 @@ const titulo = "Cidade de Sertanópolis";
 <body>
 <Header />
 <h1>{titulo}</h1>
-<h2>DOCUMENTOS OFICIAIS</h2>
-<h2>INSTALAÇÃO DO DISTRITO JUDICIÁRIO DE SERTANÓPOLIS</h2>
-<h3>Transcrição do "Termo da instalação do distrito Judiciário de Sertanópolis, Municipio e Termo de São Jeronymo Comarca do Tibagy, Estado do Paraná" (Documento extraído da revista comemorativa do 34º aniversário de Sertanópolis, 06/06/1968).</h3>
+<nav id="nav-cidade">
+    <a href="#historia">História da Cidade</a>
+    <a href="#documentos">Documentos oficiais</a>
+    <a href="#hino">Hino Municipal</a>
+</nav>
 
-<p>"Termo da instalação do distrito Judiciário de Sertanópolis, Municipio e Termo de São Jeronymo Comarca do Tibagy, Estado do Paraná. Aos vinte e cinco dias do mês de setembro de mil novecentos vinte e oito, as doze horas, na casa que servirá de séde ao Juizado Distrital, sita a rua Anchieta esquina da rua Alves Cabral, presentes o meritíssimo Juíz Municipal, doutor Jorge de Serpa, os camaristas Srs. Luiz Deliberador, João Rosa, Lourenço Antonio da Veiga, Irineu Batista, Arcilio Ramos, P. Casagrande, G. Deliberador, José dos Reis Loução, Francisco Gregorio de Oliveira, Joaquim Felippe de Souza, Sebastião do Prado, Pedalyrio Dias de Castro, Eleutherio Augusto de Almeida, Manoel Fernandes, João Rosa Filho, João da Costa Abreu, Francisco Alberti, João Augusto Pereira, João Moraes, Custodio L. dos Santos, e ahi foi vindo o cidadão José Fagundes, primeiro Juiz Distrital, e tendo dito haver prestado o devido compromisso no dia 21 do corrente mes, perante o Sr. Prefeito de São Jeronymo, mandou a mim, Escrivão Ad-hoc, que lesse a Lei n. 2448 de vinte e cinco de março de mil novecentos e vinte e sete pela qual foi creado o Distrito judiciário de Sertanópolis, o que foi feito, e em seguida o mesmo Juiz declarou instalado este Distrito Judiciário, tendo usado da palavra o Sr. Luiz Deliberador o qual salientou a significação daquela solenidade e a importancia da elevação de Sertanópolis á Distrito Judiciário, o que se devia a S. Excia. o Sr. Doutor Affonso de Camargo, preclaro presidente do Estado, de cujo benemérito Govêrno, Sertanópolis podia ainda esperar muitos outros benefícios, como, aliás, todo o Estado do Paraná, á cuja felicidade o grande paranaense se dedica esforçosamente. Findo o que, mandou o referido Juiz Distrital em exercicio lavrar o presente termo, que veio por ele assignado, pelo Meretissimo Juiz Municipal e mais pessoas presentes. Eu, Manoel Rebello Loureiro dos Santos escrivão ad-hoc, o escrevi e assigno".</p>
+<section id="historia">
+    <h2>HISTÓRIA DE SERTANÓPOLIS</h2>
+    <h3>Entre os anos de 1918 e 1920, as terras férteis do norte do Paraná começaram a atrair inúmeros desbravadores e posseiros, porém, foi a partir de 1924 que a área do atual município de Sertanópolis começou a ser povoada.</h3>
+    <p>
+        Algumas das famílias vindas do estado de São Paulo tornaram-se proprietárias de terras, aproveitando o regime oficial de colonização, em face da crescente expansão econômica e social de São Paulo, pois viram nas terras de Sertanópolis excelente qualidade para a cultura do café.
+        Dessas famílias, o primeiro que se tem notícia foi Francisco G. da Silva, que já morava às margens da água da Taboca, num rancho de palmito nas imediações do atual campo de aviação, quando ali chegaram os primeiros mateiros enviados pela companhia colonizadora. Também se destacam algumas pessoas que vieram em busca do paraíso do "ciclo verde", figuram-se entre eles: Francisco Alsoza, Luís Deliberador, Saturnino Borges Teixeira, João Ignácio Gonçalves (de Conceição de Monte Alegre, chegado em 1925) e Durval Ignácio Gonçalves (chegado em 1927), Joaquim Bueno da Silva, Lourenço Antônio da Veiga, Augusto Garcia de Souza, Podalírio de Castro, os irmãos Primo, Basilio, Artur e Secondo Pissinatti, Antonio Romanin. Estavam também presentes as famílias Casagrande, Pescador, Matesco, Moresco, Borges Reis entre outras.
+        Em 1923, vinda do estado de São Paulo, chega uma comitiva enviada pelo concessionário das terras para iniciar a demarcação dos lotes de Sertanópolis, assim como o alinhamento da primeira praça da cidade, que atualmente chama-se Praça João XXIII, a mais ou menos duzentos metros da margem esquerda da água da Taboca. Assim teve início a constituição da “Cidade Sertão”, isto é, Sertanópolis, denominação pela qual passou a ser conhecida em toda a região por onde passaram os primeiros colonizadores.
+        Em 1926 a Colônia de Sertanópolis possuía cerca de 50 moradias, cinco casas comerciais, uma pensão, uma farmácia e uma máquina de beneficiar arroz. Essa pensão foi erguida por José Fagundes, um rancho de maiores proporções que passou a ser a primeira hospedaria, sendo que, já em 1927, outro estabelecimento de hospedagem era inaugurado por Maria Procópia de Sousa.
+        O desenvolvimento da colônia, propiciado pela fertilidade do solo, atraiu muitas famílias, o que levou a ser criado, em 1926, um distrito policial e, um ano depois, o distrito judicial. Em 1929, a Colônia já possuía uma população de 500 pessoas e, a 10 de abril, criava-se o município de Sertanópolis através de um decreto estadual. Gurgêncio Celso de Matos, que chegara junto com D. Maria Procópia de Sousa, foi o primeiro funcionário público a ser contratado em 4 de abril de 1931, por 90 mil réis mensais, para “carpa nas ruas desta villa”.
+        Entretanto a quebra da bolsa em 1929, as revoluções de 1930 e 1932, geadas, chuvas fortes e prolongadas, inexistência de estradas transitáveis resultaram em um êxodo de grandes proporções. Em 1930, por exemplo, o prefeito teve que devolver seu salário de 650 mil réis aos cofres da prefeitura em decorrência da grande crise financeira. Assim, a estagnação na vila fez com que o município retornasse à categoria de distrito, voltando a pertencer à Comarca de Jataí, hoje Jataizinho, em maio de 1932. Dois anos depois, com as primeiras cargas dos cafezais melhorando a situação financeira de todos, junto à união e trabalho dos moradores que permaneceram, propiciou-se, uma atividade dinâmica e empreendedora: Foram criados muitos pequenos engenhos produtores de açúcar, desenvolveu-se a cultura de suínos e a produção agrícola encontrou, no nascente município de Londrina, mercado acessível para a venda da produção.
+        Tudo isso, aliado a um comércio atuante, fez com que em 6 de junho de 1934 Sertanópolis recuperasse, em definitivo, sua autonomia municipal. Entretanto a Comarca da cidade somente foi criada em março de 1944 e instalada solenemente no dia 19 de abril do mesmo ano.
+        Em 1947, Sertanópolis sofreu seu primeiro grande desmembramento com a criação dos municípios de Bela Vista do Paraíso, Ibiporã, Jaguapitã, Jataizinho e Porecatu. Em 1951, uma nova ruptura criava o município de Primeiro de Maio.</p>
+</section>
+
+<section id="documentos">
+    <h2>DOCUMENTOS OFICIAIS</h2>
+    <h2>INSTALAÇÃO DO DISTRITO JUDICIÁRIO DE SERTANÓPOLIS</h2>
+    <h3>Transcrição do "Termo da instalação do distrito Judiciário de Sertanópolis, Municipio e Termo de São Jeronymo Comarca do Tibagy, Estado do Paraná" (Documento extraído da revista comemorativa do 34º aniversário de Sertanópolis, 06/06/1968).</h3>
+    <p>"Termo da instalação do distrito Judiciário de Sertanópolis, Municipio e Termo de São Jeronymo Comarca do Tibagy, Estado do Paraná. Aos vinte e cinco dias do mês de setembro de mil novecentos vinte e oito, as doze horas, na casa que servirá de séde ao Juizado Distrital, sita a rua Anchieta esquina da rua Alves Cabral, presentes o meritíssimo Juíz Municipal, doutor Jorge de Serpa, os camaristas Srs. Luiz Deliberador, João Rosa, Lourenço Antonio da Veiga, Irineu Batista, Arcilio Ramos, P. Casagrande, G. Deliberador, José dos Reis Loução, Francisco Gregorio de Oliveira, Joaquim Felippe de Souza, Sebastião do Prado, Pedalyrio Dias de Castro, Eleutherio Augusto de Almeida, Manoel Fernandes, João Rosa Filho, João da Costa Abreu, Francisco Alberti, João Augusto Pereira, João Moraes, Custodio L. dos Santos, e ahi foi vindo o cidadão José Fagundes, primeiro Juiz Distrital, e tendo dito haver prestado o devido compromisso no dia 21 do corrente mes, perante o Sr. Prefeito de São Jeronymo, mandou a mim, Escrivão Ad-hoc, que lesse a Lei n. 2448 de vinte e cinco de março de mil novecentos e vinte e sete pela qual foi creado o Distrito judiciário de Sertanópolis, o que foi feito, e em seguida o mesmo Juiz declarou instalado este Distrito Judiciário, tendo usado da palavra o Sr. Luiz Deliberador o qual salientou a significação daquela solenidade e a importancia da elevação de Sertanópolis á Distrito Judiciário, o que se devia a S. Excia. o Sr. Doutor Affonso de Camargo, preclaro presidente do Estado, de cujo benemérito Govêrno, Sertanópolis podia ainda esperar muitos outros benefícios, como, aliás, todo o Estado do Paraná, á cuja felicidade o grande paranaense se dedica esforçosamente. Findo o que, mandou o referido Juiz Distrital em exercicio lavrar o presente termo, que veio por ele assignado, pelo Meretissimo Juiz Municipal e mais pessoas presentes. Eu, Manoel Rebello Loureiro dos Santos escrivão ad-hoc, o escrevi e assigno".</p>
+</section>
+
+<section id="hino">
+    <h2>HINO MUNICIPAL</h2>
+    <h3>LETRA: Pe. César Bano;</h3>
+    <h3>MÚSICA: José Guerini;</h3>
+    <h3><br>ESTRIBILHO (2X)</h3>
+
+    <p>Salve! Salve, cidade ubertosa,<br>
+        Luminar de bravura e valor:<br>
+        salve, orgulho de gente operosa,<br>
+        Sertanópolis, d'alva fulgor!<br><br>
+ 
+        Sertanópolis, terra florida,<br>
+        deste norte cidade primeira,<br>
+        duma imensa floresta nascida,<br>
+        do trabalho tu foste pioneira.<br>
+        Tibagi noite e dia relata<br>
+        a gloriosa tua história da mata.<br><br>
+ 
+        Quando a serra e o machado cantando<br>
+        os filhotes da onça acordava,<br>
+        de veneno sua flecha encharcando,<br>
+        da tua taba o selvagem migrava.<br>
+        Foi com lágrimas, sangue, esperança<br>
+        que o empolgante progresso se avança.<br><br>
+ 
+        Salve! Salve, cidade ubertosa,<br>
+        Luminar de bravura e valor:<br>
+        salve, orgulho de gente operosa,<br>
+        Sertanópolis, d'alva fulgor!<br><br>
+ 
+        Salve! Salve, cidade ubertosa,<br>
+        Luminar de bravura e valor:<br>
+        salve, orgulho de gente operosa,<br>
+        Sertanópolis, d'alva fulgor!<br><br>
+ 
+        Desta Pátria risonho recanto,<br>
+        o diadema que te trança a flora,<br>
+        as tuas frutas, teus brincos d'encanto<br>
+        te proclamam formosa senhora:<br>
+        sobre o manto de messes, de flores<br>
+        o sol brilha em multíplices cores.<br><br>
+        
+        Teu pacífico bronze sagrado,<br>
+        de três séculos teste da história,<br>
+        o titânico esforço engendrado<br>
+        narre ao mundo e a façanha de glória.<br>
+        Diga àquele que indaga sua sorte<br>
+        que é da mente e do braço este norte.<br><br>
+ 
+        (Refrão)<br><br>
+ 
+        Salve! Salve, cidade ubertosa,<br>
+        Luminar de bravura e valor:<br>
+        salve, orgulho de gente operosa,<br>
+        Sertanópolis, d'alva fulgor!<br>
+ 
+        Salve! Salve, cidade ubertosa,<br>
+        Luminar de bravura e valor:<br>
+        salve, orgulho de gente operosa,<br>
+        Sertanópolis, d'alva fulgor!<br><br>
+ 
+        (Fim)
+ </p>
+</section>
+
 <Footer />
 </body>
 </html>
