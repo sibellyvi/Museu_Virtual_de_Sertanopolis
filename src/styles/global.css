@@ -31,7 +31,7 @@
     /* Letras: "Conheça o projeto" */
     --fs-sobre-eyebrow: 0.75rem;
     --fs-sobre-h2: 2.4rem;
-    --fs-sobre-texto: 1.06rem;
+  
     --fs-link-historia: 1.19rem;
 
     /* Larguras e alturas */
@@ -284,7 +284,7 @@ a:hover {
 
   color: var(--cor-texto);
 
-  font-size: var(--fs-sobre-texto);
+  font-size: 20px;
   line-height: 1.65;
 }
 

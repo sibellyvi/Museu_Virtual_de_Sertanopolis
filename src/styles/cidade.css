@@ -128,6 +128,11 @@ a {
     padding: 20px;
 }
 
+#letra{
+    text-align: start;
+    padding-left: 50px;
+}
+
 #hino p {
     text-align: center;
 }
