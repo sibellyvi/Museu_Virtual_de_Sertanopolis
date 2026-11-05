@@ -64,14 +64,12 @@
   display: flex;
   flex-direction: column;
   background: var(--cor-fundo-card);
-  border: 1px solid var(--cor-borda-cinza);
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card-foto:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
 }
 
 .foto-botao {
