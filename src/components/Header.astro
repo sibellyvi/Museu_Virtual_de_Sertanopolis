@@ -1,8 +1,9 @@
 ---
 // Cabeçalho lateral (lado direito) com a forma desenhada à mão.
-// PC e notebook: fica sempre à mostra.
-// Celular (até 900px): fica escondido na lateral; arraste a aba com o dedo
-// (ou toque nela) para abrir, e arraste de volta ou toque fora para fechar.
+// PC e notebook: abre já aberto; dá para arrastar para a direita (ou tocar na
+// setinha) e deixar só uma pontinha à mostra, para ver o site em tela cheia.
+// Celular (até 900px): abre fechado, só com a pontinha na lateral; arraste
+// para a esquerda (ou toque na setinha) para abrir.
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const atual = Astro.url.pathname.replace(/\/$/, "");
 
@@ -30,7 +31,7 @@ const links = [
     aria-expanded="false"
     aria-controls="cab-nav"
   >
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <polyline points="15 5 8 12 15 19"></polyline>
     </svg>
   </button>
@@ -65,7 +66,7 @@ const links = [
     --fs-cab-logo-menor: 1.25rem;
     --fs-cab-logo-maior: 1.6rem;
     --gap-cab-links: 14px;
-    --aba-visivel: 78px; /* quanto da forma aparece fechada, no celular */
+    --aba-visivel: calc(var(--largura-cabecalho) * 0.14 + 22px); /* fechado: só uma pontinha da forma aparece */
     --desloca-cabecalho: 44px; /* empurra a forma para a direita, para cobrir menos o texto */
   }
 
@@ -77,6 +78,8 @@ const links = [
     width: var(--largura-cabecalho);
     height: var(--altura-cabecalho);
     transform: translateX(var(--desloca-cabecalho));
+    user-select: none; /* arrastar não seleciona o texto */
+    -webkit-user-select: none;
     pointer-events: none; /* só a forma e os links recebem toque/clique */
   }
 
@@ -162,15 +165,46 @@ const links = [
     border-bottom-color: var(--cor-dourada);
   }
 
+  .cab a { -webkit-user-drag: none; }
+
   .cab a:focus-visible,
   .cab-aba:focus-visible {
     outline: 2px solid var(--cor-dourada);
     outline-offset: 4px;
   }
 
-  /* aba e fundo escuro só existem no celular */
-  .cab-aba { display: none; }
+  /* ---- Aba (setinha): serve para abrir e fechar em qualquer tela ---- */
+  .cab-aba {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: calc(var(--altura-cabecalho) * 0.3 - 45px); /* na ponta da onda da forma */
+    left: calc(14% + 2px);
+    width: 18px;
+    height: 90px; /* área de toque maior que a setinha */
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--cor-dourada);
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform 0.35s ease;
+  }
+  .cab-aba[aria-expanded="true"] { transform: scaleX(-1); }
+
+  /* fundo escuro só aparece no celular, com o menu aberto */
   .cab-fundo { display: none; }
+
+  /* ---- Fechado: empurra o painel, sobrando só a pontinha ---- */
+  .cab.fechado { transform: translateX(calc(100% - var(--aba-visivel))); }
+  .cab.aberto { transform: translateX(var(--desloca-cabecalho)); }
+
+  .cab {
+    transition: transform 0.35s ease;
+    touch-action: pan-y; /* o dedo move o painel na horizontal e a página na vertical */
+  }
+  .cab.arrastando { transition: none; }
 
   @media (max-width: 1600px) {
     :root {
@@ -194,42 +228,17 @@ const links = [
     }
   }
 
-  /* ---- Celular e tablet: painel que se arrasta ---- */
+  /* ---- Celular e tablet: começa fechado ---- */
   @media (max-width: 900px) {
     :root {
-      --desloca-cabecalho: 0px;
       --largura-cabecalho: 270px;
+      --desloca-cabecalho: 0px;
       --fs-cab-link: 1.1rem;
       --gap-cab-links: 14px;
     }
 
-    .cab {
-      transform: translateX(calc(100% - var(--aba-visivel)));
-      transition: transform 0.35s ease;
-      touch-action: pan-y; /* o dedo move o painel na horizontal e a página na vertical */
-    }
-
+    .cab:not(.aberto) { transform: translateX(calc(100% - var(--aba-visivel))); }
     .cab.aberto { transform: translateX(0); }
-    .cab.arrastando { transition: none; }
-
-    .cab-aba {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-      top: calc(var(--altura-cabecalho) * 0.2);
-      left: calc(14% + 10px);
-      width: 26px;
-      height: 64px;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      color: var(--cor-dourada);
-      cursor: pointer;
-      pointer-events: auto;
-      transition: transform 0.35s ease;
-    }
-    .cab.aberto .cab-aba { transform: scaleX(-1); }
 
     .cab-fundo {
       display: block;
@@ -252,24 +261,33 @@ const links = [
   const fundo = document.getElementById("cab-fundo") as HTMLElement;
   const celular = window.matchMedia("(max-width: 900px)");
 
-  let aberto = false;
+  let aberto = !celular.matches; // PC começa aberto; celular começa fechado
   let arrastando = false;
   let inicioX = 0;
   let posInicial = 0;
   let pos = 0;
   let ignorarClique = false;
 
-  const fechadoX = () =>
-    painel.offsetWidth -
-    parseFloat(getComputedStyle(painel).getPropertyValue("--aba-visivel"));
+  // posição do painel aberto (PC tem um pequeno deslocamento) e fechado (só a pontinha)
+  const abertoX = () =>
+    parseFloat(getComputedStyle(painel).getPropertyValue("--desloca-cabecalho")) || 0;
+  // mesma conta do --aba-visivel no CSS: 14% da largura + 22px
+  const fechadoX = () => painel.offsetWidth - (painel.offsetWidth * 0.14 + 22);
+
+  function mostrar(valor: boolean) {
+    aba.setAttribute("aria-expanded", String(valor));
+    aba.setAttribute("aria-label", valor ? "Fechar menu" : "Abrir menu");
+    fundo.hidden = !(valor && celular.matches);
+  }
 
   function definir(valor: boolean) {
     aberto = valor;
     painel.classList.toggle("aberto", valor);
-    fundo.hidden = !valor;
-    aba.setAttribute("aria-expanded", String(valor));
-    aba.setAttribute("aria-label", valor ? "Fechar menu" : "Abrir menu");
+    painel.classList.toggle("fechado", !valor);
+    mostrar(valor);
   }
+
+  mostrar(aberto);
 
   aba.addEventListener("click", () => {
     if (ignorarClique) return;
@@ -277,30 +295,32 @@ const links = [
   });
   fundo.addEventListener("click", () => definir(false));
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && aberto) definir(false);
+    if (e.key === "Escape" && aberto && celular.matches) definir(false);
   });
+  // no celular, tocar num link fecha o menu
   painel.querySelectorAll(".cab-nav a, .cab-logo").forEach((a) =>
-    a.addEventListener("click", () => definir(false))
+    a.addEventListener("click", () => {
+      if (celular.matches) definir(false);
+    })
   );
 
   painel.addEventListener("pointerdown", (e) => {
-    if (!celular.matches) return;
     inicioX = e.clientX;
-    posInicial = aberto ? 0 : fechadoX();
+    posInicial = aberto ? abertoX() : fechadoX();
     pos = posInicial;
     arrastando = false;
   });
 
   painel.addEventListener("pointermove", (e) => {
-    if (!celular.matches || e.buttons === 0 && e.pointerType === "mouse") return;
+    if (e.pointerType === "mouse" && e.buttons === 0) return;
     const dx = e.clientX - inicioX;
     if (!arrastando) {
-      if (Math.abs(dx) < 8 || e.pressure === 0) return;
+      if (Math.abs(dx) < 8) return;
       arrastando = true;
       painel.classList.add("arrastando");
       painel.setPointerCapture(e.pointerId);
     }
-    pos = Math.min(Math.max(posInicial + dx, 0), fechadoX());
+    pos = Math.min(Math.max(posInicial + dx, abertoX()), fechadoX());
     painel.style.transform = `translateX(${pos}px)`;
   });
 
@@ -309,14 +329,19 @@ const links = [
     arrastando = false;
     painel.classList.remove("arrastando");
     painel.style.transform = "";
-    // abre se foi arrastado mais de 35% do caminho
-    definir(pos < fechadoX() * 0.65);
+    // muda de estado se o painel foi arrastado mais de 35% do caminho
+    const percurso = (pos - abertoX()) / (fechadoX() - abertoX()); // 0 = aberto, 1 = fechado
+    definir(aberto ? percurso < 0.35 : percurso < 0.65);
     ignorarClique = true;
     setTimeout(() => (ignorarClique = false), 0);
   }
   painel.addEventListener("pointerup", soltar);
   painel.addEventListener("pointercancel", soltar);
 
-  // se a janela crescer para o tamanho de PC, volta ao normal
-  celular.addEventListener("change", () => definir(false));
+  // ao trocar entre tamanho de PC e de celular, volta ao estado inicial da tela
+  celular.addEventListener("change", () => {
+    painel.classList.remove("aberto", "fechado");
+    aberto = !celular.matches;
+    mostrar(aberto);
+  });
 </script>
