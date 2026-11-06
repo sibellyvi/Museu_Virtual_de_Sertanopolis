@@ -26,13 +26,11 @@
 
     /* Letras: bloco com imagem e botões */
     --fs-hero-texto: 1.15rem;
-    --fs-botao: 1rem;
 
     /* Letras: "Conheça o projeto" */
-    --fs-sobre-eyebrow: 0.75rem;
+    --fs-sobre-eyebrow: 1rem;
     --fs-sobre-h2: 2.4rem;
   
-    --fs-link-historia: 1.19rem;
 
     /* Larguras e alturas */
     --largura-pagina: 1100px;
@@ -40,18 +38,24 @@
     --largura-sobre-texto: 560px;
     --altura-inicio: 450px;
     --altura-hero-img: 415px;
-    --altura-botao: 50px;
     --altura-sobre-img: 350px;
 
     /* Espaçamentos */
     --espaco-topo: 80px; /* espaço para o header fixo */
     --pad-lateral: 24px;
     --pad-h2-inicio: 70px; /* vem da regra global "h2 { padding }" */
-    --pad-h2-sobre: 70px; /* idem, no título "Patrimônio que cabe..." */
+    --pad-h2-sobre: 50px; /* idem, no título "Patrimônio que cabe..." */
     --espaco-hero: 50px;
     --gap-hero: 28px;
     --pad-sobre: 120px 40px;
     --gap-sobre: 80px;
+
+    /* Galeria na página inicial */
+    --fs-galeria-home-h2: 2.4rem;
+    --fs-galeria-home-h3: 0.9rem;
+    --largura-galeria-home: 1280px;
+    --proporcao-galeria-home: 16 / 8;
+    --espaco-galeria-home: 72px;
 }
 
 /* FONTES PERSONALIZADAS */
@@ -99,6 +103,12 @@ p {
 a {
     color: black;
     text-decoration: none;
+}
+
+figcaption {
+    font-size: 16px;
+    color: var(--cor-texto);
+    text-align: center;
 }
 
 a:hover {
@@ -189,48 +199,6 @@ a:hover {
   gap: 12px;
 }
 
-.botao {
-  width: 100%;
-  min-height: var(--altura-botao);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-decoration: none;
-  font-size: var(--fs-botao);
-  font-weight: 600;
-  border-radius: 30px;
-
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.botao-principal {
-  background-color: #99121c;
-  color: white;
-  border: 1px solid #99121c;
-}
-
-.botao-principal:hover {
-  background-color: #7f0e16;
-  transform: translateY(-2px);
-}
-
-.botao-secundario {
-  background-color: transparent;
-  color: #00658a;
-  border: 1px solid #00658a;
-}
-
-.botao-secundario:hover {
-  background-color: #00658a;
-  color: white;
-  transform: translateY(-2px);
-}
-
 /* ==========================================================
    Conheça o projeto
    ========================================================== */
@@ -290,24 +258,6 @@ a:hover {
   font-weight: 600;
 }
 
-.link-historia {
-  color: var(--cor-vermelha-principal);
-
-  font-size: var(--fs-link-historia);
-
-  text-decoration: none;
-
-  border-bottom: 1px solid var(--cor-dourada);
-
-  padding-bottom: 7px;
-
-  transition: 0.2s;
-}
-
-.link-historia:hover {
-  color: var(--cor-azul-principal);
-}
-
 .sobre-imagem {
   width: 100%;
 }
@@ -319,6 +269,61 @@ a:hover {
   object-fit: cover;
 }
 
+.galeria-home {
+  padding: var(--espaco-galeria-home) var(--pad-lateral);
+}
+
+.galeria-home h2 {
+  margin: 0 0 10px;
+  padding: 0;
+  text-align: center;
+  font-size: var(--fs-galeria-home-h2);
+  line-height: 1.1;
+  color: var(--cor-azul-principal);
+}
+
+.galeria-home h3 {
+  margin: 0 0 32px;
+  text-align: center;
+  font-size: var(--fs-galeria-home-h3);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--cor-azul-secundaria);
+}
+
+.galeria-home-foto {
+  display: block;
+  width: 100%;
+  max-width: var(--largura-galeria-home);
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.galeria-home-foto .hero-imagem {
+  width: 100%;
+  box-shadow: none;
+}
+
+.galeria-home-foto .imagem-museu {
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--proporcao-galeria-home);
+  object-fit: cover;
+  box-shadow: none;
+  transition: transform 0.4s ease;
+}
+
+.galeria-home-foto:focus-visible {
+  outline: 3px solid var(--cor-dourada);
+  outline-offset: 4px;
+}
+
+.galeria-home-acao {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
 /* ==========================================================
    Notebook (telas até 1600px de largura)
    Cobre a maioria dos notebooks, como 1536, 1440 e 1366 px.
@@ -328,18 +333,15 @@ a:hover {
     --fs-eyebrow-inicio: 0.75rem;
     --fs-h1-inicio: clamp(3rem, 6.2vw, 5.2rem);
     --fs-hero-texto: 1.05rem;
-    --fs-botao: 0.95rem;
     --fs-sobre-eyebrow: 0.7rem;
     --fs-sobre-h2: 2.1rem;
     --fs-sobre-texto: 0.98rem;
-    --fs-link-historia: 1.05rem;
 
     --largura-pagina: 1000px;
     --largura-sobre: 1080px;
     --largura-sobre-texto: 500px;
     --altura-inicio: 360px;
     --altura-hero-img: 360px;
-    --altura-botao: 46px;
     --altura-sobre-img: 310px;
 
     --espaco-topo: 72px;
@@ -349,6 +351,10 @@ a:hover {
     --gap-hero: 24px;
     --pad-sobre: 96px 32px;
     --gap-sobre: 64px;
+    --fs-galeria-home-h2: 2.1rem;
+    --fs-galeria-home-h3: 0.8rem;
+    --largura-galeria-home: 1120px;
+    --espaco-galeria-home: 56px;
   }
 }
 
@@ -360,18 +366,15 @@ a:hover {
     --fs-eyebrow-inicio: 0.72rem;
     --fs-h1-inicio: clamp(2.8rem, 5.5vw, 4.4rem);
     --fs-hero-texto: 1rem;
-    --fs-botao: 0.92rem;
     --fs-sobre-eyebrow: 0.68rem;
     --fs-sobre-h2: 1.9rem;
     --fs-sobre-texto: 0.94rem;
-    --fs-link-historia: 1rem;
 
     --largura-pagina: 920px;
     --largura-sobre: 980px;
     --largura-sobre-texto: 460px;
     --altura-inicio: 320px;
     --altura-hero-img: 330px;
-    --altura-botao: 44px;
     --altura-sobre-img: 280px;
 
     --espaco-topo: 66px;
@@ -380,6 +383,10 @@ a:hover {
     --espaco-hero: 36px;
     --pad-sobre: 80px 28px;
     --gap-sobre: 52px;
+    --fs-galeria-home-h2: 1.9rem;
+    --fs-galeria-home-h3: 0.75rem;
+    --largura-galeria-home: 980px;
+    --espaco-galeria-home: 48px;
   }
 }
 
@@ -399,6 +406,7 @@ a:hover {
     --pad-h2-sobre: 0px;
     --pad-sobre: 72px 24px;
     --gap-sobre: 40px;
+    --espaco-galeria-home: 44px;
   }
 
   .hero {
@@ -427,14 +435,11 @@ a:hover {
     --fs-eyebrow-inicio: 0.75rem;
     --fs-h1-inicio: clamp(2.5rem, 11vw, 3.6rem);
     --fs-hero-texto: 1.05rem;
-    --fs-botao: 1rem;
     --fs-sobre-eyebrow: 0.72rem;
     --fs-sobre-h2: 2rem;
     --fs-sobre-texto: 1rem;
-    --fs-link-historia: 1.05rem;
 
     --altura-hero-img: 260px;
-    --altura-botao: 48px;
     --altura-sobre-img: 240px;
 
     --espaco-topo: 92px;
@@ -443,6 +448,9 @@ a:hover {
     --espaco-hero: 24px;
     --pad-sobre: 56px 20px;
     --gap-sobre: 32px;
+    --fs-galeria-home-h2: 1.8rem;
+    --proporcao-galeria-home: 4 / 3;
+    --espaco-galeria-home: 40px;
   }
 
   .inicio h2 {

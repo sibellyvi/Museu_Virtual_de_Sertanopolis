@@ -94,10 +94,10 @@ h3,
 h4,
 a,
 p,
-figcaption, 
+figcaption,
 a {
-    font-family: 'Abadi Extra Light', sans-serif;
-    font-weight: 200;
+  font-family: 'Abadi Extra Light', sans-serif;
+  font-weight: 200;
 }
 
 h1 {
@@ -143,6 +143,9 @@ p {
 /* ==========================================================
    Seção 1 (destaque, fundo azul) e Seção 2 (acervo, fundo claro)
    ========================================================== */
+
+
+
 .secao-destaque {
   background-color: var(--cor-azul-secundaria);
   padding-bottom: var(--espaco-secao);
@@ -173,6 +176,7 @@ p {
   height: var(--altura-viewer) !important;
   --poster-color: transparent;
   --progress-bar-color: var(--cor-dourada);
+  ;
 }
 
 /* Área que centraliza o botão de realidade aumentada */

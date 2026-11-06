@@ -11,74 +11,97 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{titulo}</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{titulo}</title>
 </head>
 
 <body>
-  <Header />
+<Header />
 
-  <section class="inicio">
-    <h1>Museu Histórico, Cultural e Científico “Ivaldo Totti” <span id="red"> <br>MHC²IT Virtual</span></h1>
-    <h2>Projeto de Extensão Universitária desenvolvido com o apoio do Projeto Lumen e com a parceria do departamento de cultura e turismo de Sertanópolis</h2>
-  </section>
+<section class="inicio">
+<h1>Museu Histórico, Cultural e Científico “Ivaldo Totti” <span id="red"> <br>MHC²IT Virtual</span></h1>
+<h2>Projeto de Extensão Universitária desenvolvido com o apoio do Projeto Lumen e com a parceria do departamento de cultura e turismo de Sertanópolis</h2>
+</section>
 
-  <section class="hero">
+<section class="hero">
+<div class="sobre-imagem">
+<img
+src={`${base}/imagens/ImagemMuseu.jpg`}
+alt="Imagem do Museu Histórico de Sertanópolis em 2006"
+class="imagem-museu"
+/>
+<figcaption>Imagem do Museu Histórico de Sertanópolis em 2006</figcaption>
+</div>
+
+<div class="hero-conteudo">
+<div class="linha-decorativa"></div>
+
+<p>
+História, memória e tecnologia em uma nova forma de preservar o
+patrimônio.
+</p>
+
+<div class="hero-botoes">
+<Botao href={`${base}/acervo3d`}>Explorar o Acervo 3D</Botao>
+<Botao href={`${base}/museuHistorico`} variante="azul">Conheça a história do Museu</Botao>
+</div>
+</div>
+</section>
+
+<section class="sobre-projeto" id="sobre-projeto">
+<div class="sobre-container">
+<div class="sobre-texto">
+<h3>Conheça o projeto</h3>
+
+<h2>O que é o MHC²IT Virtual</h2>
+
+<p>
+O <strong>MHC²IT Virtual</strong> é um projeto de
+extensão universitário sem fins lucrativos, que visa preservar a
+memória e a história do município através da tecnologia. Com o uso de
+modelos 3D, realidade aumentada e recursos interativos, o projeto
+proporciona uma experiência única para os visitantes, permitindo que
+explorem o acervo do museu histórico de forma inovadora e acessível.
+</p>
+<p>
+Para a digitalização dos objetos, são utilizadas técnicas de fotogrametria, que permitem reconstruir representações tridimensionais a partir de fotografias, e, majoritariamente, a tecnologia 3D Gaussian Splatting, uma técnica de representação tridimensional que utiliza milhões de pequenas estruturas chamadas Gaussianas para reproduzir a aparência, as cores e os detalhes dos objetos com alto nível de realismo. Dessa forma, o projeto busca não apenas disponibilizar o acervo em ambiente virtual, mas também contribuir para a preservação e a divulgação do patrimônio histórico e cultural de Sertanópolis.
+</p>
+
+<Botao href={`${base}/acervo3d`}>Explorar o Acervo 3D</Botao>
+</div>
+
+<div class="sobre-imagem">
+<img
+src={`${base}/imagens/inalador-isolado.png`}
+alt="Imagem de um objeto do acervo em fomarto 3D"
+class="imagem-museu"
+/>
+<figcaption>Imagem de um objeto do acervo em formato 3D reconstruído com <em>Gaussian Splatting</em>.</figcaption>
+</div>
+</div>
+</section>
+
+<section class="galeria-home">
+  <h2>Visite nossa galeria de fotos antigas</h2>
+  <h3>Na página de curiosidades</h3>
+
+  <a class="galeria-home-foto" href={`${base}/curiosidades`} aria-label="Abrir a página de curiosidades e a galeria de fotos">
     <div class="hero-imagem">
       <img
         src={`${base}/banco-de-fotos/ar-401-paco-municipal-santo-soriani-1970.jpg`}
         alt="Paço Municipal Santo Soriani em 1970"
         class="imagem-museu"
       />
+      <figcaption>Paço Municipal Santo Soriani em 1970.</figcaption>
     </div>
+  </a>
 
-    <div class="hero-conteudo">
-      <div class="linha-decorativa"></div>
+  <div class="galeria-home-acao">
+    <Botao href={`${base}/curiosidades`}>Ver curiosidades e fotos</Botao>
+  </div>
+</section>
 
-      <p>
-        História, memória e tecnologia em uma nova forma de preservar o
-        patrimônio.
-      </p>
-
-      <div class="hero-botoes">
-        <Botao href={`${base}/acervo3d`}>Explorar o Acervo 3D</Botao>
-        <Botao href={`${base}/museuHistorico`} variante="azul">Conheça o Museu</Botao>
-      </div>
-    </div>
-  </section>
-
-  <section class="sobre-projeto" id="sobre-projeto">
-    <div class="sobre-container">
-      <div class="sobre-texto">
-        <h3>Conheça o projeto</h3>
-
-        <h2>Patrimônio que cabe em qualquer tela</h2>
-
-        <p>
-          O <strong>Museu Virtual de Sertanópolis</strong> é um projeto de
-          extensão universitário sem fins lucrativos, que visa preservar a
-          memória e a história do município através da tecnologia. Com o uso de
-          modelos 3D, realidade aumentada e recursos interativos, o projeto
-          proporciona uma experiência única para os visitantes, permitindo que
-          explorem o acervo do museu histórico de forma inovadora e acessível.
-        </p>
-
-        <Botao href={`${base}/museuHistorico`} variante="azul">
-          A história do museu →
-        </Botao>
-      </div>
-
-      <div class="sobre-imagem">
-        <img
-          src={`${base}/imagens/ImagemMuseu.jpg`}
-          alt="Imagem do Museu Histórico de Sertanópolis em 2006"
-          class="imagem-museu"
-        />
-      </div>
-    </div>
-  </section>
-
-  <Footer />
+<Footer />
 </body>
 </html>

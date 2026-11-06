@@ -1,237 +1,322 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-    <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Header</title>
-    </head>
-    <body>
+---
+// Cabeçalho lateral (lado direito) com a forma desenhada à mão.
+// PC e notebook: fica sempre à mostra.
+// Celular (até 900px): fica escondido na lateral; arraste a aba com o dedo
+// (ou toque nela) para abrir, e arraste de volta ou toque fora para fechar.
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const atual = Astro.url.pathname.replace(/\/$/, "");
 
-    <header>
-    <div class="header-container">
+const links = [
+  { texto: "Início", rota: "" },
+  { texto: "Acervo 3D", rota: "/acervo3d" },
+  { texto: "Museu Histórico", rota: "/museuHistorico" },
+  { texto: "Curiosidades", rota: "/curiosidades" },
+  { texto: "Cidade de Sertanópolis", rota: "/cidade" },
+];
+---
 
-    <div class="logo">
-      <span class="logo-menor">MHC²IT</span>
-      <span class="logo-maior">VIRTUAL</span>
-    </div>
+<div class="cab-fundo" id="cab-fundo" hidden></div>
 
-    <nav class="menu">
-      <a href={import.meta.env.BASE_URL}>Início</a>
-      <a href={`${import.meta.env.BASE_URL}/acervo3d`}>Acervo 3D</a>
-      <a href={`${import.meta.env.BASE_URL}/museuHistorico`}>Museu Histórico</a>
-      <a href={`${import.meta.env.BASE_URL}/curiosidades`}>Curiosidades</a>
-      <a href={`${import.meta.env.BASE_URL}/cidade`}>Cidade de Sertanópolis</a>
+<header class="cab" id="cab" aria-label="Menu principal">
+  <svg class="cab-forma" viewBox="0 0 221.7 1000" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path d="M159.3 0C173.3 -0.4 300 1.8 300 10.5C300 19.2 300 36.6 300 52.2C300 67.8 300 87.6 300 103.9C300 120.3 300 133.9 300 150.4C300 166.9 300 185.5 300 203C300 220.4 300 238.7 300 255C300 271.4 300 284.8 300 301.2C300 317.6 300 335.9 300 353.4C300 370.9 300 389.6 300 406.3C300 422.9 300 436.6 300 453.2C300 469.9 300 488.8 300 506.4C300 524 300 541.4 300 558.9C300 576.4 300 594.9 300 611.3C300 627.8 300 641.3 300 657.7C300 674.1 300 692.2 300 709.8C300 727.3 300 746.1 300 762.8C300 779.5 300 793.2 300 809.7C300 826.2 300 844.5 300 861.7C300 878.9 300 896.9 300 912.9C300 928.9 300 943.1 300 957.6C300 972.1 300 994.4 300 1000C300 1005.6 169.4 1000.4 161 991.2C152.7 982 151.3 959.4 145.9 945C140.4 930.7 136.3 918.5 128.5 905.2C120.6 892 105.7 880 98.9 865.4C92.1 850.8 89 832.9 87.8 817.4C86.5 801.9 89.3 788 91.6 772.3C93.9 756.6 97.7 739.3 101.5 723.2C105.4 707.1 113.7 690.7 114.7 675.7C115.6 660.8 112 648 107.4 633.5C102.9 619 91 603 87.5 588.7C84 574.4 84 560.8 86.5 547.6C88.9 534.4 101 523.9 102.2 509.5C103.5 495 99.3 475.8 93.9 460.7C88.6 445.6 79.4 432.3 69.9 418.7C60.4 405.2 46.9 391.8 36.9 379.3C27 366.8 16.3 357.4 10.1 343.7C4 329.9 -2.1 311.9 0 296.8C2.1 281.8 14.8 266.6 22.9 253.4C31.1 240.2 43.5 231.7 48.8 217.5C54.2 203.3 55.6 184.7 55.2 168.3C54.8 151.8 47.9 133.8 46.3 118.9C44.8 104 41.1 91.9 45.8 78.7C50.6 65.4 63.7 50.3 75 39.4C86.4 28.4 99.9 19.6 113.9 13C128 6.4 145.2 0.4 159.3 0Z"></path>
+  </svg>
+
+  <button
+    type="button"
+    class="cab-aba"
+    id="cab-aba"
+    aria-label="Abrir menu"
+    aria-expanded="false"
+    aria-controls="cab-nav"
+  >
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="15 5 8 12 15 19"></polyline>
+    </svg>
+  </button>
+
+  <div class="cab-conteudo">
+    <a class="cab-logo" href={`${base}/`}>
+      <span class="cab-logo-menor">MHC²IT</span>
+      <span class="cab-logo-maior">VIRTUAL</span>
+    </a>
+
+    <nav class="cab-nav" id="cab-nav">
+      {
+        links.map((l) => (
+          <a
+            href={`${base}${l.rota}/`}
+            aria-current={atual === `${base}${l.rota}` ? "page" : undefined}
+          >
+            {l.texto}
+          </a>
+        ))
+      }
     </nav>
-
-<div class="acoes">
-    <button
-        class="botao-menu"
-        id="botao-menu"
-        aria-label="Abrir menu"
-        aria-expanded="false"
-        aria-controls="menu-navegacao"
-    >
-        <span class="icone-menu">☰</span>
-    </button>
-</div>
-
   </div>
 </header>
 
-        <style>
-        :root {
-            --cor-vermelha-principal: rgb(151, 44, 44);
-            --cor-azul-principal: rgb(8, 8, 106);
-            --cor-azul-secundaria: #14678c;
-            --cor-dourada: #d8a85f;
-            --cor-fundo: whitesmoke;
-            --cor-fundo-footer: whitesmoke;
-            --cor-branca: #ffffff;
-            --cor-texto: #444444;
-            --cor-borda: #e8e1d8;
-            --cor-borda-cinza: #d9d2c8;
-        }
-            
+<style is:global>
+  /* ---- Tamanhos (PC); só os valores mudam nas outras telas ---- */
+  :root {
+    --largura-cabecalho: 320px;
+    --altura-cabecalho: max(100vh, 760px); /* a parte de baixo da forma pode passar da tela */
+    --fs-cab-link: 1.2rem;
+    --fs-cab-logo-menor: 1.25rem;
+    --fs-cab-logo-maior: 1.6rem;
+    --gap-cab-links: 14px;
+    --aba-visivel: 78px; /* quanto da forma aparece fechada, no celular */
+    --desloca-cabecalho: 44px; /* empurra a forma para a direita, para cobrir menos o texto */
+  }
 
-            header {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
+  .cab {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    width: var(--largura-cabecalho);
+    height: var(--altura-cabecalho);
+    transform: translateX(var(--desloca-cabecalho));
+    pointer-events: none; /* só a forma e os links recebem toque/clique */
+  }
 
-                background-color: var(--cor-fundo);
-                border-bottom: 1px solid var(--cor-borda);
+  .cab-forma {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
 
-                z-index: 1000;
-            }
+  .cab-forma path {
+    fill: var(--cor-azul-principal);
+    stroke: var(--cor-dourada);
+    stroke-width: 2;
+    vector-effect: non-scaling-stroke;
+    pointer-events: visiblePainted;
+  }
 
-            .header-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 16px 24px;
+  .cab-conteudo {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    /* a forma é mais larga no alto; o texto fica alinhado à borda reta */
+    /* o recuo à direita compensa o deslocamento, para o texto não colar na borda */
+    padding: calc(var(--altura-cabecalho) * 0.075) calc(15% + var(--desloca-cabecalho)) 0 20%;
+  }
 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 30px;
-            }
+  .cab-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: calc(var(--altura-cabecalho) * 0.045);
+    font-family: "Bauhaus 93", sans-serif;
+    font-weight: normal;
+    text-decoration: none;
+    pointer-events: auto;
+  }
+  .cab-logo:hover { text-decoration: none; }
 
-            .logo {
-            display: flex;
-            flex-direction: column;
-            font-family: 'Bauhaus 93', sans-serif;
-            font-weight: normal;
-            }
+  .cab-logo-menor {
+    font-size: var(--fs-cab-logo-menor);
+    letter-spacing: 4px;
+    color: var(--cor-dourada-clara, #f6e3b8);
+  }
 
-            .logo-menor {
-            font-size: 20px;
-            letter-spacing: 4px;
-            color: var(--cor-azul-principal);
-            }
+  .cab-logo-maior {
+    font-size: var(--fs-cab-logo-maior);
+    color: var(--cor-branca);
+  }
 
-            .logo-maior {
-            font-size: 25px;
-            color: var(--cor-vermelha-principal);
-            }
+  .cab-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--gap-cab-links);
+  }
 
-            .menu {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-            }
+  .cab-nav a {
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+    font-family: "Abadi Extra Light", sans-serif;
+    font-size: var(--fs-cab-link);
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: right;
+    text-decoration: none;
+    color: var(--cor-branca);
+    pointer-events: auto;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
 
-            .menu-aberto {
-                display: flex !important;
-            }
+  .cab-nav a:hover,
+  .cab-nav a:focus-visible {
+    color: var(--cor-dourada);
+    text-decoration: none;
+  }
 
-            .menu a {
-            color: var(--cor-texto);
-            text-decoration: none;
-            font-size: 20px;
-            font-family: 'Abadi Extra Light', sans-serif;
-            font-weight: bold;
-            }
+  .cab-nav a[aria-current="page"] {
+    color: var(--cor-dourada);
+    border-bottom-color: var(--cor-dourada);
+  }
 
-            .menu a:hover,
-            .menu a.ativo {
-            color: var(--cor-vermelha-principal);
-            }
+  .cab a:focus-visible,
+  .cab-aba:focus-visible {
+    outline: 2px solid var(--cor-dourada);
+    outline-offset: 4px;
+  }
 
-            .acoes {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            }
+  /* aba e fundo escuro só existem no celular */
+  .cab-aba { display: none; }
+  .cab-fundo { display: none; }
 
-            .acoes {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            }
+  @media (max-width: 1600px) {
+    :root {
+      --largura-cabecalho: 290px;
+      --desloca-cabecalho: 38px;
+      --fs-cab-link: 1.1rem;
+      --fs-cab-logo-menor: 1.15rem;
+      --fs-cab-logo-maior: 1.45rem;
+      --gap-cab-links: 12px;
+    }
+  }
 
-            .botao-menu {
-            display: none;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            border: 1px solid var(--cor-borda-cinza);
-            background: transparent;
-            color: var(--cor-texto);
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            }
+  @media (max-width: 1366px) {
+    :root {
+      --largura-cabecalho: 270px;
+      --desloca-cabecalho: 34px;
+      --fs-cab-link: 1rem;
+      --fs-cab-logo-menor: 1.05rem;
+      --fs-cab-logo-maior: 1.35rem;
+      --gap-cab-links: 10px;
+    }
+  }
 
-        @media (max-width: 900px) {
-            .header-container {
-                flex-wrap: nowrap;
-                padding: 12px 20px;
-                justify-content: space-between;
-            }
+  /* ---- Celular e tablet: painel que se arrasta ---- */
+  @media (max-width: 900px) {
+    :root {
+      --desloca-cabecalho: 0px;
+      --largura-cabecalho: 270px;
+      --fs-cab-link: 1.1rem;
+      --gap-cab-links: 14px;
+    }
 
-            .menu {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                padding: 0 20px;
-                box-sizing: border-box;
-                background-color: var(--cor-fundo);
-                border-bottom: 1px solid var(--cor-borda);
+    .cab {
+      transform: translateX(calc(100% - var(--aba-visivel)));
+      transition: transform 0.35s ease;
+      touch-action: pan-y; /* o dedo move o painel na horizontal e a página na vertical */
+    }
 
-                max-height: 0;
-                overflow: hidden;
-                opacity: 0;
-                visibility: hidden;
+    .cab.aberto { transform: translateX(0); }
+    .cab.arrastando { transition: none; }
 
-                transition:
-                    max-height 0.8s ease,
-                    opacity 0.8s ease,
-                    padding 0.8s ease,
-                    visibility 0.8s;
-            }
+    .cab-aba {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: calc(var(--altura-cabecalho) * 0.2);
+      left: calc(14% + 10px);
+      width: 26px;
+      height: 64px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--cor-dourada);
+      cursor: pointer;
+      pointer-events: auto;
+      transition: transform 0.35s ease;
+    }
+    .cab.aberto .cab-aba { transform: scaleX(-1); }
 
-            .menu.menu-aberto {
-                max-height: 300px;
-                padding: 20px;
-                opacity: 1;
-                visibility: visible;
-                gap: 20px;
-            }
+    .cab-fundo {
+      display: block;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(8, 8, 106, 0.4);
+    }
+    .cab-fundo[hidden] { display: none; }
+  }
 
-            .menu.menu-aberto a {
-                font-size: 16px;
-            }
+  @media (prefers-reduced-motion: reduce) {
+    .cab, .cab-aba { transition: none; }
+  }
+</style>
 
-            .botao-menu {
-                display: flex;
-            }
+<script>
+  const painel = document.getElementById("cab") as HTMLElement;
+  const aba = document.getElementById("cab-aba") as HTMLButtonElement;
+  const fundo = document.getElementById("cab-fundo") as HTMLElement;
+  const celular = window.matchMedia("(max-width: 900px)");
 
-            .acoes {
-                display: flex;
-                align-items: center;
-            }
-        }
-            
+  let aberto = false;
+  let arrastando = false;
+  let inicioX = 0;
+  let posInicial = 0;
+  let pos = 0;
+  let ignorarClique = false;
 
-        @media (max-width: 600px) {
-            .header-container {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-            }
+  const fechadoX = () =>
+    painel.offsetWidth -
+    parseFloat(getComputedStyle(painel).getPropertyValue("--aba-visivel"));
 
-            .menu {
-                display: none;
-            }
+  function definir(valor: boolean) {
+    aberto = valor;
+    painel.classList.toggle("aberto", valor);
+    fundo.hidden = !valor;
+    aba.setAttribute("aria-expanded", String(valor));
+    aba.setAttribute("aria-label", valor ? "Fechar menu" : "Abrir menu");
+  }
 
-            .acoes {
-                width: auto;
-                justify-content: flex-end;
-            }
-        }
-        </style>
-        <script>
-            const botaoMenu = document.querySelector('#botao-menu');
-            const menu = document.querySelector('.menu');
-            const iconeMenu = document.querySelector('.icone-menu');
+  aba.addEventListener("click", () => {
+    if (ignorarClique) return;
+    definir(!aberto);
+  });
+  fundo.addEventListener("click", () => definir(false));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && aberto) definir(false);
+  });
+  painel.querySelectorAll(".cab-nav a, .cab-logo").forEach((a) =>
+    a.addEventListener("click", () => definir(false))
+  );
 
-            botaoMenu?.addEventListener('click', () => {
-                const aberto = botaoMenu.getAttribute('aria-expanded') === 'true';
+  painel.addEventListener("pointerdown", (e) => {
+    if (!celular.matches) return;
+    inicioX = e.clientX;
+    posInicial = aberto ? 0 : fechadoX();
+    pos = posInicial;
+    arrastando = false;
+  });
 
-                botaoMenu.setAttribute('aria-expanded', String(!aberto));
-                botaoMenu.setAttribute(
-                    'aria-label',
-                    aberto ? 'Abrir menu' : 'Fechar menu'
-                );
+  painel.addEventListener("pointermove", (e) => {
+    if (!celular.matches || e.buttons === 0 && e.pointerType === "mouse") return;
+    const dx = e.clientX - inicioX;
+    if (!arrastando) {
+      if (Math.abs(dx) < 8 || e.pressure === 0) return;
+      arrastando = true;
+      painel.classList.add("arrastando");
+      painel.setPointerCapture(e.pointerId);
+    }
+    pos = Math.min(Math.max(posInicial + dx, 0), fechadoX());
+    painel.style.transform = `translateX(${pos}px)`;
+  });
 
-                menu?.classList.toggle('menu-aberto', !aberto);
-                iconeMenu.textContent = aberto ? '☰' : '✕';
-            });
-        </script>
-    </body>
-</html>
+  function soltar() {
+    if (!arrastando) return;
+    arrastando = false;
+    painel.classList.remove("arrastando");
+    painel.style.transform = "";
+    // abre se foi arrastado mais de 35% do caminho
+    definir(pos < fechadoX() * 0.65);
+    ignorarClique = true;
+    setTimeout(() => (ignorarClique = false), 0);
+  }
+  painel.addEventListener("pointerup", soltar);
+  painel.addEventListener("pointercancel", soltar);
+
+  // se a janela crescer para o tamanho de PC, volta ao normal
+  celular.addEventListener("change", () => definir(false));
+</script>

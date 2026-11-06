@@ -107,20 +107,24 @@ a {
     font-weight: 200;
 }
 
+p{
+    padding: 10px 300px;
+}
+
 body {
     background: var(--cor-branca);
 }
 
 #nav-cidade {
     text-align: center;
-    padding: 40px;
+    padding: 50px;
 }
 
 #nav-cidade a:hover {
         color: var(--cor-vermelha-principal);
 }
 
-a {
+#nav-cidade a {
     color: var(--cor-texto);
     text-decoration: none;
     font-size: 20px;
