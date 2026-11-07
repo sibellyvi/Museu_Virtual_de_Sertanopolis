@@ -7,18 +7,25 @@
   /* ---- Tela de PC (padrão) ---- */
   --fs-galeria-rotulo: 0.75rem;
   --fs-galeria-titulo: clamp(1.8rem, 5vw, 2.6rem);
-  --fs-galeria-intro: 1.02rem;
-  --fs-foto-titulo: 1.1rem;
+  --fs-galeria-intro: 9.9rem;
+  --fs-categoria-titulo: 1.7rem;
+  --fs-categoria-texto: 0.98rem;
+  --fs-foto-legenda: 1rem;
   --fs-foto-codigo: 0.78rem;
+  --fs-principal-titulo: 2.2rem;
+  --fs-principal-texto: 20px;
   --fs-lightbox-legenda: 1.1rem;
 
   --largura-galeria-intro: 600px;
   --largura-lightbox: 960px;
-  --altura-lightbox-img: 72vh;
+  --altura-lightbox-img: 70vh;
+  --altura-principal: 520px;
 
   --espaco-galeria-topo: 40px;
-  --gap-galeria: 26px;
-  --pad-foto-info: 18px 20px 22px;
+  --espaco-categoria: 72px;
+  --gap-galeria: 22px;
+  --pad-foto-info: 14px 16px 18px;
+  --pad-principal: 40px 36px;
 }
 
 .galeria {
@@ -27,6 +34,7 @@
 
 .galeria-topo {
   margin-bottom: var(--espaco-galeria-topo);
+  text-align: center;
 }
 
 .galeria-rotulo {
@@ -38,25 +46,126 @@
 }
 
 .galeria-topo h2 {
-  margin: 16px 0 16px;
-  font-family: Georgia, serif;
+  margin: 14px 0 0;
+  font-family: 'Abadi Extra Light', sans-serif;
   font-size: var(--fs-galeria-titulo);
-  font-weight: 500;
+  font-weight: bold;
   line-height: 1.15;
-  color: #1c2630;
+  color: var(--cor-azul-principal);
+}
+
+.galeria-topo h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 2px;
+  margin: 18px auto 0;
 }
 
 .galeria-intro {
   max-width: var(--largura-galeria-intro);
+  margin: 20px auto 0;
+  padding: 0;
   font-size: var(--fs-galeria-intro);
   line-height: 1.6;
   color: #496070;
 }
 
-/* Grade */
+/* ==========================================================
+   Foto principal (grande, no topo)
+   ========================================================== */
+.foto-principal {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  background: var(--cor-vermelho-escuro);
+}
+
+.foto-principal .foto-botao {
+  height: var(--altura-principal);
+  aspect-ratio: auto;
+}
+
+.principal-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding: var(--pad-principal);
+  border-left: 3px solid var(--cor-dourada);
+}
+
+.principal-rotulo {
+  font-size: var(--fs-galeria-rotulo);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--cor-dourada-clara, #f6e3b8);
+}
+
+.principal-titulo {
+  font-family: 'Abadi Extra Light', sans-serif;
+  font-size: var(--fs-principal-titulo);
+  font-weight: bold;
+  line-height: 1.1;
+  color: var(--cor-branca);
+}
+
+.principal-texto {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--cor-texto-claro, #f2efe8);
+}
+
+.principal-info .foto-codigo {
+  color: var(--cor-dourada-clara, #f6e3b8);
+}
+
+/* ==========================================================
+   Atalhos das categorias
+   ========================================================== */
+.galeria-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 14px;
+  margin-top: 48px;
+}
+
+/* ==========================================================
+   Categorias
+   ========================================================== */
+.categoria {
+  margin-top: var(--espaco-categoria);
+  scroll-margin-top: 24px;
+}
+
+.categoria-topo {
+  margin-bottom: 26px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--cor-borda-cinza);
+}
+
+.categoria-topo h3 {
+  font-family: 'Abadi Extra Light', sans-serif;
+  font-size: var(--fs-categoria-titulo);
+  font-weight: bold;
+  line-height: 1.2;
+  text-align: left;
+  color: var(--cor-azul-principal);
+}
+
+.categoria-topo p {
+  margin: 6px 0 0;
+  padding: 0;
+  font-size: var(--fs-categoria-texto);
+  text-align: left;
+  color: #6b6b6b;
+}
+
+/* Grade: no PC são 3 colunas; a foto em destaque ocupa 2 colunas e 2 linhas */
 .galeria-grade {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--colunas, 3), minmax(0, 1fr));
+  grid-auto-flow: dense;
   gap: var(--gap-galeria);
 }
 
@@ -65,15 +174,16 @@
   flex-direction: column;
   background: var(--cor-fundo-card);
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card-foto:hover {
-  transform: translateY(-3px);
+.card-destaque {
+  grid-column: span 2;
+  grid-row: span 2;
 }
 
 .foto-botao {
   display: block;
+  position: relative;
   width: 100%;
   padding: 0;
   border: none;
@@ -83,11 +193,24 @@
   overflow: hidden;
 }
 
+/* A foto em destaque estica para preencher a altura das duas linhas */
+.card-destaque .foto-botao {
+  flex: 1;
+  aspect-ratio: auto;
+  min-height: 260px;
+}
+
 .foto-botao img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 35%;
+  transition: transform 0.4s ease;
+}
+
+.foto-botao:hover img {
+  transform: scale(1.03);
 }
 
 .foto-botao:focus-visible {
@@ -98,14 +221,14 @@
 .foto-info {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   padding: var(--pad-foto-info);
 }
 
-.foto-info h3 {
-  font-family: Georgia, serif;
-  font-size: var(--fs-foto-titulo);
-  font-weight: 600;
+.foto-legenda {
+  font-family: 'Abadi Extra Light', sans-serif;
+  font-size: var(--fs-foto-legenda);
+  font-weight: bold;
   line-height: 1.3;
   color: #1c2630;
 }
@@ -116,7 +239,9 @@
   color: #6b7c88;
 }
 
-/* Foto ampliada */
+/* ==========================================================
+   Foto ampliada
+   ========================================================== */
 .lightbox {
   width: min(var(--largura-lightbox), 94vw);
   max-height: 94vh;
@@ -128,12 +253,13 @@
 }
 
 .lightbox::backdrop {
-  background: rgba(15, 20, 25, 0.82);
+  background: rgba(15, 20, 25, 0.85);
 }
 
 .lightbox-conteudo {
   position: relative;
-  padding: 16px 16px 20px;
+  padding: 16px 16px 18px;
+  text-align: center;
 }
 
 .lightbox-conteudo img {
@@ -146,10 +272,17 @@
 
 .lightbox-conteudo p {
   margin-top: 14px;
-  font-family: Georgia, serif;
+  padding: 0;
+  font-family: 'Abadi Extra Light', sans-serif;
   font-size: var(--fs-lightbox-legenda);
+  font-weight: bold;
   text-align: center;
   color: #1c2630;
+}
+
+.lightbox-conteudo .foto-codigo {
+  display: block;
+  margin-top: 4px;
 }
 
 .lightbox-fechar {
@@ -171,6 +304,30 @@
   background: var(--cor-dourada);
 }
 
+.lightbox-nav {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.lightbox-seta {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--cor-borda-cinza);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--cor-azul-principal);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lightbox-seta:hover {
+  background: var(--cor-dourada);
+  border-color: var(--cor-dourada);
+}
+
 /* ==========================================================
    Notebook (telas até 1600px de largura)
    ========================================================== */
@@ -179,17 +336,24 @@
     --fs-galeria-rotulo: 0.7rem;
     --fs-galeria-titulo: clamp(1.6rem, 4vw, 2.2rem);
     --fs-galeria-intro: 0.95rem;
-    --fs-foto-titulo: 1rem;
+    --fs-categoria-titulo: 1.5rem;
+    --fs-categoria-texto: 0.92rem;
+    --fs-foto-legenda: 0.95rem;
     --fs-foto-codigo: 0.74rem;
+    --fs-principal-titulo: 1.9rem;
+    --fs-principal-texto: 1rem;
     --fs-lightbox-legenda: 1rem;
 
     --largura-galeria-intro: 560px;
     --largura-lightbox: 820px;
-    --altura-lightbox-img: 66vh;
+    --altura-lightbox-img: 64vh;
+    --altura-principal: 440px;
 
     --espaco-galeria-topo: 34px;
-    --gap-galeria: 22px;
-    --pad-foto-info: 16px 18px 20px;
+    --espaco-categoria: 60px;
+    --gap-galeria: 20px;
+    --pad-foto-info: 12px 14px 16px;
+    --pad-principal: 32px 28px;
   }
 }
 
@@ -201,31 +365,69 @@
     --fs-galeria-rotulo: 0.68rem;
     --fs-galeria-titulo: clamp(1.5rem, 3.5vw, 1.95rem);
     --fs-galeria-intro: 0.92rem;
-    --fs-foto-titulo: 0.95rem;
+    --fs-categoria-titulo: 1.35rem;
+    --fs-categoria-texto: 0.88rem;
+    --fs-foto-legenda: 0.9rem;
     --fs-foto-codigo: 0.72rem;
+    --fs-principal-titulo: 1.65rem;
+    --fs-principal-texto: 0.95rem;
     --fs-lightbox-legenda: 0.95rem;
 
     --largura-galeria-intro: 520px;
     --largura-lightbox: 740px;
-    --altura-lightbox-img: 62vh;
+    --altura-lightbox-img: 60vh;
+    --altura-principal: 380px;
 
     --espaco-galeria-topo: 30px;
-    --gap-galeria: 18px;
-    --pad-foto-info: 14px 16px 18px;
+    --espaco-categoria: 52px;
+    --gap-galeria: 16px;
+    --pad-foto-info: 10px 12px 14px;
+    --pad-principal: 26px 24px;
   }
 }
 
 /* ==========================================================
    Tablet (telas até 1000px de largura)
+   Grade com 2 colunas; a foto em destaque ocupa a linha inteira.
    ========================================================== */
 @media (max-width: 1000px) {
+  :root {
+    --altura-principal: 340px;
+  }
+
   .galeria-grade {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card-destaque {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .card-destaque .foto-botao {
+    flex: none;
+    aspect-ratio: 16 / 10;
+    min-height: 0;
+  }
+
+  .foto-principal {
+    grid-template-columns: 1fr;
+  }
+
+  .foto-principal .foto-botao {
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+
+  .principal-info {
+    border-left: 0;
+    border-top: 3px solid var(--cor-dourada);
   }
 }
 
 /* ==========================================================
    Celular (telas até 650px de largura)
+   Duas fotos por linha; toque em uma foto para ampliar.
    Vem por último para valer sobre os blocos acima.
    ========================================================== */
 @media (max-width: 650px) {
@@ -233,16 +435,61 @@
     --fs-galeria-rotulo: 0.72rem;
     --fs-galeria-titulo: 1.8rem;
     --fs-galeria-intro: 1rem;
-    --fs-foto-titulo: 1.05rem;
-    --fs-foto-codigo: 0.76rem;
+    --fs-categoria-titulo: 1.35rem;
+    --fs-categoria-texto: 0.92rem;
+    --fs-foto-legenda: 0.8rem;
+    --fs-principal-titulo: 1.6rem;
+    --fs-principal-texto: 1rem;
     --fs-lightbox-legenda: 1rem;
 
     --espaco-galeria-topo: 28px;
-    --gap-galeria: 18px;
-    --pad-foto-info: 16px 18px 20px;
+    --espaco-categoria: 44px;
+    --gap-galeria: 10px;
+    --pad-foto-info: 8px 10px 10px;
+    --pad-principal: 22px 20px 26px;
   }
 
-  .galeria-grade {
-    grid-template-columns: 1fr;
+  .galeria {
+    margin-top: 0;
+  }
+
+  .galeria-nav {
+    margin-top: 32px;
+    gap: 10px;
+  }
+
+  /* fotos quadradas, para caberem duas lado a lado */
+  .foto-botao {
+    aspect-ratio: 1 / 1;
+  }
+
+  .card-destaque .foto-botao {
+    aspect-ratio: 16 / 10;
+  }
+
+  .foto-info {
+    gap: 2px;
+  }
+
+  .foto-legenda {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.25;
+  }
+
+  /* o código do arquivo aparece só na foto ampliada */
+  .card-foto .foto-codigo {
+    display: none;
+  }
+
+  .lightbox-conteudo {
+    padding: 12px 12px 16px;
+  }
+
+  .lightbox-fechar {
+    top: 18px;
+    right: 18px;
   }
 }

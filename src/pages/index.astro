@@ -14,6 +14,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{titulo}</title>
+<script
+    is:inline
+    type="module"
+    src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
+</script>
 </head>
 
 <body>
@@ -52,7 +57,6 @@ patrimônio.
 <section class="sobre-projeto" id="sobre-projeto">
 <div class="sobre-container">
 <div class="sobre-texto">
-<h3>Conheça o projeto</h3>
 
 <h2>O que é o MHC²IT Virtual</h2>
 
@@ -72,12 +76,17 @@ Para a digitalização dos objetos, são utilizadas técnicas de fotogrametria, 
 </div>
 
 <div class="sobre-imagem">
-<img
-src={`${base}/imagens/inalador-isolado.png`}
-alt="Imagem de um objeto do acervo em fomarto 3D"
-class="imagem-museu"
-/>
-<figcaption>Imagem de um objeto do acervo em formato 3D reconstruído com <em>Gaussian Splatting</em>.</figcaption>
+<model-viewer
+      id="viewer-lustre"
+      src={`${base}/modelos3d/lustre.glb`}
+      alt="Modelo 3D de um lustre"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      camera-controls
+      style"
+    >
+</model-viewer>
+<figcaption>Objeto reconstruído com fotogrametria.</figcaption>
 </div>
 </div>
 </section>

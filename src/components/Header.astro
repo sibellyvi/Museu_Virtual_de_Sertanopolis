@@ -1,9 +1,4 @@
 ---
-// Cabeçalho lateral (lado direito) com a forma desenhada à mão.
-// PC e notebook: abre já aberto; dá para arrastar para a direita (ou tocar na
-// setinha) e deixar só uma pontinha à mostra, para ver o site em tela cheia.
-// Celular (até 900px): abre fechado, só com a pontinha na lateral; arraste
-// para a esquerda (ou toque na setinha) para abrir.
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const atual = Astro.url.pathname.replace(/\/$/, "");
 
@@ -12,7 +7,7 @@ const links = [
   { texto: "Acervo 3D", rota: "/acervo3d" },
   { texto: "Museu Histórico", rota: "/museuHistorico" },
   { texto: "Curiosidades", rota: "/curiosidades" },
-  { texto: "Cidade de Sertanópolis", rota: "/cidade" },
+  { texto: "Cidade", rota: "/cidade" },
 ];
 ---
 
@@ -66,7 +61,8 @@ const links = [
     --fs-cab-logo-menor: 1.25rem;
     --fs-cab-logo-maior: 1.6rem;
     --gap-cab-links: 14px;
-    --aba-visivel: calc(var(--largura-cabecalho) * 0.14 + 22px); /* fechado: só uma pontinha da forma aparece */
+    --ponta-cabecalho: 22px; /* quanto da forma passa da "borda" 14% quando fechado (PC) */
+    --aba-visivel: calc(var(--largura-cabecalho) * 0.08 + var(--ponta-cabecalho));
     --desloca-cabecalho: 44px; /* empurra a forma para a direita, para cobrir menos o texto */
   }
 
@@ -231,11 +227,20 @@ const links = [
   /* ---- Celular e tablet: começa fechado ---- */
   @media (max-width: 900px) {
     :root {
+      --ponta-cabecalho: 1px; /* no celular, só uma pontinha bem pequena */
       --largura-cabecalho: 270px;
       --desloca-cabecalho: 0px;
       --fs-cab-link: 1.1rem;
       --gap-cab-links: 14px;
     }
+
+    /* área de toque da aba: alarga para a esquerda, onde não há forma, e esconde a setinha fechada */
+    .cab-aba {
+      left: calc(14% - 14px);
+      width: 32px;
+    }
+    .cab-aba svg { opacity: 0; transition: opacity 0.2s ease; }
+    .cab-aba[aria-expanded="true"] svg { opacity: 1; }
 
     .cab:not(.aberto) { transform: translateX(calc(100% - var(--aba-visivel))); }
     .cab.aberto { transform: translateX(0); }
@@ -271,8 +276,11 @@ const links = [
   // posição do painel aberto (PC tem um pequeno deslocamento) e fechado (só a pontinha)
   const abertoX = () =>
     parseFloat(getComputedStyle(painel).getPropertyValue("--desloca-cabecalho")) || 0;
-  // mesma conta do --aba-visivel no CSS: 14% da largura + 22px
-  const fechadoX = () => painel.offsetWidth - (painel.offsetWidth * 0.14 + 22);
+  // mesma conta do --aba-visivel no CSS: 14% da largura + --ponta-cabecalho
+  const fechadoX = () =>
+    painel.offsetWidth -
+    (painel.offsetWidth * 0.14 +
+      (parseFloat(getComputedStyle(painel).getPropertyValue("--ponta-cabecalho")) || 22));
 
   function mostrar(valor: boolean) {
     aba.setAttribute("aria-expanded", String(valor));

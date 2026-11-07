@@ -28,7 +28,7 @@
     --fs-hero-texto: 1.15rem;
 
     /* Letras: "Conheça o projeto" */
-    --fs-sobre-eyebrow: 1rem;
+    --fs-sobre-eyebrow: 10rem;
     --fs-sobre-h2: 2.4rem;
   
 
@@ -39,6 +39,10 @@
     --altura-inicio: 450px;
     --altura-hero-img: 415px;
     --altura-sobre-img: 350px;
+
+  --largura-grade: 1200px;
+  --largura-texto: 800px;
+  --altura-viewer: 300px;
 
     /* Espaçamentos */
     --espaco-topo: 80px; /* espaço para o header fixo */
@@ -52,7 +56,7 @@
 
     /* Galeria na página inicial */
     --fs-galeria-home-h2: 2.4rem;
-    --fs-galeria-home-h3: 0.9rem;
+    --fs-galeria-home-h3: 1.25rem;
     --largura-galeria-home: 1280px;
     --proporcao-galeria-home: 16 / 8;
     --espaco-galeria-home: 72px;
@@ -109,6 +113,7 @@ figcaption {
     font-size: 16px;
     color: var(--cor-texto);
     text-align: center;
+    padding: 10px;
 }
 
 a:hover {
@@ -227,7 +232,7 @@ a:hover {
 
   color: var(--cor-azul-secundaria);
 
-  font-size: var(--fs-sobre-eyebrow);
+  font-size: 20px;
   font-weight: 500;
 
   letter-spacing: 4px;
@@ -260,6 +265,9 @@ a:hover {
 
 .sobre-imagem {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .imagem-museu {
@@ -267,6 +275,13 @@ a:hover {
   width: 100%;
   height: var(--altura-sobre-img);
   object-fit: cover;
+}
+
+#viewer-lustre {
+  width: 75%;
+  height: var(--altura-viewer) !important;
+  --poster-color: transparent;
+  --progress-bar-color: var(--cor-dourada);
 }
 
 .galeria-home {

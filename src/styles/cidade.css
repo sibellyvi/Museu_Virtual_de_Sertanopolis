@@ -5,96 +5,91 @@
    os blocos @media no final do arquivo).
    ========================================================== */
 :root {
-    --cor-vermelha-principal: rgb(151, 44, 44);
-    --cor-azul-principal: rgb(8, 8, 106);
-    --cor-azul-secundaria: #14678c;
-    --cor-dourada: #d8a85f;
-    --cor-fundo: whitesmoke;
-    --cor-fundo-pagina: white;
-    --cor-fundo-card: #fdfcf7;
-    --cor-branca: #ffffff;
-    --cor-texto: #444444;
-    --cor-borda: #e8e1d8;
-    --cor-borda-cinza: #d9d2c8;
+  --cor-vermelha-principal: rgb(151, 44, 44);
+  --cor-azul-principal: rgb(8, 8, 106);
+  --cor-azul-secundaria: #14678c;
+  --cor-dourada: #d8a85f;
+  --cor-fundo: #faf8f2;
+  --cor-fundo-card: #fdfcf7;
+  --cor-branca: #ffffff;
+  --cor-texto: #444444;
+  --cor-borda: #e8e1d8;
+  --cor-borda-cinza: #d9d2c8;
 
-    /* Seção 1 (fundo vermelho, o mesmo da página do Museu Histórico) */
-    --cor-fundo-vermelho: #9a0000;
-    --cor-dourada-clara: #f0d6a0;
-    /* rótulo pequeno sobre o vermelho */
-    --cor-texto-claro: #f7efe3;
-    /* parágrafos sobre o vermelho */
-    --cor-vermelho-escuro: #5a0000;
-    /* texto sobre o dourado (hover das setas) */
+  /* Topo (fundo azul) */
+  --cor-dourada-clara: #f6e3b8; /* rótulos pequenos sobre o escuro */
+  --cor-texto-claro: #f2efe8; /* textos sobre o escuro */
 
-    /* ---- Tela de PC (padrão) ---- */
+  /* Hino (fundo vermelho, o mesmo do Museu Histórico) */
+  --cor-fundo-vermelho: #9a0000;
 
-    /* Letras */
-    --fs-eyebrow: 0.75rem;
-    --fs-h1: clamp(2.2rem, 6vw, 3.5rem);
-    --fs-intro: 1.05rem;
-    --fs-rotulo: 0.7rem;
-    --fs-card-titulo: 1.4rem;
-    --fs-card-texto: 0.95rem;
+  /* ---- Tela de PC (padrão) ---- */
 
-    /* Larguras e tamanhos */
-    --largura-pagina: 1200px;
-    --largura-intro: 560px;
-    --tam-seta: 44px;
+  /* Letras */
+  --fs-eyebrow: 0.8rem;
+  --fs-h1: clamp(2.4rem, 6vw, 4rem);
+  --fs-intro: 1.15rem;
+  --fs-rotulo: 0.78rem;
+  --fs-h2: clamp(1.7rem, 4vw, 2.4rem);
+  --fs-h3: 1.2rem;
+  --fs-abertura: 1.35rem;
+  --fs-texto: 1.1rem;
+  --fs-documento: 1.05rem;
+  --fs-hino: 1.2rem;
 
-    /* Espaçamentos */
-    --espaco-topo: 110px;
-    /* espaço para o header fixo; reduza se usar position: sticky */
-    --espaco-secao: 80px;
-    /* respiro no fim da seção vermelha e nas pontas da galeria */
-    --espaco-apos-topo: 56px;
-    --pad-card: 28px 26px 32px;
-    --espaco-cards: 26px;
+  /* Larguras */
+  --largura-pagina: 1100px;
+  --largura-leitura: 760px;
+  --largura-hino: 640px;
+
+  /* Espaçamentos */
+  --espaco-topo: 90px; /* o cabeçalho agora fica na lateral, então o topo precisa de menos espaço */
+  --espaco-topo-fim: 64px;
+  --espaco-secao: 88px;
+  --pad-lateral: 24px;
+  --pad-documento: 36px 40px;
+  --espaco-paragrafos: 1.3em;
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
 }
 
 @font-face {
-    font-family: 'Bauhaus 93';
-    src: url('/Museu_Virtual_de_Sertanopolis/fonts/bauhaus-93.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: 'Bauhaus 93';
+  src: url('/Museu_Virtual_de_Sertanopolis/fonts/bauhaus-93.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Abadi Extra Light';
-    src: url('/Museu_Virtual_de_Sertanopolis/fonts/abadi-extra-light.woff2') format('woff2');
-    font-weight: 200;
-    font-style: normal;
-    font-display: swap;
+  font-family: 'Abadi Extra Light';
+  src: url('/Museu_Virtual_de_Sertanopolis/fonts/abadi-extra-light.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  background: var(--cor-branca);
 }
 
 h1 {
-    font-family: 'Bauhaus 93', sans-serif;
-    font-weight: normal;
-    font-size: 50px;
-    padding-top: 100px;
-    text-align: center;
+  font-family: 'Bauhaus 93', sans-serif;
+  font-weight: normal;
 }
 
-h2 {
-    font-family: 'Abadi Extra Light', sans-serif;
-    font-weight: bold;
-    text-align: center;
-    padding: 20px;
-}
-
+h2,
 h3 {
-    text-align: center;
-}
-
-p {
-    padding: 30px;
-    text-align: justify;
+  font-family: 'Abadi Extra Light', sans-serif;
 }
 
 h3,
@@ -102,41 +97,334 @@ h4,
 a,
 p,
 figcaption,
-a {
-    font-family: 'Abadi Extra Light', sans-serif;
-    font-weight: 200;
+blockquote {
+  font-family: 'Abadi Extra Light', sans-serif;
+  font-weight: 200;
 }
 
-p{
-    padding: 10px 300px;
+/* Largura e margens laterais do conteúdo de cada seção */
+.conteudo {
+  max-width: var(--largura-pagina);
+  margin: 0 auto;
+  padding: 0 var(--pad-lateral);
 }
 
-body {
-    background: var(--cor-branca);
+.conteudo-leitura {
+  max-width: calc(var(--largura-leitura) + 2 * var(--pad-lateral));
 }
 
-#nav-cidade {
-    text-align: center;
-    padding: 50px;
+.conteudo-hino {
+  max-width: calc(var(--largura-hino) + 2 * var(--pad-lateral));
 }
 
-#nav-cidade a:hover {
-        color: var(--cor-vermelha-principal);
+/* Rótulo pequeno acima dos títulos */
+.eyebrow,
+.rotulo {
+  display: block;
+  font-size: var(--fs-rotulo);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--cor-azul-secundaria);
 }
 
-#nav-cidade a {
-    color: var(--cor-texto);
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 20px;
+/* Título de seção, com o filete dourado */
+.secao h2 {
+  margin: 14px 0 0;
+  font-size: var(--fs-h2);
+  font-weight: bold;
+  line-height: 1.15;
+  text-align: center;
+  color: var(--cor-azul-principal);
 }
 
-#letra{
-    text-align: start;
-    padding-left: 50px;
+.secao h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 2px;
+  margin: 18px auto 0;
+  background: var(--cor-dourada);
 }
 
-#hino p {
-    text-align: center;
+/* ==========================================================
+   Topo (fundo azul)
+   ========================================================== */
+.topo-cidade {
+  background-color: var(--cor-azul-principal);
+  padding: var(--espaco-topo) 0 var(--espaco-topo-fim);
+  text-align: center;
+}
+
+.topo-cidade .eyebrow {
+  font-size: var(--fs-eyebrow);
+  color: var(--cor-dourada-clara);
+}
+
+.topo-cidade h1 {
+  margin: 16px 0 18px;
+  font-size: var(--fs-h1);
+  line-height: 1.05;
+  color: var(--cor-branca);
+}
+
+.topo-cidade .intro {
+  max-width: 520px;
+  margin: 0 auto;
+  font-size: var(--fs-intro);
+  line-height: 1.6;
+  color: var(--cor-texto-claro);
+}
+
+/* ==========================================================
+   Atalhos para as seções
+   ========================================================== */
+.atalhos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px 18px;
+  padding: 36px var(--pad-lateral);
+  background: var(--cor-fundo);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+/* ==========================================================
+   Seções
+   ========================================================== */
+.secao {
+  padding: var(--espaco-secao) 0;
+}
+
+/* História */
+.secao-historia {
+  background: var(--cor-branca);
+}
+
+.secao-historia h2 {
+  margin-bottom: 40px;
+}
+
+.abertura {
+  margin-bottom: 1.6em;
+  padding-left: 22px;
+  border-left: 3px solid var(--cor-dourada);
+  font-size: var(--fs-abertura);
+  line-height: 1.55;
+  color: var(--cor-azul-principal);
+}
+
+.texto {
+  margin-bottom: var(--espaco-paragrafos);
+  font-size: var(--fs-texto);
+  line-height: 1.8;
+  text-align: left;
+  color: var(--cor-texto);
+}
+
+.texto:last-child {
+  margin-bottom: 0;
+}
+
+/* Documentos oficiais */
+.secao-documentos {
+  background: var(--cor-fundo);
+}
+
+.secao-documentos h3 {
+  margin-top: 36px;
+  font-size: var(--fs-h3);
+  font-weight: bold;
+  line-height: 1.3;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--cor-vermelha-principal);
+}
+
+.fonte {
+  margin: 14px auto 32px;
+  max-width: 600px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: center;
+  color: #6b6b6b;
+}
+
+.documento {
+  padding: var(--pad-documento);
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-left: 4px solid var(--cor-vermelha-principal);
+}
+
+.documento p {
+  font-size: var(--fs-documento);
+  line-height: 1.8;
+  text-align: left;
+  color: var(--cor-texto);
+}
+
+/* Hino */
+.secao-hino {
+  background: var(--cor-fundo-vermelho);
+}
+
+.secao-hino .rotulo {
+  color: var(--cor-dourada-clara);
+}
+
+.secao-hino h2 {
+  color: var(--cor-branca);
+}
+
+.creditos {
+  margin-top: 22px;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-align: center;
+  color: var(--cor-dourada-clara);
+}
+
+.letra {
+  display: grid;
+  gap: 34px;
+  margin-top: 48px;
+}
+
+.letra .estrofe,
+.letra .refrao {
+  font-size: var(--fs-hino);
+  line-height: 1.9;
+  text-align: center;
+  color: var(--cor-texto-claro);
+}
+
+/* O refrão ganha um destaque, para o leitor reconhecê-lo quando se repete */
+.letra .refrao {
+  padding: 22px 12px;
+  border-top: 1px solid var(--cor-dourada);
+  border-bottom: 1px solid var(--cor-dourada);
+  font-weight: bold;
+  color: var(--cor-branca);
+}
+
+.letra .nota {
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--cor-dourada-clara);
+}
+
+/* ==========================================================
+   Notebook (telas até 1600px de largura)
+   Cobre a maioria dos notebooks, como 1536, 1440 e 1366 px.
+   ========================================================== */
+@media (max-width: 1600px) {
+  :root {
+    --fs-eyebrow: 0.75rem;
+    --fs-h1: clamp(2.2rem, 5vw, 3.4rem);
+    --fs-intro: 1.05rem;
+    --fs-rotulo: 0.72rem;
+    --fs-h2: clamp(1.6rem, 3.5vw, 2.1rem);
+    --fs-h3: 1.1rem;
+    --fs-abertura: 1.25rem;
+    --fs-texto: 1.02rem;
+    --fs-documento: 0.98rem;
+    --fs-hino: 1.1rem;
+
+    --largura-pagina: 1000px;
+    --largura-leitura: 700px;
+    --largura-hino: 600px;
+
+    --espaco-topo: 76px;
+    --espaco-topo-fim: 52px;
+    --espaco-secao: 72px;
+    --pad-documento: 30px 34px;
+  }
+}
+
+/* ==========================================================
+   Notebook menor (telas até 1366px de largura)
+   ========================================================== */
+@media (max-width: 1366px) {
+  :root {
+    --fs-eyebrow: 0.72rem;
+    --fs-h1: clamp(2rem, 4.5vw, 3rem);
+    --fs-intro: 1rem;
+    --fs-rotulo: 0.68rem;
+    --fs-h2: clamp(1.5rem, 3vw, 1.9rem);
+    --fs-h3: 1.02rem;
+    --fs-abertura: 1.15rem;
+    --fs-texto: 0.98rem;
+    --fs-documento: 0.94rem;
+    --fs-hino: 1.05rem;
+
+    --largura-pagina: 920px;
+    --largura-leitura: 660px;
+    --largura-hino: 560px;
+
+    --espaco-topo: 68px;
+    --espaco-topo-fim: 46px;
+    --espaco-secao: 60px;
+    --pad-documento: 26px 30px;
+  }
+}
+
+/* ==========================================================
+   Tablet (telas até 900px de largura)
+   ========================================================== */
+@media (max-width: 900px) {
+  :root {
+    --fs-h1: clamp(2.2rem, 8vw, 3rem);
+    --fs-texto: 1.05rem;
+    --fs-abertura: 1.2rem;
+    --fs-documento: 1rem;
+    --fs-hino: 1.1rem;
+
+    --largura-leitura: 640px;
+
+    --espaco-topo: 72px;
+    --espaco-secao: 56px;
+  }
+}
+
+/* ==========================================================
+   Celular (telas até 650px de largura)
+   Vem por último para valer sobre os blocos acima.
+   ========================================================== */
+@media (max-width: 650px) {
+  :root {
+    --fs-eyebrow: 0.75rem;
+    --fs-h1: clamp(2.1rem, 10vw, 2.7rem);
+    --fs-intro: 1.05rem;
+    --fs-rotulo: 0.72rem;
+    --fs-h2: 1.7rem;
+    --fs-h3: 1.05rem;
+    --fs-abertura: 1.15rem;
+    --fs-texto: 1.05rem;
+    --fs-documento: 1rem;
+    --fs-hino: 1.1rem;
+
+    --espaco-topo: 64px;
+    --espaco-topo-fim: 40px;
+    --espaco-secao: 48px;
+    --pad-lateral: 18px;
+    --pad-documento: 22px 20px;
+  }
+
+  .atalhos {
+    gap: 12px;
+    padding: 28px var(--pad-lateral);
+  }
+
+  .abertura {
+    padding-left: 16px;
+  }
+
+  .letra {
+    gap: 28px;
+    margin-top: 36px;
+  }
 }

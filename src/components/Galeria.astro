@@ -1,75 +1,151 @@
 ---
 import "../styles/galeria.css";
-import { fotos, pastaFotos } from "../data/fotos";
- 
+import Botao from "./Botao.astro";
+import { fotos, categorias, fotoPrincipal, pastaFotos } from "../data/fotos";
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
- 
+
 // encodeURIComponent cuida de espaços e acentos no nome dos arquivos
 const urlFoto = (arquivo: string) =>
   `${base}/${pastaFotos}/${encodeURIComponent(arquivo)}`;
+
+// Só mostra categorias que têm foto, na ordem definida em fotos.ts
+const secoes = categorias
+  .map((cat) => ({ ...cat, fotos: fotos.filter((f) => f.categoria === cat.id) }))
+  .filter((cat) => cat.fotos.length > 0);
 ---
- 
+
 <section class="galeria" id="galeria">
   <header class="galeria-topo">
-    <span class="galeria-rotulo">Memória visual</span>
-    <h2>Sertanópolis no tempo</h2>
-    <p class="galeria-intro">
-      Fotografias do banco de fotos da cidade que registram ruas, comércio,
-      escolas, igrejas e o trabalho no campo. Toque em uma imagem para ampliar.
-    </p>
+    <span class="galeria-rotulo">Memória visual - Sertanópolis no tempo</span>
+    <h2>Galeria de fotos antigas</h2>
   </header>
- 
-  <div class="galeria-grade">
+
+  <!-- Foto principal -->
+  <figure class="foto-principal">
+    <button
+      type="button"
+      class="foto-botao"
+      data-src={urlFoto(fotoPrincipal.arquivo)}
+      data-legenda={fotoPrincipal.titulo}
+      data-codigo={fotoPrincipal.codigo}
+      aria-label={`Ampliar foto: ${fotoPrincipal.titulo}`}
+    >
+      <img
+        src={urlFoto(fotoPrincipal.arquivo)}
+        alt={fotoPrincipal.titulo}
+        decoding="async"
+      />
+    </button>
+    <figcaption class="principal-info">
+      <span class="principal-rotulo">{fotoPrincipal.rotulo}</span>
+      <span class="principal-titulo">{fotoPrincipal.titulo}</span>
+      <span class="principal-texto">{fotoPrincipal.texto}</span>
+      <span class="foto-codigo">{fotoPrincipal.codigo}</span>
+    </figcaption>
+  </figure>
+
+  <!-- Atalhos para as categorias -->
+  <nav class="galeria-nav" aria-label="Categorias de fotos">
     {
-      fotos.map((foto) => (
-        <figure class="card-foto">
-          <button
-            type="button"
-            class="foto-botao"
-            data-src={urlFoto(foto.arquivo)}
-            data-legenda={foto.legenda}
-            aria-label={`Ampliar foto: ${foto.legenda}`}
-          >
-            <img
-              src={urlFoto(foto.arquivo)}
-              alt={foto.legenda}
-              loading="lazy"
-              decoding="async"
-            />
-          </button>
-          <figcaption class="foto-info">
-            <h3>{foto.legenda}</h3>
-            <span class="foto-codigo">{foto.codigo}</span>
-          </figcaption>
-        </figure>
+      secoes.map((cat) => (
+        <Botao href={`#cat-${cat.id}`} variante="filtro">
+          {cat.nome}
+        </Botao>
       ))
     }
-  </div>
- 
+  </nav>
+
+  <!-- Uma seção por categoria -->
+  {
+    secoes.map((cat) => (
+      <section class="categoria" id={`cat-${cat.id}`}>
+        <header class="categoria-topo">
+          <h3>{cat.nome}</h3>
+          <p>{cat.descricao}</p>
+        </header>
+
+        <div class="galeria-grade">
+          {cat.fotos.map((foto) => (
+            <figure class={`card-foto${foto.destaque ? " card-destaque" : ""}`}>
+              <button
+                type="button"
+                class="foto-botao"
+                data-src={urlFoto(foto.arquivo)}
+                data-legenda={foto.legenda}
+                data-codigo={foto.codigo}
+                aria-label={`Ampliar foto: ${foto.legenda}`}
+              >
+                <img
+                  src={urlFoto(foto.arquivo)}
+                  alt={foto.legenda}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </button>
+              <figcaption class="foto-info">
+                <span class="foto-legenda">{foto.legenda}</span>
+                <span class="foto-codigo">{foto.codigo}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+    ))
+  }
+
   <dialog id="lightbox" class="lightbox" aria-label="Foto ampliada">
     <div class="lightbox-conteudo">
       <button type="button" class="lightbox-fechar" aria-label="Fechar">×</button>
       <img id="lightbox-img" src="" alt="" />
       <p id="lightbox-legenda"></p>
+      <span id="lightbox-codigo" class="foto-codigo"></span>
+      <div class="lightbox-nav">
+        <button type="button" class="lightbox-seta" id="lightbox-anterior" aria-label="Foto anterior">‹</button>
+        <button type="button" class="lightbox-seta" id="lightbox-proxima" aria-label="Próxima foto">›</button>
+      </div>
     </div>
   </dialog>
 </section>
- 
+
 <script>
   const dialog = document.getElementById("lightbox") as HTMLDialogElement | null;
   const imagem = document.getElementById("lightbox-img") as HTMLImageElement | null;
   const legenda = document.getElementById("lightbox-legenda");
- 
-  document.querySelectorAll<HTMLButtonElement>(".foto-botao").forEach((botao) => {
+  const codigo = document.getElementById("lightbox-codigo");
+  const anterior = document.getElementById("lightbox-anterior");
+  const proxima = document.getElementById("lightbox-proxima");
+
+  // Todas as fotos da página, na ordem em que aparecem
+  const botoes = Array.from(document.querySelectorAll<HTMLButtonElement>(".foto-botao"));
+  let atual = 0;
+
+  function mostrar(indice: number) {
+    if (!imagem || !legenda || !codigo) return;
+    atual = (indice + botoes.length) % botoes.length;
+    const botao = botoes[atual];
+    imagem.src = botao.dataset.src ?? "";
+    imagem.alt = botao.dataset.legenda ?? "";
+    legenda.textContent = botao.dataset.legenda ?? "";
+    codigo.textContent = botao.dataset.codigo ?? "";
+  }
+
+  botoes.forEach((botao, i) => {
     botao.addEventListener("click", () => {
-      if (!dialog || !imagem || !legenda) return;
-      imagem.src = botao.dataset.src ?? "";
-      imagem.alt = botao.dataset.legenda ?? "";
-      legenda.textContent = botao.dataset.legenda ?? "";
-      dialog.showModal();
+      mostrar(i);
+      dialog?.showModal();
     });
   });
- 
+
+  anterior?.addEventListener("click", () => mostrar(atual - 1));
+  proxima?.addEventListener("click", () => mostrar(atual + 1));
+
+  document.addEventListener("keydown", (e) => {
+    if (!dialog?.open) return;
+    if (e.key === "ArrowLeft") mostrar(atual - 1);
+    if (e.key === "ArrowRight") mostrar(atual + 1);
+  });
+
   // Fecha ao clicar fora da imagem ou no X (Esc já fecha sozinho)
   dialog?.addEventListener("click", (e) => {
     const alvo = e.target as HTMLElement;

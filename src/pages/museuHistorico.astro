@@ -7,13 +7,15 @@ const titulo = "Museu Histórico";
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
-// Para adicionar um marco novo, inclua mais um item aqui (na ordem em que deve aparecer)
 const linhaDoTempo = [
   {
-    data: "1992",
-    titulo: "Inauguração",
-    texto:
-      "Criação do Museu Histórico de Sertanópolis, dedicado a reunir e preservar objetos e registros ligados à história do município e de sua comunidade.",
+  data: "1992",
+  titulo: "Inauguração",
+  texto:
+    "Criação do Museu Histórico de Sertanópolis, dedicado a reunir e preservar objetos e registros ligados à história do município e de sua comunidade.",
+  imagem: `${base}/imagens/jornal-de-1992.jpg`,
+  alt: "Folha de Londrina anunciando a inauguração do museu histórico de Sertanópolis",
+  legenda: "Folha de Londrina em 1992 anunciando a inauguração do museu histórico de Sertanópolis",
   },
   {
     data: "2009",
@@ -79,18 +81,6 @@ const linhaDoTempo = [
       </figcaption>
     </figure>
 
-    <figure class="figura-museu figura-revista">
-      <img
-        src={`${base}/imagens/#.jpg`}
-        alt="Folha de Londrina anunciando a inauguração do museu histórico de Sertanópolis"
-        class="imagem-museu"
-      />
-      <figcaption>
-        Folha de Londrina anunciando a inauguração do museu histórico de
-        Sertanópolis
-      </figcaption>
-    </figure>
-
     <section class="linha-do-tempo" aria-labelledby="titulo-linha-do-tempo">
       <h2 id="titulo-linha-do-tempo">Linha do tempo</h2>
 
@@ -101,6 +91,17 @@ const linhaDoTempo = [
               <span class="evento-data">{evento.data}</span>
               <h3>{evento.titulo}</h3>
               <p>{evento.texto}</p>
+
+              {evento.imagem && (
+                <figure class="figura-museu figura-revista">
+                  <img
+                    src={evento.imagem}
+                    alt={evento.alt}
+                    class="imagem-museu"
+                  />
+                  <figcaption>{evento.legenda}</figcaption>
+                </figure>
+              )}
             </li>
           ))
         }
